@@ -64,7 +64,7 @@ CREATE TABLE `Games` (
   KEY `fk_Games_Genres1_idx` (`genre_id`),
   CONSTRAINT `fk_Games_Companies1` FOREIGN KEY (`company_id`) REFERENCES `Companies` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Games_Genres1` FOREIGN KEY (`genre_id`) REFERENCES `Genres` (`genre_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `Games` (
 
 LOCK TABLES `Games` WRITE;
 /*!40000 ALTER TABLE `Games` DISABLE KEYS */;
+INSERT INTO `Games` VALUES (1,'Elden Ring','This is an open world dark souls like game where you also die a lot','2022-02-25',1,1),(2,'The Legend of Zelda: Breath of the Wild','This is an open world zelda game where you hunt koroks','2017-03-03',2,2),(3,'Overwatch','This is a multiplayer shooting game where everyone needs healing too much','2016-05-24',3,3);
 /*!40000 ALTER TABLE `Games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,6 +101,7 @@ CREATE TABLE `GamesPlatforms` (
 
 LOCK TABLES `GamesPlatforms` WRITE;
 /*!40000 ALTER TABLE `GamesPlatforms` DISABLE KEYS */;
+INSERT INTO `GamesPlatforms` VALUES (1,2),(1,3),(1,4),(1,5),(1,6),(2,1),(3,1),(3,2),(3,3),(3,5);
 /*!40000 ALTER TABLE `GamesPlatforms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +204,7 @@ CREATE TABLE `Playthroughs` (
   KEY `fk_Playthroughs_Games1_idx` (`game_id`),
   CONSTRAINT `fk_Playthroughs_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Playthroughs_Users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,6 +213,7 @@ CREATE TABLE `Playthroughs` (
 
 LOCK TABLES `Playthroughs` WRITE;
 /*!40000 ALTER TABLE `Playthroughs` DISABLE KEYS */;
+INSERT INTO `Playthroughs` VALUES (1,'2022-04-28 02:06:34','2022-04-04 11:14:03',1,1),(2,'2022-04-28 02:07:18','2022-01-12 18:24:10',2,3),(3,'2020-05-20 11:20:32','2020-12-01 18:02:01',3,2);
 /*!40000 ALTER TABLE `Playthroughs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +233,7 @@ CREATE TABLE `Sessions` (
   UNIQUE KEY `session_id_UNIQUE` (`session_id`),
   KEY `fk_Sessions_Playthroughs1_idx` (`playthrough_id`),
   CONSTRAINT `fk_Sessions_Playthroughs1` FOREIGN KEY (`playthrough_id`) REFERENCES `Playthroughs` (`playthrough_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,6 +242,7 @@ CREATE TABLE `Sessions` (
 
 LOCK TABLES `Sessions` WRITE;
 /*!40000 ALTER TABLE `Sessions` DISABLE KEYS */;
+INSERT INTO `Sessions` VALUES (1,10.00,'2020-12-11 19:01:03',3),(2,1.00,'2022-02-01 10:02:13',2),(3,5.00,'2022-04-11 12:09:23',1);
 /*!40000 ALTER TABLE `Sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +261,7 @@ CREATE TABLE `Users` (
   `email` varchar(45) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,6 +270,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES (1,'Eren','Yeager','Titan','fightme@gmail.com'),(2,'Mikasa','Ackerman','Erennn','ackerman@gmail.com'),(3,'Link','Zelda','Korok','zelda@gmail.com');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -278,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-27 18:00:52
+-- Dump completed on 2022-04-27 19:30:46
