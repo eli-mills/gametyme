@@ -58,7 +58,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Companies` (
   `company_id` INT NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(100) NULL,
-  `location_id` INT NOT NULL,
+  `location_id` INT NULL,
   PRIMARY KEY (`company_id`, `location_id`),
   UNIQUE INDEX `company_id_UNIQUE` (`company_id` ASC) VISIBLE,
   UNIQUE INDEX `company_name_UNIQUE` (`company_name` ASC) VISIBLE,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Companies` (
   CONSTRAINT `fk_Companies_Locations1`
     FOREIGN KEY (`location_id`)
     REFERENCES `cs340_millse2`.`Locations` (`location_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -77,14 +77,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Platforms` (
   `platform_id` INT NOT NULL AUTO_INCREMENT,
   `platform_name` VARCHAR(45) NOT NULL,
-  `company_id` INT NOT NULL,
+  `company_id` INT NULL,
   PRIMARY KEY (`platform_id`, `company_id`),
   UNIQUE INDEX `platform_id_UNIQUE` (`platform_id` ASC) VISIBLE,
   INDEX `fk_Platforms_Companies1_idx` (`company_id` ASC) VISIBLE,
   CONSTRAINT `fk_Platforms_Companies1`
     FOREIGN KEY (`company_id`)
     REFERENCES `cs340_millse2`.`Companies` (`company_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -97,8 +97,8 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Games` (
   `game_title` VARCHAR(100) NOT NULL,
   `game_summary` VARCHAR(1000) NULL,
   `release_date` DATE NULL,
-  `company_id` INT NOT NULL,
-  `genre_id` INT NOT NULL,
+  `company_id` INT NULL,
+  `genre_id` INT NULL,
   PRIMARY KEY (`game_id`, `company_id`, `genre_id`),
   UNIQUE INDEX `game_id_UNIQUE` (`game_id` ASC) VISIBLE,
   INDEX `fk_Games_Companies1_idx` (`company_id` ASC) VISIBLE,
@@ -106,12 +106,12 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Games` (
   CONSTRAINT `fk_Games_Companies1`
     FOREIGN KEY (`company_id`)
     REFERENCES `cs340_millse2`.`Companies` (`company_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Games_Genres1`
     FOREIGN KEY (`genre_id`)
     REFERENCES `cs340_millse2`.`Genres` (`genre_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Playthroughs` (
   `start_timestamp` TIMESTAMP NOT NULL,
   `finish_timestamp` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
-  `game_id` INT NOT NULL,
+  `game_id` INT NULL,
   PRIMARY KEY (`playthrough_id`, `user_id`, `game_id`),
   UNIQUE INDEX `playthrough_id_UNIQUE` (`playthrough_id` ASC) VISIBLE,
   INDEX `fk_Playthroughs_Users_idx` (`user_id` ASC) VISIBLE,
@@ -132,12 +132,12 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Playthroughs` (
   CONSTRAINT `fk_Playthroughs_Users`
     FOREIGN KEY (`user_id`)
     REFERENCES `cs340_millse2`.`Users` (`user_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Playthroughs_Games1`
     FOREIGN KEY (`game_id`)
     REFERENCES `cs340_millse2`.`Games` (`game_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Sessions` (
   CONSTRAINT `fk_Sessions_Playthroughs1`
     FOREIGN KEY (`playthrough_id`)
     REFERENCES `cs340_millse2`.`Playthroughs` (`playthrough_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -173,12 +173,12 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`GamesPlatforms` (
   CONSTRAINT `fk_Games_has_Platforms_Games1`
     FOREIGN KEY (`game_id`)
     REFERENCES `cs340_millse2`.`Games` (`game_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Games_has_Platforms_Platforms1`
     FOREIGN KEY (`platform_id`)
     REFERENCES `cs340_millse2`.`Platforms` (`platform_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
