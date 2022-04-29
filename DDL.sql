@@ -93,7 +93,7 @@ CREATE TABLE `GamesPlatforms` (
   KEY `fk_Games_has_Platforms_Games1_idx` (`game_id`),
   CONSTRAINT `fk_Games_has_Platforms_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_Games_has_Platforms_Platforms1` FOREIGN KEY (`platform_id`) REFERENCES `Platforms` (`platform_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,6 +102,7 @@ CREATE TABLE `GamesPlatforms` (
 
 LOCK TABLES `GamesPlatforms` WRITE;
 /*!40000 ALTER TABLE `GamesPlatforms` DISABLE KEYS */;
+INSERT INTO `GamesPlatforms` VALUES (1,1,2),(2,1,3),(3,1,4),(4,1,5),(5,1,6),(6,2,1),(7,3,1),(8,3,2),(9,3,3),(10,3,5);
 /*!40000 ALTER TABLE `GamesPlatforms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,4 +284,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-28 18:40:02
+-- Dump completed on 2022-04-28 19:09:32

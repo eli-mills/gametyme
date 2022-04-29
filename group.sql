@@ -20,3 +20,16 @@ INSERT INTO Sessions (time_played, session_timestamp, playthrough_id)
 VALUES (10, '2020-12-11 11:01:03',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Korok')),
 (1, '2022-02-01 02:02:13',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Erennn')),
 (5, '2022-04-11 05:09:23',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Titan'));
+
+INSERT INTO GamesPlatforms (game_id, platform_id)
+VALUES
+( (SELECT game_id FROM Games WHERE game_title='Elden Ring'), (SELECT platform_id FROM Platforms WHERE platform_name='PC') ),
+( (SELECT game_id FROM Games WHERE game_title='Elden Ring'), (SELECT platform_id FROM Platforms WHERE platform_name='Playstation 4') ),
+( (SELECT game_id FROM Games WHERE game_title='Elden Ring'), (SELECT platform_id FROM Platforms WHERE platform_name='Playstation 5') ),
+( (SELECT game_id FROM Games WHERE game_title='Elden Ring'), (SELECT platform_id FROM Platforms WHERE platform_name='Xbox One') ),
+( (SELECT game_id FROM Games WHERE game_title='Elden Ring'), (SELECT platform_id FROM Platforms WHERE platform_name='Xbox Series X|S') ),
+( (SELECT game_id FROM Games WHERE game_title='The Legend of Zelda: Breath of the Wild'), (SELECT platform_id FROM Platforms WHERE platform_name='Switch') ),
+( (SELECT game_id FROM Games WHERE game_title='Overwatch'), (SELECT platform_id FROM Platforms WHERE platform_name='Switch') ),
+( (SELECT game_id FROM Games WHERE game_title='Overwatch'), (SELECT platform_id FROM Platforms WHERE platform_name='PC') ),
+( (SELECT game_id FROM Games WHERE game_title='Overwatch'), (SELECT platform_id FROM Platforms WHERE platform_name='Playstation 4') ),
+( (SELECT game_id FROM Games WHERE game_title='Overwatch'), (SELECT platform_id FROM Platforms WHERE platform_name='Xbox One') );
