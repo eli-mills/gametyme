@@ -25,12 +25,11 @@ DROP TABLE IF EXISTS `Companies`;
 CREATE TABLE `Companies` (
   `company_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_name` varchar(100) NOT NULL,
-  `location_id` int(11) NOT NULL,
-  PRIMARY KEY (`company_id`,`location_id`),
+  `location_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`company_id`),
   UNIQUE KEY `company_id_UNIQUE` (`company_id`),
-  UNIQUE KEY `company_name_UNIQUE` (`company_name`),
   KEY `fk_Companies_Locations1_idx` (`location_id`),
-  CONSTRAINT `fk_Companies_Locations1` FOREIGN KEY (`location_id`) REFERENCES `Locations` (`location_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Companies_Locations1` FOREIGN KEY (`location_id`) REFERENCES `Locations` (`location_id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +39,7 @@ CREATE TABLE `Companies` (
 
 LOCK TABLES `Companies` WRITE;
 /*!40000 ALTER TABLE `Companies` DISABLE KEYS */;
-INSERT INTO `Companies` VALUES (3,'Blizzard',3),(1,'FromSoftware',1),(5,'Microsoft',4),(2,'Nintendo',2),(4,'Sony',1);
+INSERT INTO `Companies` VALUES (1,'FromSoftware',1),(2,'Nintendo',2),(3,'Blizzard',3),(4,'Sony',1),(5,'Microsoft',4);
 /*!40000 ALTER TABLE `Companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,14 +55,14 @@ CREATE TABLE `Games` (
   `game_title` varchar(100) NOT NULL,
   `game_summary` varchar(1000) DEFAULT NULL,
   `release_date` date DEFAULT NULL,
-  `company_id` int(11) NOT NULL,
-  `genre_id` int(11) NOT NULL,
-  PRIMARY KEY (`game_id`,`company_id`,`genre_id`),
+  `company_id` int(11) DEFAULT NULL,
+  `genre_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`game_id`),
   UNIQUE KEY `game_id_UNIQUE` (`game_id`),
   KEY `fk_Games_Companies1_idx` (`company_id`),
   KEY `fk_Games_Genres1_idx` (`genre_id`),
-  CONSTRAINT `fk_Games_Companies1` FOREIGN KEY (`company_id`) REFERENCES `Companies` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Games_Genres1` FOREIGN KEY (`genre_id`) REFERENCES `Genres` (`genre_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Games_Companies1` FOREIGN KEY (`company_id`) REFERENCES `Companies` (`company_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Games_Genres1` FOREIGN KEY (`genre_id`) REFERENCES `Genres` (`genre_id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,13 +84,15 @@ DROP TABLE IF EXISTS `GamesPlatforms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GamesPlatforms` (
+  `games_platforms_id` int(11) NOT NULL AUTO_INCREMENT,
   `game_id` int(11) NOT NULL,
   `platform_id` int(11) NOT NULL,
-  PRIMARY KEY (`game_id`,`platform_id`),
+  PRIMARY KEY (`games_platforms_id`),
+  UNIQUE KEY `games_platforms_id_UNIQUE` (`games_platforms_id`),
   KEY `fk_Games_has_Platforms_Platforms1_idx` (`platform_id`),
   KEY `fk_Games_has_Platforms_Games1_idx` (`game_id`),
-  CONSTRAINT `fk_Games_has_Platforms_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Games_has_Platforms_Platforms1` FOREIGN KEY (`platform_id`) REFERENCES `Platforms` (`platform_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Games_has_Platforms_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Games_has_Platforms_Platforms1` FOREIGN KEY (`platform_id`) REFERENCES `Platforms` (`platform_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,7 +102,6 @@ CREATE TABLE `GamesPlatforms` (
 
 LOCK TABLES `GamesPlatforms` WRITE;
 /*!40000 ALTER TABLE `GamesPlatforms` DISABLE KEYS */;
-INSERT INTO `GamesPlatforms` VALUES (1,2),(1,3),(1,4),(1,5),(1,6),(2,1),(3,1),(3,2),(3,3),(3,5);
 /*!40000 ALTER TABLE `GamesPlatforms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,11 +167,11 @@ DROP TABLE IF EXISTS `Platforms`;
 CREATE TABLE `Platforms` (
   `platform_id` int(11) NOT NULL AUTO_INCREMENT,
   `platform_name` varchar(45) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  PRIMARY KEY (`platform_id`,`company_id`),
+  `company_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`platform_id`),
   UNIQUE KEY `platform_id_UNIQUE` (`platform_id`),
   KEY `fk_Platforms_Companies1_idx` (`company_id`),
-  CONSTRAINT `fk_Platforms_Companies1` FOREIGN KEY (`company_id`) REFERENCES `Companies` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Platforms_Companies1` FOREIGN KEY (`company_id`) REFERENCES `Companies` (`company_id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,13 +197,13 @@ CREATE TABLE `Playthroughs` (
   `start_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `finish_timestamp` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `game_id` int(11) NOT NULL,
-  PRIMARY KEY (`playthrough_id`,`user_id`,`game_id`),
+  `game_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`playthrough_id`),
   UNIQUE KEY `playthrough_id_UNIQUE` (`playthrough_id`),
   KEY `fk_Playthroughs_Users_idx` (`user_id`),
   KEY `fk_Playthroughs_Games1_idx` (`game_id`),
-  CONSTRAINT `fk_Playthroughs_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Playthroughs_Users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Playthroughs_Games1` FOREIGN KEY (`game_id`) REFERENCES `Games` (`game_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Playthroughs_Users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,7 +213,7 @@ CREATE TABLE `Playthroughs` (
 
 LOCK TABLES `Playthroughs` WRITE;
 /*!40000 ALTER TABLE `Playthroughs` DISABLE KEYS */;
-INSERT INTO `Playthroughs` VALUES (1,'2022-04-28 02:06:34','2022-04-04 11:14:03',1,1),(2,'2022-04-28 02:07:18','2022-01-12 18:24:10',2,3),(3,'2020-05-20 11:20:32','2020-12-01 18:02:01',3,2);
+INSERT INTO `Playthroughs` VALUES (1,'2022-01-04 10:15:01','2022-04-04 11:14:03',1,1),(2,'2021-11-01 08:30:40','2022-01-12 18:24:10',2,3),(3,'2020-05-20 11:20:32','2020-12-01 18:02:01',3,2);
 /*!40000 ALTER TABLE `Playthroughs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,10 +229,10 @@ CREATE TABLE `Sessions` (
   `time_played` decimal(19,2) DEFAULT NULL,
   `session_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `playthrough_id` int(11) NOT NULL,
-  PRIMARY KEY (`session_id`,`playthrough_id`),
+  PRIMARY KEY (`session_id`),
   UNIQUE KEY `session_id_UNIQUE` (`session_id`),
   KEY `fk_Sessions_Playthroughs1_idx` (`playthrough_id`),
-  CONSTRAINT `fk_Sessions_Playthroughs1` FOREIGN KEY (`playthrough_id`) REFERENCES `Playthroughs` (`playthrough_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Sessions_Playthroughs1` FOREIGN KEY (`playthrough_id`) REFERENCES `Playthroughs` (`playthrough_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -283,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-28 17:35:36
+-- Dump completed on 2022-04-28 18:40:02
