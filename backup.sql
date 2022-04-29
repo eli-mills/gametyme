@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `Companies`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Companies` (
   `company_id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(100) DEFAULT NULL,
+  `company_name` varchar(100) NOT NULL,
   `location_id` int(11) NOT NULL,
   PRIMARY KEY (`company_id`,`location_id`),
   UNIQUE KEY `company_id_UNIQUE` (`company_id`),
@@ -283,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-27 19:30:46
+-- Dump completed on 2022-04-28 17:35:36

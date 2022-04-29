@@ -57,14 +57,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Companies` (
   `company_id` INT NOT NULL AUTO_INCREMENT,
-  `company_name` VARCHAR(100) NULL,
-  `location_id` INT NULL,
-  PRIMARY KEY (`company_id`, `location_id`),
+  `company_name` VARCHAR(100) NOT NULL,
+  `Locations_location_id` INT NULL,
+  PRIMARY KEY (`company_id`, `Locations_location_id`),
   UNIQUE INDEX `company_id_UNIQUE` (`company_id` ASC) VISIBLE,
-  UNIQUE INDEX `company_name_UNIQUE` (`company_name` ASC) VISIBLE,
-  INDEX `fk_Companies_Locations1_idx` (`location_id` ASC) VISIBLE,
+  INDEX `fk_Companies_Locations1_idx` (`Locations_location_id` ASC) VISIBLE,
   CONSTRAINT `fk_Companies_Locations1`
-    FOREIGN KEY (`location_id`)
+    FOREIGN KEY (`Locations_location_id`)
     REFERENCES `cs340_millse2`.`Locations` (`location_id`)
     ON DELETE SET NULL
     ON UPDATE NO ACTION)
@@ -124,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Playthroughs` (
   `start_timestamp` TIMESTAMP NOT NULL,
   `finish_timestamp` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
-  `game_id` INT NULL,
+  `game_id` INT NOT NULL,
   PRIMARY KEY (`playthrough_id`, `user_id`, `game_id`),
   UNIQUE INDEX `playthrough_id_UNIQUE` (`playthrough_id` ASC) VISIBLE,
   INDEX `fk_Playthroughs_Users_idx` (`user_id` ASC) VISIBLE,
@@ -165,11 +164,13 @@ ENGINE = InnoDB;
 -- Table `cs340_millse2`.`GamesPlatforms`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`GamesPlatforms` (
+  `games_platforms_id` INT NOT NULL AUTO_INCREMENT,
   `game_id` INT NOT NULL,
   `platform_id` INT NOT NULL,
-  PRIMARY KEY (`game_id`, `platform_id`),
+  PRIMARY KEY (`games_platforms_id`, `game_id`, `platform_id`),
   INDEX `fk_Games_has_Platforms_Platforms1_idx` (`platform_id` ASC) VISIBLE,
   INDEX `fk_Games_has_Platforms_Games1_idx` (`game_id` ASC) VISIBLE,
+  UNIQUE INDEX `games_platforms_id_UNIQUE` (`games_platforms_id` ASC) VISIBLE,
   CONSTRAINT `fk_Games_has_Platforms_Games1`
     FOREIGN KEY (`game_id`)
     REFERENCES `cs340_millse2`.`Games` (`game_id`)
