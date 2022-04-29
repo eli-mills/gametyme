@@ -58,12 +58,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`Companies` (
   `company_id` INT NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(100) NOT NULL,
-  `Locations_location_id` INT NULL,
-  PRIMARY KEY (`company_id`, `Locations_location_id`),
+  `location_id` INT NULL,
+  PRIMARY KEY (`company_id`, `location_id`),
   UNIQUE INDEX `company_id_UNIQUE` (`company_id` ASC) VISIBLE,
-  INDEX `fk_Companies_Locations1_idx` (`Locations_location_id` ASC) VISIBLE,
+  INDEX `fk_Companies_Locations1_idx` (`location_id` ASC) VISIBLE,
   CONSTRAINT `fk_Companies_Locations1`
-    FOREIGN KEY (`Locations_location_id`)
+    FOREIGN KEY (`location_id`)
     REFERENCES `cs340_millse2`.`Locations` (`location_id`)
     ON DELETE SET NULL
     ON UPDATE NO ACTION)
