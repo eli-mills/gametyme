@@ -1,3 +1,5 @@
+-- Group 95 Team Members: Na Kim and Eli Mills
+
 -- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Linux (x86_64)
 --
 -- Host: classmysql.engr.oregonstate.edu    Database: cs340_millse2
