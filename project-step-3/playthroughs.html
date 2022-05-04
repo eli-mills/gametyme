@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gametyme</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+    <h3>Playthroughs</h3>
+
+    <div id="existingPlaythroughs">
+        <h3> Existing Playthroughs</h3>
+        <table>
+            <tr>
+                <th>Playthrough ID</th>
+                <th>Start TimeStamp</th>
+                <th>Finish TimeStamp ID</th>
+                <th>User ID </th>
+                <th>Game ID</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>01-04-2022 02:14:01</td>
+                <td>04-04-2022 04:14:03</td>
+                <td>1</td>
+                <td>1</td>
+                <td><button id="editPlaythroughBtn">Edit</button></td>
+                <td><button id="deletePlaythroughBtn">Delete</button></td>
+                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
+                <td><button> <a href="new-session.html" class="button">Add new session</a></button></td>          
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>11-01-2021 01:30:40</td>
+                <td>01-12-2022 10:24:10</td>
+                <td>2</td>
+                <td>3</td>
+                <td><button id="editPlaythroughBtn">Edit</button></td>
+                <td><button id="deletePlaythroughBtn">Delete</button></td>
+                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
+                <td><button> <a href="new-session.html" class="button">Add new session</a></button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>05-20-2020 04:20:32</td>
+                <td>12-01-2020 10:02:01</td>
+                <td>3</td>
+                <td>2</td>
+                <td><button id="editPlaythroughBtn">Edit</button></td>
+                <td><button id="deletePlaythroughBtn">Delete</button></td>
+                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
+                <td><button> <a href="new-session.html" class="button">Add new session</a></button></td>
+            </tr>
+         
+        </table>
+    </div>
+    <br>
+    <form method="POST" id="addPlaythrough">
+        <h3>Add a New Playthrough </h3>
+          <fieldset class="fields">
+            <label> Game </label> <input type="text" id="playthrough-game">
+            <button id="startPlaythroughBtn">Begin Playthrough</button>
+            <button> <a href="new-session.html" class="button">Add new session</a></button>
+      </fieldset>
+      <br>
+          <input class="btn" type="submit" id="addPlaythrough" value="Add Playthrough" id="add-playthroughBtn">
+	</form> 
+    <br>
+
+    <div id="existingSessions">
+        <h3> Existing Sessions</h3>
+        <table>
+            <tr>
+                <th>Session ID</th>
+                <th>Time Played</th>
+                <th>Session Timestamp</th>
+                <th>Playthrough ID</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>10</td>
+                <td>02-01-2022 02:02:13</td>
+                <td>3</td>
+                <td><button id="editSessionsBtn">Edit</button></td>
+                <td><button id="deleteSessionsBtn">Delete</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1</td>
+                <td>12-11-2020 11:01:03</td>
+                <td>2</td>
+                <td><button id="editSessionsBtn">Edit</button></td>
+                <td><button id="deleteSessionsBtn">Delete</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>5</td>
+                <td>04-11-2022 05:09:23</td>
+                <td>1</td>
+                <td><button id="editSessionsBtn">Edit</button></td>
+                <td><button id="deleteSessionsBtn">Delete</button></td>
+            </tr>
+         
+        </table>
+    </div>
+  
+</body>
+</html>
