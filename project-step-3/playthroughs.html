@@ -9,6 +9,21 @@
 </head>
 <body>
     <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+    <div id="navbar">
+        <ul>
+            <li> <a href="index.html"> Home </a></li>
+            <li> <a href="signup.html"> Sign Up </a></li>
+            <li> <a href="login.html"> Log in </a></li>
+            <li> <a href="games.html"> Games </a></li>
+            <li> <a href="genres.html"> Genres </a></li>
+            <li> <a href="companies.html"> Companies </a></li>
+            <li> <a href="platforms.html"> Platforms </a></li>
+            <li> <a href="locations.html"> Locations </a></li>
+            <li> <a href="playthroughs.html"> Playthroughs </a></li>
+            <li> <a href="users.html"> Users </a></li>
+            <li> <a href="profile.html"> Profile </a></li>
+        </ul>
+    </div>
     <h3>Playthroughs</h3>
 
     <div id="existingPlaythroughs">
@@ -18,8 +33,7 @@
                 <th>Playthrough ID</th>
                 <th>Start TimeStamp</th>
                 <th>Finish TimeStamp ID</th>
-                <th>User ID </th>
-                <th>Game ID</th>
+                <th>Game Title</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -29,8 +43,7 @@
                 <td>1</td>
                 <td>01-04-2022 02:14:01</td>
                 <td>04-04-2022 04:14:03</td>
-                <td>1</td>
-                <td>1</td>
+                <td>Overwatch</td>
                 <td><button id="editPlaythroughBtn">Edit</button></td>
                 <td><button id="deletePlaythroughBtn">Delete</button></td>
                 <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
@@ -40,8 +53,7 @@
                 <td>2</td>
                 <td>11-01-2021 01:30:40</td>
                 <td>01-12-2022 10:24:10</td>
-                <td>1</td>
-                <td>3</td>
+                <td>Elden Ring</td>
                 <td><button id="editPlaythroughBtn">Edit</button></td>
                 <td><button id="deletePlaythroughBtn">Delete</button></td>
                 <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
@@ -51,8 +63,7 @@
                 <td>3</td>
                 <td>05-20-2020 04:20:32</td>
                 <td>12-01-2020 10:02:01</td>
-                <td>1</td>
-                <td>2</td>
+                <td>The Legend of Zelda: Breath of the Wild</td>
                 <td><button id="editPlaythroughBtn">Edit</button></td>
                 <td><button id="deletePlaythroughBtn">Delete</button></td>
                 <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
@@ -65,9 +76,8 @@
     <form method="POST" id="addPlaythrough">
         <h3>Add a New Playthrough </h3>
           <fieldset class="fields">
-            <label> Game </label> <input type="text" id="playthrough-game">
+            <label> Game Title: </label> <input type="text" id="playthrough-game">
             <button id="startPlaythroughBtn">Begin Playthrough</button>
-            <button> <a href="new-session.html" class="button">Add new session</a></button>
       </fieldset>
       <br>
           <input class="btn" type="submit" id="addPlaythrough" value="Add Playthrough" id="add-playthroughBtn">

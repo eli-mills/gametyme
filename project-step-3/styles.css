@@ -16,3 +16,14 @@ th,
 td {
   border: 1px solid;
 }
+
+#navbar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+}
+
+#navbar li{
+  margin-right: 20px;
+}
