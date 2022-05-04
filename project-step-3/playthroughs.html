@@ -73,7 +73,17 @@
           <input class="btn" type="submit" id="addPlaythrough" value="Add Playthrough" id="add-playthroughBtn">
 	</form> 
     <br>
-
+    <form method="POST" id="editPlaythrough">
+        <h3>Edit Playthroughs </h3>
+          <fieldset class="fields">
+            <label> Game </label> <input type="text" id="playthrough-game">
+            <label> Start TimeStamp </label> <input type="datetime-local" id="playthrough-game">
+            <label> Finish TimeStamp </label> <input type="datetime-local" id="playthrough-game">
+      </fieldset>
+      <br>
+          <input class="btn" type="submit" id="editPlaythrough" value="Edit Playthrough" id="edit-playthroughBtn">
+	</form> 
+    <br>
     <div id="existingSessions">
         <h3> Existing Sessions</h3>
         <table>
@@ -112,6 +122,17 @@
          
         </table>
     </div>
-  
+    <br>
+    <form method="POST" id="editSession">
+        <h3>Edit Sessions</h3>
+          <fieldset class="fields">
+            <label> Time Played </label> <input type="number" id="time-session">
+            <label> Session TimeStamp </label> <input type="datetime-local" id="session-timestamp">
+      </fieldset>
+      <br>
+          <input class="btn" type="submit" id="editSession" value="Edit Session" id="edit-sessionBtn">
+	</form> 
+    <br>
+   
 </body>
 </html>
