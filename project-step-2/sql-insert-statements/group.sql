@@ -12,7 +12,7 @@ VALUES ('Elden Ring', 'This is an open world dark souls like game where you also
 (SELECT company_id FROM Companies WHERE company_name = 'Blizzard'), (SELECT genre_id FROM Genres WHERE genre_name = 'shooter' ));
 
 INSERT INTO Playthroughs (start_timestamp, finish_timestamp, user_id, game_id)
-VALUES ('2022-01-04 02:15:01', '2022-04-04 04:14:03', (SELECT user_id FROM Users WHERE username = 'Titan'),  (SELECT game_id FROM Games WHERE game_title = 'Elden Ring')),
+VALUES ('2022-01-04 02:15:01', NULL, (SELECT user_id FROM Users WHERE username = 'Titan'),  (SELECT game_id FROM Games WHERE game_title = 'Elden Ring')),
 ('2021-11-01 01:30:40', '2022-01-12 10:24:10',(SELECT user_id FROM Users WHERE username = 'Erennn'), (SELECT game_id FROM Games WHERE game_title = 'Overwatch')),
 ('2020-05-20 04:20:32', '2020-12-01 10:02:01',(SELECT user_id FROM Users WHERE username = 'Korok'), (SELECT game_id FROM Games WHERE game_title = 'The Legend of Zelda: Breath of the Wild'));
 
