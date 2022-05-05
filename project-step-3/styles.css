@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+
 }
 
 #logo a {
@@ -26,4 +27,14 @@ td {
 
 #navbar li{
   margin-right: 20px;
+}
+
+#navbar a{
+  text-decoration: none;
+}
+
+header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }

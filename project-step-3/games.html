@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
-    <div id="navbar">
-        <ul>
-            <li> <a href="index.html"> Home </a></li>
-            <li> <a href="signup.html"> Sign Up </a></li>
-            <li> <a href="login.html"> Log in </a></li>
-            <li> <a href="games.html"> Games </a></li>
-            <li> <a href="genres.html"> Genres </a></li>
-            <li> <a href="companies.html"> Companies </a></li>
-            <li> <a href="platforms.html"> Platforms </a></li>
-            <li> <a href="locations.html"> Locations </a></li>
-            <li> <a href="playthroughs.html"> Playthroughs </a></li>
-            <li> <a href="users.html"> Users </a></li>
-            <li> <a href="profile.html"> Profile </a></li>
-        </ul>
-    </div>
-
+    <header>
+        <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+        <div id="navbar">
+            <ul>
+                <li> <a href="index.html"> Home </a></li>
+                <li> <a href="signup.html"> Sign Up </a></li>
+                <li> <a href="login.html"> Log in </a></li>
+                <li> <a href="games.html"> Games </a></li>
+                <li> <a href="genres.html"> Genres </a></li>
+                <li> <a href="companies.html"> Companies </a></li>
+                <li> <a href="platforms.html"> Platforms </a></li>
+                <li> <a href="locations.html"> Locations </a></li>
+                <li> <a href="playthroughs.html"> Playthroughs </a></li>
+                <li> <a href="users.html"> Users </a></li>
+                <li> <a href="profile.html"> Profile </a></li>
+            </ul>
+        </div>    
+    </header>
+    <br>
     <h3>Games</h3>
     <br>
     <div id="games">
@@ -85,6 +87,7 @@
       </fieldset>
       <br>
           <input class="btn" type="submit" id="addnewGame" value="Add Game" id="add-gameBtn">
+          <button id="cancelBtn">Cancel</button>
 	</form> 
     <br>
     <form id="editGame">
@@ -98,6 +101,7 @@
       </fieldset>
       <br>
           <input class="btn" type="submit"  value="Edit Game">
+          <button id="cancelBtn">Cancel</button>
 	</form> 
     <br>
     <form id="deleteGame">
@@ -109,6 +113,7 @@
       </fieldset>
       <br>
           <input class="btn" type="submit"  value="Delete Game">
+          <button id="cancelBtn">Cancel</button>
 	</form> 
 </body>
 </html>
