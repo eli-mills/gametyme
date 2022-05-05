@@ -16,10 +16,10 @@ VALUES ('2022-01-04 02:15:01', NULL, (SELECT user_id FROM Users WHERE username =
 ('2021-11-01 01:30:40', '2022-01-12 10:24:10',(SELECT user_id FROM Users WHERE username = 'Erennn'), (SELECT game_id FROM Games WHERE game_title = 'Overwatch')),
 ('2020-05-20 04:20:32', '2020-12-01 10:02:01',(SELECT user_id FROM Users WHERE username = 'Korok'), (SELECT game_id FROM Games WHERE game_title = 'The Legend of Zelda: Breath of the Wild'));
 
-INSERT INTO Sessions (time_played, session_timestamp, playthrough_id)
-VALUES (10, '2020-12-11 11:01:03',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Korok')),
-(1, '2022-02-01 02:02:13',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Erennn')),
-(5, '2022-04-11 05:09:23',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Titan'));
+INSERT INTO Sessions (session_start, session_end, playthrough_id)
+VALUES ('2020-12-11 11:01:03', '2020-12-11 21:01:03',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Korok')),
+('2022-02-01 02:02:13', '2022-02-01 03:02:13',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Erennn')),
+('2022-04-11 05:09:23', '2022-04-11 10:09:23',(SELECT Playthroughs.playthrough_id FROM Playthroughs INNER JOIN Users ON Playthroughs.user_id = Users.user_id WHERE Users.username='Titan'));
 
 INSERT INTO GamesPlatforms (game_id, platform_id)
 VALUES
