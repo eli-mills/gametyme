@@ -38,3 +38,11 @@ header{
   justify-content: space-between;
   align-items: center;
 }
+
+#editGame, #deleteGame, #editGenre, #deleteGenre,
+#editLocation, #deleteLocation, #editPlatform,
+#deletePlatform, #editPlaythrough, #deletePlaythrough,
+#editSession, #deleteSession, #editCompany, #deleteCompany{
+  display:none;
+}
+

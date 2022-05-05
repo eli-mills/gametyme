@@ -48,8 +48,8 @@
                 <td>02-25-2022</td>
                 <td>1</td>
                 <td>1</td>
-                <td><button id="editGamesBtn">Edit</button></td>
-                <td><button id="deleteGamesBtn">Delete</button></td>
+                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteGamesBtn"  onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -58,8 +58,8 @@
                 <td>03-03-2017</td>
                 <td>2</td>
                 <td>2</td>
-                <td><button id="editGamesBtn">Edit</button></td>
-                <td><button id="deleteGamesBtn">Delete</button></td>
+                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteGamesBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>3</td>
@@ -68,8 +68,8 @@
                 <td>05-24-2016</td>
                 <td>3</td>
                 <td>3</td>
-                <td><button id="editGamesBtn">Edit</button></td>
-                <td><button id="deleteGamesBtn">Delete</button></td>
+                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteGamesBtn" onclick="showDelete()">Delete</button></td>
             </tr>
         </table>
 
@@ -115,5 +115,14 @@
           <input class="btn" type="submit"  value="Delete Game">
           <button id="cancelBtn">Cancel</button>
 	</form> 
+
+<script>
+    function showEdit(){
+        document.getElementById("editGame").style.display = "block";
+    }
+    function showDelete(){
+        document.getElementById("deleteGame").style.display = "block";
+    }
+</script>
 </body>
 </html>

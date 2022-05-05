@@ -44,32 +44,32 @@
                 <td>Tokyo</td>
                 <td>NULL</td>
                 <td>Japan</td>
-                <td><button id="editLocationBtn">Edit</button></td>
-                <td><button id="deleteLocationBtn">Delete</button></td>
+                <td><button id="editLocationBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteLocationBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Kyoto</td>
                 <td>NULL</td>
                 <td>Japan</td>
-                <td><button id="editLocationBtn">Edit</button></td>
-                <td><button id="deleteLocationBtn">Delete</button></td>
+                <td><button id="editLocationBtn"  onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteLocationBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Irvine</td>
                 <td>California</td>
                 <td>United States</td>
-                <td><button id="editLocationBtn">Edit</button></td>
-                <td><button id="deleteLocationBtn">Delete</button></td>
+                <td><button id="editLocationBtn"  onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteLocationBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Redmond</td>
                 <td>Washington</td>
                 <td>United States</td>
-                <td><button id="editLocationBtn">Edit</button></td>
-                <td><button id="deleteLocationBtn">Delete</button></td>
+                <td><button id="editLocationBtn"  onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteLocationBtn" onclick="showDelete()">Delete</button></td>
             </tr>
         </table>
     </div>
@@ -111,5 +111,14 @@
           <input class="btn" type="submit"  value="Delete Location">
           <button id="cancelBtn">Cancel</button>
 	</form> 
+
+    <script>
+        function showEdit(){
+            document.getElementById("editLocation").style.display = "block";
+        }
+        function showDelete(){
+            document.getElementById("deleteLocation").style.display = "block";
+        }
+    </script>
 </body>
 </html>

@@ -42,43 +42,43 @@
                 <td>1</td>
                 <td>Switch</td>
                 <td>2</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>PC</td>
                 <td>5</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Playstation 4</td>
                 <td>4</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Playstation 5</td>
                 <td>4</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Xbox One</td>
                 <td>5</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>6</td>
                 <td>Xbox Series X|S </td>
                 <td>5</td>
-                <td><button id="editPlatformBtn">Edit</button></td>
-                <td><button id="deletePlatformBtn">Delete</button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete()">Delete</button></td>
             </tr>
         </table>
     </div>
@@ -116,5 +116,14 @@
           <input class="btn" type="submit"  value="Delete Platform">
           <button id="cancelBtn">Cancel</button>
 	</form> 
+
+    <script>
+        function showEdit(){
+            document.getElementById("editPlatform").style.display = "block";
+        }
+        function showDelete(){
+            document.getElementById("deletePlatform").style.display = "block";
+        }
+    </script>
 </body>
 </html>

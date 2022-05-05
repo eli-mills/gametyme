@@ -40,20 +40,20 @@
             <tr>
                 <td>1</td>
                 <td>Action</td>
-                <td><button id="editGenresBtn">Edit</button></td>
-                <td><button id="deleteGenresBtn">Delete</button></td>
+                <td><button id="editGenresBtn" onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteGenresBtn" onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Adventure</td>
-                <td><button id="editGenresBtn">Edit</button></td>
-                <td><button id="deleteGenresBtn">Delete</button></td>
+                <td><button id="editGenresBtn"  onclick="showEdit()" >Edit</button></td>
+                <td><button id="deleteGenresBtn"  onclick="showDelete()">Delete</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Shooter</td>
-                <td><button id="editGenresBtn">Edit</button></td>
-                <td><button id="deleteGenresBtn">Delete</button></td>
+                <td><button id="editGenresBtn"  onclick="showEdit()">Edit</button></td>
+                <td><button id="deleteGenresBtn"  onclick="showDelete()">Delete</button></td>
             </tr>
         </table>
     </div>
@@ -89,6 +89,13 @@
           <input class="btn" type="submit"  value="Delete Genre">
           <button id="cancelBtn">Cancel</button>
 	</form> 
-
+    <script>
+        function showEdit(){
+            document.getElementById("editGenre").style.display = "block";
+        }
+        function showDelete(){
+            document.getElementById("deleteGenre").style.display = "block";
+        }
+    </script>
 </body>
 </html>
