@@ -77,8 +77,8 @@
     <form id="addCompany">
         <h3>Add a New Company </h3>
           <fieldset class="fields">
-            <label> Company Name </label> <input type="text" id="company-name">
-            <label> Location </label> <input type="text" id="location">
+            <label> Company Name: </label> <input type="text" id="company-name">
+            <label> Location: </label> <input type="text" id="location">
       </fieldset>
       <br>
           <input class="btn" type="submit" id="addnewCompany" value="Add Company" id="add-companyBtn">
@@ -87,11 +87,22 @@
     <form id="editCompany">
         <h3>Edit Company </h3>
           <fieldset class="fields">
-            <label> Company Name </label> <input type="text" id="company-name">
-            <label> Location </label> <input type="text" id="location">
+            <label> Company Name: </label> <input type="text" id="company-name">
+            <label> Location:</label> <input type="text" id="location">
       </fieldset>
       <br>
           <input class="btn" type="submit"  value="Edit Company">
+	</form> 
+    <br>
+    <form id="deleteCompany">
+        <h3>Delete Company </h3>
+          <fieldset class="fields">
+            <h3>Are you sure you want to delete this Company? </h3>
+            <label> Company ID:</label> <input type="number" id="company-id">
+            <label> Company Name: </label> <input type="text" id="company-name">
+      </fieldset>
+      <br>
+          <input class="btn" type="submit"  value="Delete Company">
 	</form> 
 </body>
 </html>

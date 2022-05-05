@@ -75,9 +75,9 @@
     <form id="addLocation">
         <h3>Add a New Location </h3>
           <fieldset class="fields">
-            <label> City </label> <input type="text" id="city-name">
-            <label> State </label> <input type="text" id="state">
-            <label> Country </label> <input type="text" id="country">
+            <label> City: </label> <input type="text" id="city-name">
+            <label> State: </label> <input type="text" id="state">
+            <label> Country: </label> <input type="text" id="country">
       </fieldset>
       <br>
           <input class="btn" type="submit" id="addnewLocation" value="Add Location" id="add-locationBtn">
@@ -86,12 +86,25 @@
     <form id="editLocation">
         <h3>Edit Location </h3>
           <fieldset class="fields">
-            <label> City </label> <input type="text" id="city-name">
-            <label> State </label> <input type="text" id="state">
-            <label> Country </label> <input type="text" id="country">
+            <label> City: </label> <input type="text" id="city-name">
+            <label> State: </label> <input type="text" id="state">
+            <label> Country: </label> <input type="text" id="country">
       </fieldset>
       <br>
           <input class="btn" type="submit"  value="Edit Location">
+	</form> 
+    <br>
+    <form id="deleteLocation">
+        <h3>Delete Location </h3>
+          <fieldset class="fields">
+            <h3>Are you sure you want to delete this Location?</h3>
+            <label> Location ID: </label> <input type="number" id="location-id">
+            <label> City: </label> <input type="text" id="city-name">
+            <label> State: </label> <input type="text" id="state">
+            <label> Country: </label> <input type="text" id="country">
+      </fieldset>
+      <br>
+          <input class="btn" type="submit"  value="Delete Location">
 	</form> 
 </body>
 </html>
