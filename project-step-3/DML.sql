@@ -141,7 +141,19 @@
 
 
 -- Sessions Queries
-    -- Read: "Home" page, displays on top if there is currently an open/active Session
-    -- Read: Playthrough card after selecting, lists all Sessions for that Playthrough
-    -- Create: "Start New Session" button after selecting a Playthrough
-    -- Update: "Edit Session" form
+
+    -- Load all existing Sessions (Playthroughs page)
+    SELECT * FROM Sessions;
+
+    -- Add New Session
+    INSERT INTO Sessions (session_timestamp, playthrough_id)
+    VALUES (NOW(), :playthrough_id);
+
+    -- Edit Session
+    UPDATE Sessions
+    SET time_played=:time_played, session_timestamp=:session_timestamp
+    WHERE session_id=:session_id;
+
+    -- Delete Session
+    DELETE Sessions
+    WHERE session_id=:session_id;
