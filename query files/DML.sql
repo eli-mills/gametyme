@@ -153,3 +153,23 @@
     -- Delete Session
     DELETE Sessions
     WHERE session_id=:session_id;
+
+
+
+-- Users queries
+
+    -- Load User info on login
+    SELECT * FROM Users WHERE email=:email;
+
+    -- Create new User on signup page
+    INSERT INTO Users (first_name, last_name, username, email)
+    VALUES (:first_name, :last_name, :username, :email);
+
+    -- Update User info on Profile page
+    UPDATE Users
+    SET first_name=:first_name, last_name=:last_name, username=:username, email=:email
+    WHERE user_id=:user_id;
+
+    -- Delete User on Profile page
+    DELETE Users
+    WHERE user_id=:user_id;
