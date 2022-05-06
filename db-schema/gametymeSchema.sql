@@ -164,13 +164,11 @@ ENGINE = InnoDB;
 -- Table `cs340_millse2`.`GamesPlatforms`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cs340_millse2`.`GamesPlatforms` (
-  `games_platforms_id` INT NOT NULL AUTO_INCREMENT,
   `game_id` INT NOT NULL,
   `platform_id` INT NOT NULL,
-  PRIMARY KEY (`games_platforms_id`),
   INDEX `fk_Games_has_Platforms_Platforms1_idx` (`platform_id` ASC) VISIBLE,
   INDEX `fk_Games_has_Platforms_Games1_idx` (`game_id` ASC) VISIBLE,
-  UNIQUE INDEX `games_platforms_id_UNIQUE` (`games_platforms_id` ASC) VISIBLE,
+  PRIMARY KEY (`game_id`, `platform_id`),
   CONSTRAINT `fk_Games_has_Platforms_Games1`
     FOREIGN KEY (`game_id`)
     REFERENCES `cs340_millse2`.`Games` (`game_id`)
