@@ -41,16 +41,15 @@
 -- Companies page
 
     -- Load Companies table
-    SELECT * FROM Companies
-    JOIN Locations ON Companies.location_id=Locations.location_id;
+    SELECT * FROM Companies;
 
     -- Add new Company
     INSERT INTO Companies (company_name, location_id)
-    VALUES (:company_name, (SELECT location_id FROM Locations WHERE city=:city AND state=:state AND country=:country));
+    VALUES (:company_name, :location_id);
 
     -- Edit Company
     UPDATE Companies
-    SET company_name=:company_name, location_id=(SELECT location_id FROM Locations WHERE city=:city AND state=:state AND country=:country)
+    SET company_name=:company_name, location_id=:location_id
     WHERE company_id=:company_id;
 
     -- Delete Company
@@ -62,8 +61,7 @@
 -- Platforms page
 
     -- Load Platforms table
-    SELECT * FROM Platforms
-    JOIN Companies ON Platforms.company_id=Companies.company_id;
+    SELECT * FROM Platforms;
 
     -- Add new Platform
     INSERT INTO Platforms (platform_name, company_id)
@@ -82,9 +80,8 @@
 
 -- Games Queries
 
-    -- Load Games table: lists games based on given filter. Can choose which attribute to filter by.
-    SELECT * FROM Games 
-    WHERE :attribute = :value;
+    -- Load Games table
+    SELECT * FROM Games;
 
     -- Add new Game
     INSERT INTO Games (game_title, game_summary, release_date, company_id, genre_id)
@@ -109,21 +106,15 @@
 -- Playthroughs Queries
 
     -- Load active Playthroughs (Home Page): Display active Playthroughs for current User
-    SELECT Playthroughs.playthrough_id, Playthroughs.start_timestamp, Playthroughs.finish_timestamp, Games.game_title
-    FROM Playthroughs JOIN Games
-    ON Playthroughs.game_id=Games.game_id
-    WHERE Playthroughs.user_id=:user_id AND finish_timestamp IS NULL;
+    SELECT * FROM Playthroughs
+    WHERE user_id=:user_id AND finish_timestamp IS NULL;
 
     -- Load finished Playthroughs (Home Page): Display finished Playthroughs for current User
-    SELECT Playthroughs.playthrough_id, Playthroughs.start_timestamp, Playthroughs.finish_timestamp, Games.game_title
-    FROM Playthroughs JOIN Games
-    ON Playthroughs.game_id=Games.game_id
-    WHERE Playthroughs.user_id=:user_id AND finish_timestamp IS NOT NULL;
+    SELECT * FROM Playthroughs
+    WHERE user_id=:user_id AND finish_timestamp IS NOT NULL;
 
     -- Load all existing Playthroughs (Playthroughs Page)
-    SELECT Playthroughs.playthrough_id, Playthroughs.start_timestamp, Playthroughs.finish_timestamp, Games.game_title
-    FROM Playthroughs JOIN Games
-    ON Playthroughs.game_id=Games.game_id;
+    SELECT * FROM Playthroughs;
 
     -- Add New Playthrough
     INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
@@ -134,6 +125,11 @@
     SET start_timestamp=:start_timestamp, finish_timestamp=:finish_timestamp, game_id=(SELECT game_id FROM Games WHERE game_title=:game_title)
     WHERE playthrough_id=:playthrough_id;
 
+    -- Finish Playthrough button
+    UPDATE Playthroughs
+    SET finish_timestamp=NOW()
+    WHERE playthrough_id=:playthrough_id;
+
     -- Delete Playthrough
     DELETE Playthroughs
     WHERE playthrough_id=:playthrough_id;
@@ -142,16 +138,16 @@
 
 -- Sessions Queries
 
-    -- Load all existing Sessions (Playthroughs page)
-    SELECT * FROM Sessions;
+    -- Load all existing Sessions (Playthroughs page) and include summary column of number of hours played.
+    SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', session_start, session_end, playthrough_id FROM Sessions;
 
-    -- Add New Session
-    INSERT INTO Sessions (session_timestamp, playthrough_id)
+    -- Start New Session
+    INSERT INTO Sessions (session_start, playthrough_id)
     VALUES (NOW(), :playthrough_id);
 
     -- Edit Session
     UPDATE Sessions
-    SET time_played=:time_played, session_timestamp=:session_timestamp
+    SET session_start=:session_start, session_end=:session_end
     WHERE session_id=:session_id;
 
     -- Delete Session
