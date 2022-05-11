@@ -6,7 +6,9 @@
   color: white;
   font-family: "Roboto", sans-serif;
 }
-
+html, body {
+  height: 100%;
+}
 #logo a {
   text-decoration: none;
   color: white;
@@ -247,6 +249,7 @@ button {
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: 100px;
 }
 
 #home-container,
@@ -254,8 +257,6 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  padding-bottom:100px;
 }
 
-#finishedPlaythroughs {
-  margin-bottom: 50px;
-}
