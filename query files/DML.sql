@@ -34,7 +34,10 @@
 
     -- Delete Location
     DELETE Locations
-    WHERE location_id=:location_id;
+    WHERE location_id=:location_id
+    AND city=:city
+    AND state=:state
+    AND country=:country;
 
 
 
@@ -54,7 +57,8 @@
 
     -- Delete Company
     DELETE Companies
-    WHERE company_id=:company_id;
+    WHERE company_id=:company_id
+    AND company_name=:company_name;
 
 
 
@@ -74,14 +78,41 @@
 
     -- Delete Platform
     DELETE Platforms
-    WHERE platform_id=:platform_id;
+    WHERE platform_id=:platform_id
+    AND platform_name=:platform_name;
 
 
 
 -- Games Queries
 
     -- Load Games table
-    SELECT * FROM Games;
+    SELECT Games.game_id, Games.game_title, Games.game_summary, Games.release_date, 
+    GROUP_CONCAT(Platforms.platform_id ORDER BY Platforms.platform_id ASC SEPARATOR ', ') AS 'Platforms'
+    FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
+    JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
+    GROUP BY Games.game_id;
+    -- SOURCES CITED:
+    -- The above uses syntax found from tutorialspoint.com, written by Chandu yadav. This can be found here. https://www.tutorialspoint.com/combining-multiple-rows-into-a-comma-delimited-list-in-mysql
+    -- This query creates a concatenated column that is used to list out all platform_ids for a particular game separated by commas. 
+    -- Within each concatenated cell, the platform_ids are sorted in ascending order using an ORDER BY clause.
+    -- The column is aliased as "Platforms".
+    -- This makes it easier to read, rather than having a separate row for each Game/Platform combination.
+
+    -- Load filter options depending on dropdown selection
+    SELECT * FROM :table_name; 
+
+    -- Search Games based on chosen filter
+    SELECT * FROM Games
+    WHERE :attribute = :attr_id;
+
+    -- Load Company options for adding new Game
+    SELECT company_id, company_name FROM Companies;
+
+    -- Load Genre options for adding new Game
+    SELECT genre_id, genre_name FROM Genres;
+
+    -- Load Platform options for adding new Game
+    SELECT platform_id, platform_name FROM Platforms;
 
     -- Add new Game
     INSERT INTO Games (game_title, game_summary, release_date, company_id, genre_id)
@@ -89,6 +120,13 @@
         (SELECT company_id FROM Companies WHERE company_name=:company_name), 
         (SELECT genre_id FROM Genres WHERE genre_name=:genre_name)
     );
+
+    -- To be used in a JS loop to create the appropriate number of GamesPlatforms selected
+    INSERT INTO GamesPlatforms (game_id, platform_id)
+    VALUES (:game_id, :platform_id);
+
+    -- Preselect Platforms for editing a Game
+
 
     -- Edit Game
     UPDATE Games
