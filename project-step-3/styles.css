@@ -83,6 +83,9 @@ header {
   font-size: 30px;
   justify-content: center;
 }
+#hero{
+  font-size: 15px;
+}
 #editGame,
 #deleteGame,
 #editGenre,
