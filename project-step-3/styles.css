@@ -1,15 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
-  background-color: #06060B;
-  color:white;
-  font-family: 'Roboto', sans-serif;
+  background-color: #050509;
+  color: white;
+  font-family: "Roboto", sans-serif;
 }
 
 #logo a {
   text-decoration: none;
   color: white;
+}
+
+#navbar li a {
+  display: inline-block;
+  padding: 5px;
+}
+
+#navbar li a:hover {
+  border-bottom: 1px solid white;
 }
 
 a {
@@ -22,180 +31,228 @@ td {
   border: 2px solid;
 }
 
-table{
+table {
   border-collapse: collapse;
   table-layout: fixed;
   border-radius: 10px;
-
 }
-tr{
+tr {
   text-align: left;
 }
-th,td{
-  padding:10px;
+th,
+td {
+  padding: 10px;
 }
 
-#platforms,#companies,#games,#activePlaythroughs, #finishedPlaythroughs,
-#genres, #locations,#existingPlaythroughs, #existingSessions,#users{
+#platforms,
+#companies,
+#games,
+#activePlaythroughs,
+#finishedPlaythroughs,
+#genres,
+#locations,
+#existingPlaythroughs,
+#existingSessions,
+#users {
   display: flex;
   justify-content: center;
 }
-#navbar ul{
+#navbar ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: inline-flex;
 }
 
-#navbar li{
+#navbar li {
   margin-right: 20px;
 }
 
-#navbar a{
+#navbar a {
   text-decoration: none;
 }
 
-header{
-  display:flex;
+header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#title{
+#title {
   display: flex;
   font-size: 30px;
   justify-content: center;
 }
-#editGame, #deleteGame, #editGenre, #deleteGenre,
-#editLocation, #deleteLocation, #editPlatform,
-#deletePlatform, #editPlaythrough, #deletePlaythrough,
-#editSession, #deleteSession, #editCompany, #deleteCompany,
-#editUser, #deleteUser{
-  display:none;
-  width: 500px;
+#editGame,
+#deleteGame,
+#editGenre,
+#deleteGenre,
+#editLocation,
+#deleteLocation,
+#editPlatform,
+#deletePlatform,
+#editPlaythrough,
+#deletePlaythrough,
+#editSession,
+#deleteSession,
+#editCompany,
+#deleteCompany,
+#editUser,
+#deleteUser {
+  display: none;
+  width: 350px;
   margin: 0 auto;
 }
 
-#editIcon,#deleteIcon{
-  color:white;
+#editIcon,
+#deleteIcon {
+  color: white;
   cursor: pointer;
 }
 
-#addLocation, #addCompany ,#addGame , #addGenre, #addplatform, #addPlaythrough
-, #addUser, #addSession{
-  display:none;
+#addLocation,
+#addCompany,
+#addGame,
+#addGenre,
+#addplatform,
+#addPlaythrough,
+#addUser,
+#addSession {
+  display: none;
+  width: 350px;
+  margin: 0 auto;
+}
+
+#addPlaythroughs {
   width: 500px;
   margin: 0 auto;
   justify-content: center;
 }
-
-#addPlaythroughs{
-  width: 500px;
-  margin: 0 auto;
-  justify-content: center;
-}
-button{
-  border:none;
+button {
+  border: none;
 }
 
-.fields input, .fields select{
+.fields input,
+.fields select {
   width: 100%;
   padding: 10px;
-  color:white;
+  color: white;
   box-sizing: border-box;
   margin: 10px 0;
   border: 2px solid white;
 }
 
-.fields label{
+.fields label {
   margin-top: 30px;
 }
 
-#formBtns{
+#formBtns {
   text-align: right;
-
 }
 
-#formBtns button, #finishPlaythroughBtn, #addnewSessionBtn a{
+#formBtns button,
+#finishPlaythroughBtn,
+#addnewSessionBtn a {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-  margin-right:5px;
-  cursor:pointer;
-  text-decoration: none;
-}
-
-#searchUsersContainer, #searchGamesContainer{
-  display:flex;
-  justify-content: center;
-}
-#searchUsersContainer{
-  margin-bottom: 30px;
-}
-
-#searchUsersContainer input, #searchGamesContainer input{
-  width: 500px;
-  height: 30px;
-  border-radius: 10px;
-}
-
-#searchGamesContainer{
-  margin-bottom: 30px;
-}
-#searchUsers, #searchGames{
-  border: 1px solid white;
-}
-
-#formBtns a{
-  text-decoration: none;
-}
-
-#sessionformBtns{
-  display:flex;
-  justify-content: center;
-}
-#sessionformBtns button{
-  font: 20px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid white;
-  margin-right:20px;
+  margin-right: 5px;
   cursor: pointer;
   text-decoration: none;
 }
 
-#games-filter{
+#searchUsersContainer,
+#searchGamesContainer {
   display: flex;
-  justify-content:right;
-  margin-left: 50px;
+  justify-content: center;
+}
+#searchUsersContainer {
+  margin-bottom: 30px;
 }
 
-#addnewGameBtns{
+#searchUsersContainer input,
+#searchGamesContainer input {
+  width: 500px;
+  height: 30px;
+  border-radius: 10px;
+}
+#filter-title {
+  margin-right: 4px;
+}
+
+#searchGamesContainer {
+  margin-bottom: 30px;
+}
+#searchUsers,
+#searchGames {
+  border: 1px solid white;
+}
+
+#formBtns a {
+  text-decoration: none;
+}
+
+#sessionformBtns {
+  display: flex;
+  justify-content: center;
+}
+#sessionformBtns button {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-  margin-right:5px;
-  cursor:pointer;
+  margin-right: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#games-filter {
+  display: flex;
+  justify-content: right;
+  margin-left: 50px;
+}
+
+#addnewGameBtns {
+  font: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-right: 5px;
+  cursor: pointer;
   text-decoration: none;
   margin-left: 50px;
 }
 
-#addnewBtn{
+#addnewBtn {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-  cursor:pointer;
- 
+  cursor: pointer;
 }
 
-#addBtnContainer{
+#addBtnContainer {
   text-align: center;
   margin-bottom: 30px;
 }
 
-#logo-icon{
-  color:#fa4454;
+#logo-icon {
+  color: #fa4454;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#home-container,
+#sessionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+#finishedPlaythroughs {
+  margin-bottom: 50px;
 }

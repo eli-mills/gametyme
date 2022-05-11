@@ -81,48 +81,50 @@
         </table>
     </div>
     <br>
-    <form method="POST" id="addPlaythrough">
-        <h3>Add a New Playthrough </h3>
-          <fieldset class="fields">
-            <label> Game: </label> <input type="text" id="playthrough-game">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="startPlaythroughBtn">Begin Playthrough</button>
-        <button id="addplaythroughBtn"> Add Playthrough</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="editPlaythrough">
-        <h3>Edit Playthrough </h3>
-          <fieldset class="fields">
-            <label> Game: </label> <input type="text" id="playthrough-game">
-            <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
-            <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="editplaythroughBtn"> Edit Playthrough</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="deletePlaythrough">
-        <h3>Delete Playthrough </h3>
-          <fieldset class="fields">
-            <h3>Are you sure you want to delete this Playthrough?</h3>
-            <label> Playthrough ID: </label> <input type="number" id="playthrough-id">
-            <label> Game: </label> <input type="text" id="playthrough-game">
-            <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
-            <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="delplaythroughBtn"> Delete Playthrough</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
+    <div id="container">
+        <form method="POST" id="addPlaythrough">
+            <h3>Add a New Playthrough </h3>
+              <fieldset class="fields">
+                <label> Game: </label> <input type="text" id="playthrough-game">
+          </fieldset>
+  
+          <div id="formBtns">
+            <button id="startPlaythroughBtn">Begin Playthrough</button>
+            <button id="addplaythroughBtn"> Add Playthrough</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="editPlaythrough">
+            <h3>Edit Playthrough </h3>
+              <fieldset class="fields">
+                <label> Game: </label> <input type="text" id="playthrough-game">
+                <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
+                <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editplaythroughBtn"> Edit Playthrough</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="deletePlaythrough">
+            <h3>Delete Playthrough </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Playthrough?</h3>
+                <label> Playthrough ID: </label> <input type="number" id="playthrough-id">
+                <label> Game: </label> <input type="text" id="playthrough-game">
+                <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
+                <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delplaythroughBtn"> Delete Playthrough</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
     <br>
     <h3 id="title"> Existing Sessions</h3>
     <div id="existingSessions">
@@ -167,7 +169,8 @@
         </table>
     </div>
     <br>
-    <form method="POST" id="editSession">
+   <div id="sessionContainer">
+        <form method="POST" id="editSession">
         <h3>Edit Session</h3>
           <fieldset class="fields">
             <label> Session Start: </label> <input type="datetime-local" id="session-start">
@@ -179,7 +182,7 @@
         <button id="cancelBtn">Cancel</button>
       </div>
 	</form> 
-    <br>
+
     <form id="deleteSession">
         <h3>Delete Session</h3>
           <fieldset class="fields">
@@ -196,6 +199,7 @@
       </div>
 	</form> 
 
+   </div>
     <script>
         function showEdit(){
             document.getElementById("editPlaythrough").style.display = "block";

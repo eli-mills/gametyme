@@ -77,50 +77,53 @@
         </table>
     </div>
     <br>
-    <form id="addUser">
-        <h3>Add a New User</h3>
-          <fieldset class="fields">
-            <label> First Name: </label> <input type="text" id="user-fname">
-            <label> Last Name: </label> <input type="text" id="user-lname">
-            <label> Username: </label> <input type="text" id="username">
-            <label> Email: </label> <input type="email" id="user-email">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="adduserBtn"> Add User</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="editUser">
-        <h3>Edit User </h3>
-          <fieldset class="fields">
-            <label> First Name: </label> <input type="text" id="user-fname">
-            <label> Last Name: </label> <input type="text" id="user-lname">
-            <label> Username: </label> <input type="text" id="username">
-            <label> Email: </label> <input type="email" id="user-email">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="editUserBtn"> Edit User</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="deleteUser">
-        <h3>Delete User </h3>
-          <fieldset class="fields">
-            <h3>Are you sure you want to delete this User?</h3>
-            <label> User ID: </label> <input type="number" id="user-id">
-            <label> Username: </label> <input type="text" id="username">
-            <label> Email: </label> <input type="email" id="user-email">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="deluserBtn"> Delete User</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
+    <div id="container">
+        <form id="addUser">
+            <h3>Add a New User</h3>
+              <fieldset class="fields">
+                <label> First Name: </label> <input type="text" id="user-fname">
+                <label> Last Name: </label> <input type="text" id="user-lname">
+                <label> Username: </label> <input type="text" id="username">
+                <label> Email: </label> <input type="email" id="user-email">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="adduserBtn"> Add User</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    
+        <form id="editUser">
+            <h3>Edit User </h3>
+              <fieldset class="fields">
+                <label> First Name: </label> <input type="text" id="user-fname">
+                <label> Last Name: </label> <input type="text" id="user-lname">
+                <label> Username: </label> <input type="text" id="username">
+                <label> Email: </label> <input type="email" id="user-email">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editUserBtn"> Edit User</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    
+        <form id="deleteUser">
+            <h3>Delete User </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this User?</h3>
+                <label> User ID: </label> <input type="number" id="user-id">
+                <label> Username: </label> <input type="text" id="username">
+                <label> Email: </label> <input type="email" id="user-email">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="deluserBtn"> Delete User</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
+    
 
     <script>
         function showEdit(){

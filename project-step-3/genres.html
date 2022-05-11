@@ -60,43 +60,45 @@
         </table>
     </div>
     <br>
-    <form id="addGenre">
-        <h3>Add a New Genre </h3>
-          <fieldset class="fields">
-            <label> Genre Name: </label> <input type="text" id="genre-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="addgenreBtn"> Add Genre</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="editGenre">
-        <h3>Edit Genre </h3>
-          <fieldset class="fields">
-            <label> Genre Name: </label> <input type="text" id="genre-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="editgenreBtn"> Edit Genre</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="deleteGenre">
-        <h3>Delete Genre </h3>
-          <fieldset class="fields">
-            <h3>Are you sure you want to delete this Genre?</h3>
-            <label> Genre ID: </label> <input type="number" id="genre-id">
-            <label> Genre Name: </label> <input type="text" id="genre-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="delgenreBtn"> Delete Genre</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
+    <div id="container">
+        <form id="addGenre">
+            <h3>Add a New Genre </h3>
+              <fieldset class="fields">
+                <label> Genre Name: </label> <input type="text" id="genre-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="addgenreBtn"> Add Genre</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="editGenre">
+            <h3>Edit Genre </h3>
+              <fieldset class="fields">
+                <label> Genre Name: </label> <input type="text" id="genre-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editgenreBtn"> Edit Genre</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="deleteGenre">
+            <h3>Delete Genre </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Genre?</h3>
+                <label> Genre ID: </label> <input type="number" id="genre-id">
+                <label> Genre Name: </label> <input type="text" id="genre-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delgenreBtn"> Delete Genre</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
     <script>
         function showEdit(){
             document.getElementById("editGenre").style.display = "block";

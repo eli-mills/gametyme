@@ -84,45 +84,47 @@
         </table>
     </div>
     <br>
-    <form id="addplatform">
-        <h3>Add a New Platform </h3>
-          <fieldset class="fields">
-            <label> Platform Name: </label> <input type="text" id="platform-name">
-            <label> Company Name: </label> <input type="text" id="company-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="addplatformBtn"> Add Platform</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="editPlatform">
-        <h3>Edit Platform </h3>
-          <fieldset class="fields">
-            <label> Platform Name: </label> <input type="text" id="platform-name">
-            <label> Company Name: </label> <input type="text" id="company-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="editplatformBtn"> Edit Platform</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="deletePlatform">
-        <h3>Delete Platform </h3>
-          <fieldset class="fields">
-            <h3>Are you sure you want to delete this Platform?</h3>
-            <label> Platform ID: </label> <input type="number" id="platform-id">
-            <label> Platform Name: </label> <input type="text" id="platform-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="delplatformBtn"> Delete Platform</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
+    <div id="container">
+        <form id="addplatform">
+            <h3>Add a New Platform </h3>
+              <fieldset class="fields">
+                <label> Platform Name: </label> <input type="text" id="platform-name">
+                <label> Company Name: </label> <input type="text" id="company-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="addplatformBtn"> Add Platform</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="editPlatform">
+            <h3>Edit Platform </h3>
+              <fieldset class="fields">
+                <label> Platform Name: </label> <input type="text" id="platform-name">
+                <label> Company Name: </label> <input type="text" id="company-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editplatformBtn"> Edit Platform</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+        
+        <form id="deletePlatform">
+            <h3>Delete Platform </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Platform?</h3>
+                <label> Platform ID: </label> <input type="number" id="platform-id">
+                <label> Platform Name: </label> <input type="text" id="platform-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delplatformBtn"> Delete Platform</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
 
     <script>
         function showEdit(){

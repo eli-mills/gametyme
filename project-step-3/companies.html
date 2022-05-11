@@ -79,46 +79,47 @@
     </div>
     <br>
     
-    <form id="addCompany">
-        <h3>Add a New Company </h3>
-          <fieldset class="fields">
-            <label> Company Name: </label> <input type="text" id="company-name">
-            <label> Location: </label> <input type="text" id="location">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="addcompanyBtn"> Add Company</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>	
-    </form> 
-    <br>
-    <form id="editCompany">
-        <h3>Edit Company </h3>
-          <fieldset class="fields">
-            <label> Company Name: </label> <input type="text" id="company-name">
-            <label> Location:</label> <input type="text" id="location">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="editcompanyBtn"> Edit Company</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-    <br>
-    <form id="deleteCompany">
-        <h3>Delete Company </h3>
-          <fieldset class="fields">
-            <h3>Are you sure you want to delete this Company? </h3>
-            <label> Company ID:</label> <input type="number" id="company-id">
-            <label> Company Name: </label> <input type="text" id="company-name">
-      </fieldset>
-      <br>
-      <div id="formBtns">
-        <button id="delcompanyBtn"> Delete Company</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
-	</form> 
-
+    <div id="container">
+        <form id="addCompany">
+            <h3>Add a New Company </h3>
+              <fieldset class="fields">
+                <label> Company Name: </label> <input type="text" id="company-name">
+                <label> Location: </label> <input type="text" id="location">
+          </fieldset>
+       
+          <div id="formBtns">
+            <button id="addcompanyBtn"> Add Company</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>	
+        </form> 
+      
+        <form id="editCompany">
+            <h3>Edit Company </h3>
+              <fieldset class="fields">
+                <label> Company Name: </label> <input type="text" id="company-name">
+                <label> Location:</label> <input type="text" id="location">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editcompanyBtn"> Edit Company</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+      
+        <form id="deleteCompany">
+            <h3>Delete Company </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Company? </h3>
+                <label> Company ID:</label> <input type="number" id="company-id">
+                <label> Company Name: </label> <input type="text" id="company-name">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delcompanyBtn"> Delete Company</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
     <script>
         function showEdit(){
             document.getElementById("editCompany").style.display = "block";

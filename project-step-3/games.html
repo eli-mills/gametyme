@@ -30,7 +30,7 @@
     <div id="searchGamesContainer">
         <input type="text" placeholder="Search Games..." id="searchGames">
         <div id="games-filter">
-            <label for="filter-game"> Filter By:</label>
+            <label for="filter-game" id="filter-title"> Filter By:</label>
             <select name="game-filter" id="game-filter">
                 <option value=""></option>
                 <option value="Genre">Genre</option>
@@ -95,6 +95,7 @@
     </div>
     <br>
 
+   <div id="container">
     <form id="addGame">
         <h3>Add a New Game </h3>
           <fieldset class="fields">
@@ -134,7 +135,7 @@
         <button id="cancelBtn">Cancel</button>
       </div>	
 	</form> 
-    <br>
+    
     <form id="editGame">
         <h3>Edit Game </h3>
           <fieldset class="fields">
@@ -150,7 +151,7 @@
         <button id="cancelBtn">Cancel</button>
       </div>	
 	</form> 
-    <br>
+    
     <form id="deleteGame">
         <h3>Delete Game </h3>
           <fieldset class="fields">
@@ -165,6 +166,7 @@
       </div>	
 	</form> 
 
+   </div>
 <script>
     function showEdit(){
         document.getElementById("editGame").style.display = "block";
