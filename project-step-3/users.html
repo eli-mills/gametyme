@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gametyme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+        <h1 id="logo"> <a href="index.html"><i class="fa-solid fa-dragon" id="logo-icon"></i>  GameTyme</a> </h1>
         <div id="navbar">
             <ul>
                 <li> <a href="index.html"> Home </a></li>
-                <li> <a href="signup.html"> Sign Up </a></li>
-                <li> <a href="login.html"> Log in </a></li>
                 <li> <a href="games.html"> Games </a></li>
                 <li> <a href="genres.html"> Genres </a></li>
                 <li> <a href="companies.html"> Companies </a></li>
@@ -22,48 +21,119 @@
                 <li> <a href="locations.html"> Locations </a></li>
                 <li> <a href="playthroughs.html"> Playthroughs </a></li>
                 <li> <a href="users.html"> Users </a></li>
-                <li> <a href="profile.html"> Profile </a></li>
             </ul>
         </div>    
     </header>
     <br>
-    <h3>Users</h3>
+    <h3 id="title">Users</h3>
     <br>
-    <input type="text" placeholder="Search Users...">
+    <div id="searchUsersContainer">
+        <input type="text" placeholder="Search Users..." id="searchUsers">
+    </div>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New User</button>
+    </div>
     <br>
     <br>
-    <input type="text" placeholder="Search by game...">
-    <br>
-    <br>
-    <div id="userContainer">
-        <h3> LeaderBoards</h3>
-        <br>
+
+    <div id="users">
         <table>
             <tr>
-                <th>Ranking</th>
                 <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Username</th>
-                <th>TimeStamp</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr>
                 <td>1</td>
-                <td>1</td>
+                <td>Eren</td>
+                <td>Yeager</td>
                 <td>Titan</td>
-                <td>01:14:03</td>        
+                <td>fightme@gmail.com</td>
+                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>3</td>
-                <td>Korok</td>
-                <td>02:30:40</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>2</td>
+                <td>Mikasa</td>
+                <td>Ackerman</td>
                 <td>Erennn</td>
-                <td>10:02:01</td>
+                <td>ackerman@gmail.com</td>
+                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Link</td>
+                <td>Zelda</td>
+                <td>Korok</td>
+                <td>zelda@gmail.com</td>
+                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
         </table>
     </div>
+    <br>
+    <form id="addUser">
+        <h3>Add a New User</h3>
+          <fieldset class="fields">
+            <label> First Name: </label> <input type="text" id="user-fname">
+            <label> Last Name: </label> <input type="text" id="user-lname">
+            <label> Username: </label> <input type="text" id="username">
+            <label> Email: </label> <input type="email" id="user-email">
+      </fieldset>
+      <br>
+      <div id="formBtns">
+        <button id="adduserBtn"> Add User</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+	</form> 
+    <br>
+    <form id="editUser">
+        <h3>Edit User </h3>
+          <fieldset class="fields">
+            <label> First Name: </label> <input type="text" id="user-fname">
+            <label> Last Name: </label> <input type="text" id="user-lname">
+            <label> Username: </label> <input type="text" id="username">
+            <label> Email: </label> <input type="email" id="user-email">
+      </fieldset>
+      <br>
+      <div id="formBtns">
+        <button id="editUserBtn"> Edit User</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+	</form> 
+    <br>
+    <form id="deleteUser">
+        <h3>Delete User </h3>
+          <fieldset class="fields">
+            <h3>Are you sure you want to delete this User?</h3>
+            <label> User ID: </label> <input type="number" id="user-id">
+            <label> Username: </label> <input type="text" id="username">
+            <label> Email: </label> <input type="email" id="user-email">
+      </fieldset>
+      <br>
+      <div id="formBtns">
+        <button id="deluserBtn"> Delete User</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+	</form> 
+
+    <script>
+        function showEdit(){
+            document.getElementById("editUser").style.display = "block";
+        }
+        function showDelete(){
+            document.getElementById("deleteUser").style.display = "block";
+        }
+        function addNew(){
+            document.getElementById("addUser").style.display = "block";
+        }
+    </script>
+
+   
 </body>
 </html>

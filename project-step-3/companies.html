@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+        <h1 id="logo"> <a href="index.html"> <i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
         <div id="navbar">
             <ul>
                 <li> <a href="index.html"> Home </a></li>
-                <li> <a href="signup.html"> Sign Up </a></li>
-                <li> <a href="login.html"> Log in </a></li>
                 <li> <a href="games.html"> Games </a></li>
                 <li> <a href="genres.html"> Genres </a></li>
                 <li> <a href="companies.html"> Companies </a></li>
@@ -22,13 +21,16 @@
                 <li> <a href="locations.html"> Locations </a></li>
                 <li> <a href="playthroughs.html"> Playthroughs </a></li>
                 <li> <a href="users.html"> Users </a></li>
-                <li> <a href="profile.html"> Profile </a></li>
             </ul>
         </div>    
     </header>
     <br>
-    <h3>Companies</h3>
+    <h3 id="title">Companies</h3>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New Company</button>
+    </div>
     <br>
+    
     <div id="companies">
         <table>
             <tr>
@@ -42,36 +44,36 @@
                 <td>3</td>
                 <td>Blizzard</td>
                 <td>3</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>1</td>
                 <td>FromSoftware</td>
                 <td>1</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Microsoft</td>
                 <td>4</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Nintendo</td>
                 <td>2</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Sony</td>
                 <td>1</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
         </table>
     </div>
@@ -84,8 +86,11 @@
             <label> Location: </label> <input type="text" id="location">
       </fieldset>
       <br>
-          <input class="btn" type="submit" id="addnewCompany" value="Add Company" id="add-companyBtn">
-	</form> 
+      <div id="formBtns">
+        <button id="addcompanyBtn"> Add Company</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>	
+    </form> 
     <br>
     <form id="editCompany">
         <h3>Edit Company </h3>
@@ -94,7 +99,10 @@
             <label> Location:</label> <input type="text" id="location">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Edit Company">
+      <div id="formBtns">
+        <button id="editcompanyBtn"> Edit Company</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
 	</form> 
     <br>
     <form id="deleteCompany">
@@ -105,7 +113,10 @@
             <label> Company Name: </label> <input type="text" id="company-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Delete Company">
+      <div id="formBtns">
+        <button id="delcompanyBtn"> Delete Company</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
 	</form> 
 
     <script>
@@ -115,7 +126,9 @@
         function showDelete(){
             document.getElementById("deleteCompany").style.display = "block";
         }
-      
+        function addNew(){
+            document.getElementById("addCompany").style.display = "block";
+        }
     </script>
 </body>
 </html>

@@ -1,23 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
 * {
   box-sizing: border-box;
-
+  background-color: #06060B;
+  color:white;
+  font-family: 'Roboto', sans-serif;
 }
 
 #logo a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 a {
-  color: black;
+  color: white;
 }
 
 table,
 th,
 td {
-  border: 1px solid;
+  border: 2px solid;
 }
 
+table{
+  border-collapse: collapse;
+  table-layout: fixed;
+  border-radius: 10px;
+
+}
+tr{
+  text-align: left;
+}
+th,td{
+  padding:10px;
+}
+
+#platforms,#companies,#games,#activePlaythroughs, #finishedPlaythroughs,
+#genres, #locations,#existingPlaythroughs, #existingSessions,#users{
+  display: flex;
+  justify-content: center;
+}
 #navbar ul{
   list-style: none;
   margin: 0;
@@ -39,10 +61,141 @@ header{
   align-items: center;
 }
 
+#title{
+  display: flex;
+  font-size: 30px;
+  justify-content: center;
+}
 #editGame, #deleteGame, #editGenre, #deleteGenre,
 #editLocation, #deleteLocation, #editPlatform,
 #deletePlatform, #editPlaythrough, #deletePlaythrough,
-#editSession, #deleteSession, #editCompany, #deleteCompany{
+#editSession, #deleteSession, #editCompany, #deleteCompany,
+#editUser, #deleteUser{
   display:none;
+  width: 500px;
+  margin: 0 auto;
 }
 
+#editIcon,#deleteIcon{
+  color:white;
+  cursor: pointer;
+}
+
+#addLocation, #addCompany ,#addGame , #addGenre, #addplatform, #addPlaythrough
+, #addUser, #addSession{
+  display:none;
+  width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+#addPlaythroughs{
+  width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+}
+button{
+  border:none;
+}
+
+.fields input, .fields select{
+  width: 100%;
+  padding: 10px;
+  color:white;
+  box-sizing: border-box;
+  margin: 10px 0;
+  border: 2px solid white;
+}
+
+.fields label{
+  margin-top: 30px;
+}
+
+#formBtns{
+  text-align: right;
+
+}
+
+#formBtns button, #finishPlaythroughBtn, #addnewSessionBtn a{
+  font: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-right:5px;
+  cursor:pointer;
+  text-decoration: none;
+}
+
+#searchUsersContainer, #searchGamesContainer{
+  display:flex;
+  justify-content: center;
+}
+#searchUsersContainer{
+  margin-bottom: 30px;
+}
+
+#searchUsersContainer input, #searchGamesContainer input{
+  width: 500px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+#searchGamesContainer{
+  margin-bottom: 30px;
+}
+#searchUsers, #searchGames{
+  border: 1px solid white;
+}
+
+#formBtns a{
+  text-decoration: none;
+}
+
+#sessionformBtns{
+  display:flex;
+  justify-content: center;
+}
+#sessionformBtns button{
+  font: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-right:20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#games-filter{
+  display: flex;
+  justify-content:right;
+  margin-left: 50px;
+}
+
+#addnewGameBtns{
+  font: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-right:5px;
+  cursor:pointer;
+  text-decoration: none;
+  margin-left: 50px;
+}
+
+#addnewBtn{
+  font: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  cursor:pointer;
+ 
+}
+
+#addBtnContainer{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#logo-icon{
+  color:#fa4454;
+}

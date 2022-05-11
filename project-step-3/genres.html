@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+        <h1 id="logo"> <a href="index.html"><i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
         <div id="navbar">
             <ul>
                 <li> <a href="index.html"> Home </a></li>
-                <li> <a href="signup.html"> Sign Up </a></li>
-                <li> <a href="login.html"> Log in </a></li>
                 <li> <a href="games.html"> Games </a></li>
                 <li> <a href="genres.html"> Genres </a></li>
                 <li> <a href="companies.html"> Companies </a></li>
@@ -22,13 +21,16 @@
                 <li> <a href="locations.html"> Locations </a></li>
                 <li> <a href="playthroughs.html"> Playthroughs </a></li>
                 <li> <a href="users.html"> Users </a></li>
-                <li> <a href="profile.html"> Profile </a></li>
             </ul>
         </div>    
     </header>
     <br>
-    <h3>Genres</h3>
+    <h3 id="title">Genres</h3>
     <br>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New Genre</button>
+    </div>
+
     <div id="genres">
         <table>
             <tr>
@@ -40,20 +42,20 @@
             <tr>
                 <td>1</td>
                 <td>Action</td>
-                <td><button id="editGenresBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteGenresBtn" onclick="showDelete()">Delete</button></td>
+                <td><button id="editGenresBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGenresBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Adventure</td>
-                <td><button id="editGenresBtn"  onclick="showEdit()" >Edit</button></td>
-                <td><button id="deleteGenresBtn"  onclick="showDelete()">Delete</button></td>
+                <td><button id="editGenresBtn"  onclick="showEdit()" ><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGenresBtn"  onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Shooter</td>
-                <td><button id="editGenresBtn"  onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteGenresBtn"  onclick="showDelete()">Delete</button></td>
+                <td><button id="editGenresBtn"  onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGenresBtn"  onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
         </table>
     </div>
@@ -64,8 +66,10 @@
             <label> Genre Name: </label> <input type="text" id="genre-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit" id="addnewGenre" value="Add Genre" id="add-genreBtn">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="addgenreBtn"> Add Genre</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
 	</form> 
     <br>
     <form id="editGenre">
@@ -74,8 +78,10 @@
             <label> Genre Name: </label> <input type="text" id="genre-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Edit Genre">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="editgenreBtn"> Edit Genre</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
 	</form> 
     <br>
     <form id="deleteGenre">
@@ -86,8 +92,10 @@
             <label> Genre Name: </label> <input type="text" id="genre-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Delete Genre">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="delgenreBtn"> Delete Genre</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
 	</form> 
     <script>
         function showEdit(){
@@ -95,6 +103,9 @@
         }
         function showDelete(){
             document.getElementById("deleteGenre").style.display = "block";
+        }
+        function addNew(){
+            document.getElementById("addGenre").style.display = "block";
         }
     </script>
 </body>

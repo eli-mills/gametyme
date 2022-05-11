@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+        <h1 id="logo"> <a href="index.html"> <i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
         <div id="navbar">
             <ul>
                 <li> <a href="index.html"> Home </a></li>
-                <li> <a href="signup.html"> Sign Up </a></li>
-                <li> <a href="login.html"> Log in </a></li>
                 <li> <a href="games.html"> Games </a></li>
                 <li> <a href="genres.html"> Genres </a></li>
                 <li> <a href="companies.html"> Companies </a></li>
@@ -22,14 +21,30 @@
                 <li> <a href="locations.html"> Locations </a></li>
                 <li> <a href="playthroughs.html"> Playthroughs </a></li>
                 <li> <a href="users.html"> Users </a></li>
-                <li> <a href="profile.html"> Profile </a></li>
             </ul>
         </div>    
     </header>
     <br>
-    <h3>Games</h3>
+    <h3 id="title">Games</h3>
     <br>
+    <div id="searchGamesContainer">
+        <input type="text" placeholder="Search Games..." id="searchGames">
+        <div id="games-filter">
+            <label for="filter-game"> Filter By:</label>
+            <select name="game-filter" id="game-filter">
+                <option value=""></option>
+                <option value="Genre">Genre</option>
+                <option value="Company">Company</option>
+                <option value="Platform">Platform</option>
+                <option value="Other">Other</option>
+              </select>
+        </div>
+        <button id="addnewGameBtns" onclick="addGame()">Add New Game</button>
+    </div>
+    <br>
+   
     <div id="games">
+        <br>
         <table>
             <tr>
                 <th>Game ID</th>
@@ -38,6 +53,7 @@
                 <th>Release Date</th>
                 <th>Company ID</th>
                 <th>Genre ID</th>
+                <th>Platform ID</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -48,8 +64,9 @@
                 <td>02-25-2022</td>
                 <td>1</td>
                 <td>1</td>
-                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteGamesBtn"  onclick="showDelete()">Delete</button></td>
+                <td>4</td>
+                <td><button id="editGamesBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGamesBtn"  onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -58,8 +75,9 @@
                 <td>03-03-2017</td>
                 <td>2</td>
                 <td>2</td>
-                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteGamesBtn" onclick="showDelete()">Delete</button></td>
+                <td>1</td>
+                <td><button id="editGamesBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGamesBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             <tr>
                 <td>3</td>
@@ -68,8 +86,9 @@
                 <td>05-24-2016</td>
                 <td>3</td>
                 <td>3</td>
-                <td><button id="editGamesBtn" onclick="showEdit()">Edit</button></td>
-                <td><button id="deleteGamesBtn" onclick="showDelete()">Delete</button></td>
+                <td>2</td>
+                <td><button id="editGamesBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteGamesBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
         </table>
 
@@ -82,12 +101,38 @@
             <label> Game: </label> <input type="text" id="game-name">
             <label> Game Summary: </label> <input type="text" id="game-summary">
             <label> Release Date: </label> <input type="date" id="release-date">
-            <label> Company Name: </label> <input type="text" id="game-company">
-            <label> Genre: </label> <input type="text" id="genre-name">
+            <label> Company Name: </label><select name="company" id="company-select">
+                <option value="">Select a company</option>
+                <option value="Blizzard">Blizzard</option>
+                <option value="FromSoftware">FromSoftware</option>
+                <option value="Microsoft">Microsoft</option>
+                <option value="Nintendo">Nintendo</option>
+                <option value="Sony">Sony</option>
+                <option value="Other">Other</option>
+              </select>
+            <label> Genre: </label> <select name="genre" id="genre-select">
+                <option value="">Select a genre</option>
+                <option value="action">action</option>
+                <option value="adventure">adventure</option>
+                <option value="shooter">shooter</option>
+                <option value="Other">Other</option>
+              </select>
+              <label> Platform: </label> <select name="platform" id="platform-select">
+                <option value="">Select a platform</option>
+                <option value="switch">switch</option>
+                <option value="pc">pc</option>
+                <option value="playstation 4">playstation 4</option>
+                <option value="playstation 5">playstation 5</option>
+                <option value="xbox one">xbox one</option>
+                <option value="xbox series X|S">xbox series X|S</option>
+                <option value="Other">Other</option>
+              </select>
       </fieldset>
       <br>
-          <input class="btn" type="submit" id="addnewGame" value="Add Game" id="add-gameBtn">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="addgameBtn"> Add Game</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>	
 	</form> 
     <br>
     <form id="editGame">
@@ -100,8 +145,10 @@
             <label> Genre: </label> <input type="text" id="genre-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Edit Game">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="editgameBtn"> Edit Game</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>	
 	</form> 
     <br>
     <form id="deleteGame">
@@ -112,8 +159,10 @@
             <label> Game: </label> <input type="text" id="game-name">
       </fieldset>
       <br>
-          <input class="btn" type="submit"  value="Delete Game">
-          <button id="cancelBtn">Cancel</button>
+      <div id="formBtns">
+        <button id="delGameBtn"> Delete Game</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>	
 	</form> 
 
 <script>
@@ -122,6 +171,9 @@
     }
     function showDelete(){
         document.getElementById("deleteGame").style.display = "block";
+    }
+    function addGame(){
+        document.getElementById("addGame").style.display = "block";
     }
 </script>
 </body>

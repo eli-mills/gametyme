@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
-    <h1 id="logo"> <a href="index.html"> GameTyme</a> </h1>
+    <h1 id="logo"> <a href="index.html"> <i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
     <div id="navbar">
         <ul>
             <li> <a href="index.html"> Home </a></li>
-            <li> <a href="signup.html"> Sign Up </a></li>
-            <li> <a href="login.html"> Log in </a></li>
             <li> <a href="games.html"> Games </a></li>
             <li> <a href="genres.html"> Genres </a></li>
             <li> <a href="companies.html"> Companies </a></li>
@@ -22,22 +21,25 @@
             <li> <a href="locations.html"> Locations </a></li>
             <li> <a href="playthroughs.html"> Playthroughs </a></li>
             <li> <a href="users.html"> Users </a></li>
-            <li> <a href="profile.html"> Profile </a></li>
         </ul>
     </div>    
 </header>
 <br>
     <form method="POST" id="addSession">
-        <h3>Add a New Session</h3>
+        <h3 id="title">Add a New Session</h3>
         <br>
           <fieldset class="fields">
+           <div id="sessionformBtns">
             <button id="startSessionBtn">Start Session</button>
             <button id="endSessionBtn">End Session</button>
+           </div>
       </fieldset>
       <br>
      
-    <button id="add-SessionBtn"> <a href="playthroughs.html">Add Session</a></button>
-    <button id="returnBtn"><a href="playthroughs.html"> Cancel </a> </button>
+      <div id="formBtns">
+        <button id="add-SessionBtn"> <a href="playthroughs.html">Add Session</a></button>
+        <button id="returnBtn"><a href="playthroughs.html"> Cancel </a> </button>
+      </div>
 
         
 	</form> 
