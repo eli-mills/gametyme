@@ -32,7 +32,7 @@
         <div id="games-filter">
             <label for="filter-game" id="filter-title"> Filter By:</label>
             <select name="game-filter" id="game-filter">
-                <option value=""></option>
+                <option value=""> Select</option>
                 <option value="Genre">Genre</option>
                 <option value="Company">Company</option>
                 <option value="Platform">Platform</option>
@@ -64,7 +64,7 @@
                 <td>02-25-2022</td>
                 <td>1</td>
                 <td>1</td>
-                <td>4</td>
+                <td>2,3,4,5,6</td>
                 <td><button id="editGamesBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteGamesBtn"  onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
@@ -86,7 +86,7 @@
                 <td>05-24-2016</td>
                 <td>3</td>
                 <td>3</td>
-                <td>2</td>
+                <td>1,2,3,4,5,6</td>
                 <td><button id="editGamesBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteGamesBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
@@ -113,19 +113,18 @@
               </select>
             <label> Genre: </label> <select name="genre" id="genre-select">
                 <option value="">Select a genre</option>
-                <option value="action">action</option>
-                <option value="adventure">adventure</option>
-                <option value="shooter">shooter</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="shooter">Shooter</option>
                 <option value="Other">Other</option>
               </select>
-              <label> Platform: </label> <select name="platform" id="platform-select">
-                <option value="">Select a platform</option>
-                <option value="switch">switch</option>
-                <option value="pc">pc</option>
-                <option value="playstation 4">playstation 4</option>
-                <option value="playstation 5">playstation 5</option>
-                <option value="xbox one">xbox one</option>
-                <option value="xbox series X|S">xbox series X|S</option>
+              <label> Platform: </label> <select name="platform" id="platform-select" multiple>
+                <option value="Switch">Switch</option>
+                <option value="Pc">Pc</option>
+                <option value="Playstation 4">Playstation 4</option>
+                <option value="Playstation 5">Playstation 5</option>
+                <option value="Xbox one">Xbox one</option>
+                <option value="Xbox series X|S">Xbox series X|S</option>
                 <option value="Other">Other</option>
               </select>
       </fieldset>
@@ -144,14 +143,13 @@
             <label> Release Date: </label> <input type="date" id="release-date">
             <label> Company Name: </label> <input type="text" id="game-company">
             <label> Genre: </label> <input type="text" id="genre-name">
-            <label> Platform: </label> <select name="platform" id="platform-select">
-                <option value="">Select a platform</option>
-                <option value="switch">switch</option>
-                <option value="pc">pc</option>
-                <option value="playstation 4">playstation 4</option>
-                <option value="playstation 5">playstation 5</option>
-                <option value="xbox one">xbox one</option>
-                <option value="xbox series X|S">xbox series X|S</option>
+            <label> Platform: </label> <select name="platform" id="platform-select" multiple>
+                <option value="Switch">Switch</option>
+                <option value="Pc">Pc</option>
+                <option value="Playstation 4">Playstation 4</option>
+                <option value="Playstation 5">Playstation 5</option>
+                <option value="Xbox one">Xbox one</option>
+                <option value="Xbox series X|S">Xbox series X|S</option>
                 <option value="Other">Other</option>
               </select>
       </fieldset>
