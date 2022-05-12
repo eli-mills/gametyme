@@ -45,7 +45,9 @@
 -- Companies page
 
     -- Load Companies table
-    SELECT * FROM Companies;
+    SELECT Companies.company_id AS 'Company ID', Companies.company_name AS 'Company Name', 
+    CONCAT_WS(',', Locations.city, Locations.state, Locations.country) AS 'Location'
+    FROM Companies JOIN Locations on Companies.location_id=Locations.location_id;
 
     -- Add new Company
     INSERT INTO Companies (company_name, location_id)
@@ -66,7 +68,8 @@
 -- Platforms page
 
     -- Load Platforms table
-    SELECT * FROM Platforms;
+    SELECT Platforms.platform_id AS 'Platform ID', Platforms.platform_name AS 'Platform Name', Companies.company_name AS 'Company'
+    FROM Platforms JOIN Companies ON Platforms.company_id=Companies.company_id;
 
     -- Add new Platform
     INSERT INTO Platforms (platform_name, company_id)
@@ -223,7 +226,7 @@
     AND username=:username
     AND email=:email;
 
-    
+
 
 -- Home page
     -- Load active Playthroughs (Home Page): Display active Playthroughs for current User
