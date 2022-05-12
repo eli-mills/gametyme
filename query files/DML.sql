@@ -14,7 +14,8 @@
 
     -- Delete Genre
     DELETE Genres
-    WHERE genre_id=:genre_id;
+    WHERE genre_id=:genre_id
+    AND genre_name=:genre_name;
 
 
 
@@ -44,7 +45,9 @@
 -- Companies page
 
     -- Load Companies table
-    SELECT * FROM Companies;
+    SELECT Companies.company_id AS 'Company ID', Companies.company_name AS 'Company Name', 
+    CONCAT_WS(',', Locations.city, Locations.state, Locations.country) AS 'Location'
+    FROM Companies JOIN Locations on Companies.location_id=Locations.location_id;
 
     -- Add new Company
     INSERT INTO Companies (company_name, location_id)
@@ -65,7 +68,8 @@
 -- Platforms page
 
     -- Load Platforms table
-    SELECT * FROM Platforms;
+    SELECT Platforms.platform_id AS 'Platform ID', Platforms.platform_name AS 'Platform Name', Companies.company_name AS 'Company'
+    FROM Platforms JOIN Companies ON Platforms.company_id=Companies.company_id;
 
     -- Add new Platform
     INSERT INTO Platforms (platform_name, company_id)
@@ -83,13 +87,16 @@
 
 
 
--- Games Queries
+-- Games page
 
     -- Load Games table
-    SELECT Games.game_id, Games.game_title, Games.game_summary, Games.release_date, 
-    GROUP_CONCAT(Platforms.platform_id ORDER BY Platforms.platform_id ASC SEPARATOR ', ') AS 'Platforms'
+    SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', Games.release_date AS 'Release Date', 
+    Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
+    GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
     FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
     JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
+    JOIN Companies ON Games.company_id=Companies.company_id
+    JOIN Genres ON Games.genre_id=Genres.genre_id
     GROUP BY Games.game_id;
     -- SOURCES CITED:
     -- The above uses syntax found from tutorialspoint.com, written by Chandu yadav. This can be found here. https://www.tutorialspoint.com/combining-multiple-rows-into-a-comma-delimited-list-in-mysql
@@ -98,12 +105,13 @@
     -- The column is aliased as "Platforms".
     -- This makes it easier to read, rather than having a separate row for each Game/Platform combination.
 
-    -- Load filter options depending on dropdown selection
-    SELECT * FROM :table_name; 
+    -- Load filter options depending on dropdown selection. :table = name of table, :table_id = name of PK attribute, :table_name = name of 
+    -- name/title attribute.
+    SELECT :table_id, :table_name FROM :table; 
 
-    -- Search Games based on chosen filter
+    -- Search Games based on chosen filter. :table_id = name of id attribute, :row_id = actual value of selected row's PK ID
     SELECT * FROM Games
-    WHERE :attribute = :attr_id;
+    WHERE :table_id = :row_id;
 
     -- Load Company options for adding new Game
     SELECT company_id, company_name FROM Companies;
@@ -121,12 +129,9 @@
         (SELECT genre_id FROM Genres WHERE genre_name=:genre_name)
     );
 
-    -- To be used in a JS loop to create the appropriate number of GamesPlatforms selected
+    -- Insert GamePlatform: To be used in a JS loop to create the appropriate number of GamesPlatforms selected
     INSERT INTO GamesPlatforms (game_id, platform_id)
     VALUES (:game_id, :platform_id);
-
-    -- Preselect Platforms for editing a Game
-
 
     -- Edit Game
     UPDATE Games
@@ -135,26 +140,28 @@
         genre_id=(SELECT genre_id FROM Genres WHERE genre_name=:genre_name)
     WHERE game_id=:game_id;
 
-    -- Delete Game
+    -- Will use Javascript to determine which GamesPlatforms need to be added and which need to be removed after each edit.
+    -- Assuming we have a list of GamesPlatforms to delete, and another list of GamesPlatforms to insert. Will use following 
+    -- queries in a loop to handle all of the updates.
+
+    -- Insert GamePlatform: same query as above for adding new Game
+
+    -- Delete GamePlatform
+    DELETE GamesPlatforms
+    WHERE game_id=:game_id AND platform_id=:platform_id;
+
+    -- Delete Game. GamesPlatforms entries will automatically be CASCADED.
     DELETE Games
     WHERE game_id=:game_id;
 
 
 
--- Playthroughs Queries
-
-    -- Load active Playthroughs (Home Page): Display active Playthroughs for current User
-    SELECT * FROM Playthroughs
-    WHERE user_id=:user_id AND finish_timestamp IS NULL;
-
-    -- Load finished Playthroughs (Home Page): Display finished Playthroughs for current User
-    SELECT * FROM Playthroughs
-    WHERE user_id=:user_id AND finish_timestamp IS NOT NULL;
+-- Playthroughs page
 
     -- Load all existing Playthroughs (Playthroughs Page)
     SELECT * FROM Playthroughs;
 
-    -- Add New Playthrough
+    -- Begin (Add) New Playthrough
     INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
     VALUES (NOW(), :user_id, (SELECT game_id FROM Games WHERE game_title=:game_title));
 
@@ -170,11 +177,14 @@
 
     -- Delete Playthrough
     DELETE Playthroughs
-    WHERE playthrough_id=:playthrough_id;
+    WHERE playthrough_id=:playthrough_id
+    AND game_id = (SELECT game_id FROM Games WHERE game_title=:game_title)
+    AND start_timestamp=:start_timestamp
+    AND finish_timestamp=:finish_timestamp;
 
 
 
--- Sessions Queries
+-- Sessions (Playthroughs page)
 
     -- Load all existing Sessions (Playthroughs page) and include summary column of number of hours played.
     SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', session_start, session_end, playthrough_id FROM Sessions;
@@ -190,16 +200,18 @@
 
     -- Delete Session
     DELETE Sessions
-    WHERE session_id=:session_id;
+    WHERE session_id=:session_id
+    AND session_start=:session_start
+    AND session_end=:session_end;
 
 
 
--- Users queries
+-- Users page
 
     -- Load User info on login
     SELECT * FROM Users WHERE email=:email;
 
-    -- Create new User on signup page
+    -- Add new User
     INSERT INTO Users (first_name, last_name, username, email)
     VALUES (:first_name, :last_name, :username, :email);
 
@@ -210,4 +222,19 @@
 
     -- Delete User on Profile page
     DELETE Users
-    WHERE user_id=:user_id;
+    WHERE user_id=:user_id
+    AND username=:username
+    AND email=:email;
+
+
+
+-- Home page
+    -- Load active Playthroughs (Home Page): Display active Playthroughs for current User
+    SELECT * FROM Playthroughs
+    WHERE user_id=:user_id AND finish_timestamp IS NULL;
+
+    -- Load finished Playthroughs (Home Page): Display finished Playthroughs for current User
+    SELECT * FROM Playthroughs
+    WHERE user_id=:user_id AND finish_timestamp IS NOT NULL;
+
+    -- (Add Playthrough query is the same as Playthroughs page)
