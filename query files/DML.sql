@@ -111,7 +111,13 @@
 
     -- Search Games based on chosen filter. :table_id = name of id attribute, :row_id = actual value of selected row's PK ID
     SELECT * FROM Games
-    WHERE :table_id = :row_id;
+    WHERE :table_id = :row_id AND game_title LIKE :game_search;
+
+    -- Search Games if filtering by Platform (uses GamesPlatforms)
+    SELECT Games.* 
+    FROM Games JOIN GamesPlatforms ON Games.game_id = GamesPlatforms.game_id
+    JOIN Platforms ON GamesPlatforms.platform_id = Platforms.platform_id
+    WHERE platform_id = :row_id AND game_title LIKE :game_search;
 
     -- Load Company options for adding new Game
     SELECT company_id, company_name FROM Companies;
