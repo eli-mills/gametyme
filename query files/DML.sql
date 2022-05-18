@@ -1,3 +1,4 @@
+
 -- Genres page
 
     -- Load Genres table
@@ -13,7 +14,7 @@
     WHERE genre_id=:genre_id;
 
     -- Delete Genre
-    DELETE Genres
+    DELETE FROM Genres
     WHERE genre_id=:genre_id
     AND genre_name=:genre_name;
 
