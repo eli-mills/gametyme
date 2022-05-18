@@ -1,0 +1,35 @@
+"READ" (Load all Genres for the Genre table)
+    QUERY: SELECT * FROM Genres;
+    DESCRIPTION: Returns an array of Javascript objects, each representing a row in the Genres table, with properties genre_id and genre_name
+    URL: http://[server-address]/genres
+    HTTP METHOD: GET
+
+"CREATE" (Add new Genre)
+    QUERY: INSERT INTO Genres (genre_name) VALUES ('${genre_name}');
+    DESCRIPTION: Inserts a new row into Genres with the given genre name
+    URL: http://[server-address]/genres
+    HTTP METHOD: POST
+    BODY:
+        - Should contain a variable named 'genre_name' along with its value
+        - This is a string entered by the user in the "add genre" form
+
+"UPDATE" (Edit a Genre)
+    QUERY:  UPDATE Genres 
+            SET genre_name='${genre_name}' 
+            WHERE genre_id='${genre_id}';
+    DESCRIPTION: Edits an entry in Genres with the given ID by changing its name to the given name.
+    URL: http://[server-address]/genres/:genre_id
+    HTTP METHOD: PUT
+    BODY: 
+        - Should contain a variable named 'genre_name' along with its value
+        - This is a string entered by the user representing the NEW NAME for the genre being edited
+        - The edited genre's ID is provided in the URL (replace ':genre_id')
+        - I'm picturing that this ID would be stored with each row in the HTML page, maybe built into each row's edit button somehow? 
+          It can be added there when the table is first loaded
+
+"DELETE" (Delete a Genre)
+    QUERY: DELETE FROM Genres WHERE genre_id='${genre_id}';
+    DESCRIPTION: Deletes a row from Genres with the given ID.
+    URL: http://[server-address]/genres/:genre_id 
+    HTTP METHOD: DELETE
+    
