@@ -1,10 +1,13 @@
 import express from 'express';
-import {pool as db} from './gt-model.mjs';
+import {pool as db} from './database/db-connector.mjs';
+import { engine as exphbs } from 'express-handlebars';
 
 const app = express();
 const PORT = 3000;
 
-// app.use(express.urlencoded({extended: true}));
+app.engine('.hbs', exphbs({extname: ".hbs"}));
+app.set('view engine', '.hbs');
+
 app.use(express.json());
 
 // Genres Page
@@ -12,7 +15,7 @@ app.use(express.json());
 app.get('/genres', (req, res) => {
     db.query('SELECT * FROM Genres;', (error, results, fields) => {
         if (error) throw error;
-        res.json(results);
+        res.render('genres', {data: rows});
         console.log('Genres loaded');
     });
 });

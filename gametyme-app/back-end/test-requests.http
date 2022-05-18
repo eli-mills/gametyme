@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Edit a Genre
-PUT http://localhost:3000/genres/4 HTTP/1.1
+PUT http://localhost:3000/genres/5 HTTP/1.1
 content-type: application/json
 
 {
@@ -18,4 +18,4 @@ content-type: application/json
 }
 
 ### Delete a Genre
-DELETE http://localhost:3000/genres/4 HTTP/1.1
+DELETE http://localhost:3000/genres/5 HTTP/1.1
