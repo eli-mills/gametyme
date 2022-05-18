@@ -1,5 +1,5 @@
-import { onid, db_pw } from './db-credentials.mjs';
-import mysql from 'mysql';
+const mysql = require('mysql');
+const {onid, db_pw} = require('./db-credentials.js');
 
 const pool = mysql.createPool({
     connectionLimit     : 10,
@@ -9,4 +9,4 @@ const pool = mysql.createPool({
     database            : `cs340_${onid}`
 });
 
-export {pool};
+module.exports = pool;

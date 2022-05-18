@@ -1,11 +1,11 @@
-import express from 'express';
-import {pool as db} from './database/db-connector.mjs';
-import { engine as exphbs } from 'express-handlebars';
-
+const express = require('express');
 const app = express();
 const PORT = 9500;
 
-app.engine('.hbs', exphbs({extname: ".hbs"}));
+const db = require('./database/db-connector.js');
+
+const {engine} = require('express-handlebars');
+app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
 
 app.use(express.json());
@@ -15,7 +15,8 @@ app.use(express.json());
 app.get('/genres', (req, res) => {
     db.query('SELECT * FROM Genres;', (error, results, fields) => {
         if (error) throw error;
-        res.render('genres', {data: rows});
+        res.render('genres', {data: results});
+        // res.send(results);
         console.log('Genres loaded');
     });
 });
