@@ -3,7 +3,7 @@ import {pool as db} from './database/db-connector.mjs';
 import { engine as exphbs } from 'express-handlebars';
 
 const app = express();
-const PORT = 3000;
+const PORT = 9500;
 
 app.engine('.hbs', exphbs({extname: ".hbs"}));
 app.set('view engine', '.hbs');
