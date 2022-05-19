@@ -116,6 +116,10 @@ app.get('/users',function (req,res) {
     res.render('users');
 })
 
+// new-session page
+app.get('/new-session', function(req,res){
+    res.render('new-session');
+})
 
 
 app.listen(PORT, function(){
