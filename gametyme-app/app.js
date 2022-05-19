@@ -42,7 +42,7 @@ app.post('/add-genres', (req, res) => {
 // Delete Genre
 
 app.delete('/delete-genre/:genre_id', (req, res) => {
-    const genre_id = req.body;
+    const genre_id = req.params.genre_id;
     const deleteGenreQuery = `DELETE FROM Genres WHERE genre_id='${genre_id}'`;
 
     db.query(deleteGenreQuery, (error, results, fields) => {
@@ -50,6 +50,7 @@ app.delete('/delete-genre/:genre_id', (req, res) => {
             throw error;
         }else{
             res.json(results);
+            console.log(results);
             console.log('Genre deleted');
         }
     });
