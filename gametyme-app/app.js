@@ -13,6 +13,11 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
 
+
+// Home Page
+app.get('/', (req,res)=> {
+    res.render('index');
+})
 // Genres Page
 // Load Genres table 
 app.get('/genres', (req, res) => {
@@ -60,7 +65,7 @@ app.delete('/delete-genre/:genre_id', (req, res) => {
 // Edit Genre
 app.put('/edit-genre/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
-    const genre_name = req.body.genre_name;
+    const genre_name = req.body.newGenreName;
 
     const editGenreQuery = `
         UPDATE Genres 

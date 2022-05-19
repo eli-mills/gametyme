@@ -44,7 +44,7 @@
                 <td>{{this.genre_id}}</td>
                 <td>{{this.genre_name}}</td>
                 <td><button id="editGenresBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button onclick="deleteGenre({{this.genre_id}})">Delete </button></td>
+                <td><button onclick="deleteGenre({{this.genre_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             {{/each}}
         </table>
@@ -71,11 +71,10 @@
               <select name="select-genreName" id="selectGenreName">
                   <option value="gName">Select a Genre</option>
                   {{#each data}}
-                  <option value="{{this.id}}">{{this.genre_name}}</option>
+                  <option value="{{this.genre_id}}">{{this.genre_name}}</option>
                   {{/each}}
               </select>
-                 
-                <label> Genre Name: </label> <input type="text" id="edit-genre-name">
+            <label>Genre Name: </label> <input type="text" id="edit-genre-name">
                 
           </fieldset>
           <br>
@@ -89,6 +88,7 @@
     </div>
   <script src="js/genre-dom.js"></script>
   <script src="js/delete-genre.js"></script>
+  <script src="js/update_genre.js"></script>
 
 </body>
 </html>
