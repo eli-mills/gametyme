@@ -8,6 +8,9 @@ const db = require('./database/db-connector.js');
 const {engine} = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
+const path = require('path');
+const router = express.Router();
+app.use('/', router);   
 
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
@@ -15,9 +18,15 @@ app.use(express.urlencoded({extended: true}));
 
 
 // Home Page
-app.get('/', (req,res)=> {
+app.get('/',function (req,res) {
     res.render('index');
 })
+
+// Games Page
+app.get('/games', function (req,res){
+    res.render('games');
+})
+
 // Genres Page
 // Load Genres table 
 app.get('/genres', (req, res) => {
@@ -79,6 +88,35 @@ app.put('/edit-genre/:genre_id', (req, res) => {
         console.log('Genre edited.');
     });
 });
+
+
+// Companies Page
+app.get('/companies',function (req,res) {
+    res.render('companies');
+})
+
+// Platforms Page
+app.get('/platforms', function (req,res){
+    res.render('platforms');
+})
+
+
+// Locations Page
+app.get('/locations',function (req,res) {
+    res.render('locations');
+})
+
+// Games Page
+app.get('/playthroughs', function (req,res){
+    res.render('playthroughs');
+})
+
+// Users Page
+app.get('/users',function (req,res) {
+    res.render('users');
+})
+
+
 
 app.listen(PORT, function(){
     console.log('Server listening on Port' + ' ' + PORT);
