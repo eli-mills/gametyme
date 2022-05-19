@@ -9,6 +9,7 @@ app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Genres Page
 // Load Genres table 
@@ -22,14 +23,16 @@ app.get('/genres', (req, res) => {
 });
 
 // Add new Genre
-app.post('/genres', (req, res) => {
-    const genre_name = req.body.genre_name; 
-    const addGenreQuery = `INSERT INTO Genres (genre_name) VALUES ('${genre_name}');`;
+app.post('/add-genres', (req, res) => {
+    let genre_name = req.body; 
+    const addGenreQuery = `INSERT INTO Genres (genre_name) VALUES ('${genre_name['input-genrename']}');`;
 
     db.query(addGenreQuery, (error, results, fields) => {
-        if (error) throw error;
-        res.json(results);
-        console.log('Genre added');
+        if (error){
+            throw error;
+        }else{
+            res.redirect('/genres');
+        }
     });
 });
 
