@@ -67,11 +67,20 @@
         <form id="editGenre">
             <h3>Edit Genre </h3>
               <fieldset class="fields">
-                <label> Genre Name: </label> <input type="text" id="genre-name">
+
+              <select name="select-genreName" id="selectGenreName">
+                  <option value="gName">Select a Genre</option>
+                  {{#each data}}
+                  <option value="{{this.id}}">{{this.genre_name}}</option>
+                  {{/each}}
+              </select>
+                 
+                <label> Genre Name: </label> <input type="text" id="edit-genre-name">
+                
           </fieldset>
           <br>
           <div id="formBtns">
-            <button id="editgenreBtn"> Edit Genre</button>
+            <input type="submit">
             <button id="cancelBtn">Cancel</button>
           </div>
         </form> 
