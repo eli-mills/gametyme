@@ -63,4 +63,6 @@ app.delete('/genres/:genre_id', (req, res) => {
     });
 });
 
-app.listen(PORT);
+app.listen(PORT, function(){
+    console.log('Server listening on Port' + ' ' + PORT);
+});
