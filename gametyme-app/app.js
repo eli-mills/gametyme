@@ -3,12 +3,14 @@ const app = express();
 const PORT = 9500;
 
 const db = require('./database/db-connector.js');
+window.$ = require('jquery')(window);
 
 const {engine} = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
 
 app.use(express.json());
+app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
 // Genres Page
@@ -36,6 +38,19 @@ app.post('/add-genres', (req, res) => {
     });
 });
 
+
+// Delete Genre
+
+app.delete('/delete-genre/:genre_id', (req, res) => {
+    const genre_id = req.params.genre_id;
+    const deleteGenreQuery = `DELETE FROM Genres WHERE genre_id='${genre_id}'`;
+
+    db.query(deleteGenreQuery, (error, results, fields) => {
+        if (error) throw error;
+    });
+});
+
+
 // Edit Genre
 app.put('/genres/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
@@ -51,18 +66,6 @@ app.put('/genres/:genre_id', (req, res) => {
         if (error) throw error;
         res.json(results);
         console.log('Genre edited.');
-    });
-});
-
-// Delete Genre
-app.delete('/genres/:genre_id', (req, res) => {
-    const genre_id = req.params.genre_id;
-    const deleteGenreQuery = `DELETE FROM Genres WHERE genre_id='${genre_id}'`;
-
-    db.query(deleteGenreQuery, (error, results, fields) => {
-        if (error) throw error;
-        res.json(results);
-        console.log('Genre deleted');
     });
 });
 
