@@ -18,6 +18,7 @@ updateGenreForm.addEventListener("submit", function (e) {
         genre_id: selectedGenreID,
         newGenreName: updatedGenreName,
     }
+    console.log(data.genre_id);
     
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT",  `/edit-genre/${data.genre_id}`, true);

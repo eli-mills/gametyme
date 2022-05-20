@@ -74,7 +74,8 @@ app.delete('/delete-genre/:genre_id', (req, res) => {
 // Edit Genre
 app.put('/edit-genre/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
-    const genre_name = req.body.newGenreName;
+    const genre_name = req.body.genre_name;
+    console.log("hello");
 
     const editGenreQuery = `
         UPDATE Genres 
