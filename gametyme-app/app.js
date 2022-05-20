@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 9500;
+const PORT = 9501;
 
 const db = require('./database/db-connector.js');
 
@@ -22,10 +22,6 @@ app.get('/',function (req,res) {
     res.render('index');
 })
 
-// Games Page
-app.get('/games', function (req,res){
-    res.render('games');
-})
 
 // Genres Page
 // Load Genres table 
@@ -33,7 +29,6 @@ app.get('/genres', (req, res) => {
     db.query('SELECT * FROM Genres;', (error, results, fields) => {
         if (error) throw error;
         res.render('genres', {data: results});
-        // res.send(results);
         console.log('Genres loaded');
     });
 });
@@ -42,7 +37,7 @@ app.get('/genres', (req, res) => {
 app.post('/add-genres', (req, res) => {
     let genre_name = req.body; 
     const addGenreQuery = `INSERT INTO Genres (genre_name) VALUES ('${genre_name['input-genrename']}');`;
-
+    
     db.query(addGenreQuery, (error, results, fields) => {
         if (error){
             throw error;
@@ -58,7 +53,7 @@ app.post('/add-genres', (req, res) => {
 app.delete('/delete-genre/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
     const deleteGenreQuery = `DELETE FROM Genres WHERE genre_id='${genre_id}'`;
-
+    
     db.query(deleteGenreQuery, (error, results, fields) => {
         if (error){
             throw error;
@@ -75,14 +70,13 @@ app.delete('/delete-genre/:genre_id', (req, res) => {
 app.put('/edit-genre/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
     const genre_name = req.body.genre_name;
-    console.log("hello");
-
+    
     const editGenreQuery = `
-        UPDATE Genres 
-        SET genre_name='${genre_name}' 
-        WHERE genre_id='${genre_id}';
+    UPDATE Genres 
+    SET genre_name='${genre_name}' 
+    WHERE genre_id='${genre_id}';
     `;
-
+    
     db.query(editGenreQuery, (error, results, fields) => {
         if (error) throw error;
         res.json(results);
@@ -90,6 +84,11 @@ app.put('/edit-genre/:genre_id', (req, res) => {
     });
 });
 
+
+// Games Page
+app.get('/games', function (req,res){
+    res.render('games');
+})
 
 // Companies Page
 app.get('/companies',function (req,res) {
@@ -107,7 +106,7 @@ app.get('/locations',function (req,res) {
     res.render('locations');
 })
 
-// Games Page
+// Playthroughs Page
 app.get('/playthroughs', function (req,res){
     res.render('playthroughs');
 })

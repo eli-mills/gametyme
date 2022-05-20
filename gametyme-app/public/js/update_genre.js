@@ -16,9 +16,10 @@ updateGenreForm.addEventListener("submit", function (e) {
     let data = {
         selectedGenre: selectedGenreValue,
         genre_id: selectedGenreID,
-        newGenreName: updatedGenreName,
+        genre_name: updatedGenreName,
     }
-    console.log(data.genre_id);
+    console.log("ID: ", data.genre_id);
+    console.log("Value: ", data.selectedGenre);
     
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT",  `/edit-genre/${data.genre_id}`, true);
@@ -46,17 +47,20 @@ function updateRow(data, genre_id){
     let updatedGenreName = updatedGenre.value;
     
     console.log(parsedData);
-    let table = document.getElementById("genre-table");
+    // let table = document.getElementById("genre-table");
 
-    for (let i = 0, row; row = table.rows[i]; i++) {
-       if (table.rows[i].getAttribute("data-value") == genre_id) {
+    // for (let i = 0, row; row = table.rows[i]; i++) {
+    //    if (table.rows[i].getAttribute("data-value") == genre_id) {
 
-            let updateRowIndex = table.getElementsByTagName("tr")[i];
+    //         let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            let td = updateRowIndex.getElementsByTagName("td")[1];
+    //         let td = updateRowIndex.getElementsByTagName("td")[1];
 
-            td.innerHTML = updatedGenreName; 
+    //         td.innerHTML = updatedGenreName; 
             
-       }
-    }
+    //    }
+    // }
+
+    location.reload();
+    return false;
 }
