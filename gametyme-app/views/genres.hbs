@@ -43,7 +43,7 @@
             <tr data-value={{this.genre_id}}>
                 <td>{{this.genre_id}}</td>
                 <td>{{this.genre_name}}</td>
-                <td><button id="editGenresBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button onclick="deleteGenre({{this.genre_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             {{/each}}
@@ -74,7 +74,7 @@
                   <option value="{{this.genre_id}}">{{this.genre_name}}</option>
                   {{/each}}
               </select>
-            <label>Genre Name: </label> <input type="text" id="edit-genre-name">
+            <label>Edit Genre Name: </label> <input type="text" id="edit-genre-name">
                 
           </fieldset>
           <br>
