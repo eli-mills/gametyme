@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 9501;
+const PORT = 9500;
 
 const db = require('./database/db-connector.js');
 
