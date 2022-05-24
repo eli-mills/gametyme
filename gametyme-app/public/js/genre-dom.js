@@ -14,3 +14,11 @@ function showDelete(){
 function addNew(){
     document.getElementById("addGenre").style.display = "block";
 }
+
+
+
+document.getElementById("cancelGenreAddBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    document.getElementById("addGenre").style.display = "none";
+
+})
