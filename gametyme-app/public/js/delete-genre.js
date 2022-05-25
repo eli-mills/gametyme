@@ -1,5 +1,9 @@
-function deleteGenre(genre_id) {
-  let link = `/delete-genre/${genre_id}`;
+function showDelete(genre_id){
+  document.getElementById("deleteGenre").style.display = "block";
+
+  document.getElementById("delGenreBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    let link = `/delete-genre/${genre_id}`;
   let data = {
     id: genre_id
 };
@@ -13,7 +17,11 @@ $.ajax({
     deleteRow(genre_id);
   }
 });
+
+  })
+ 
 }
+
 
 function deleteRow(genre_id){
   let table = document.getElementById("genre-table");
@@ -23,4 +31,5 @@ function deleteRow(genre_id){
           break;
     }
   }
+  document.getElementById("deleteGenre").style.display = "none";
 }
