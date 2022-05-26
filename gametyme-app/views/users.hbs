@@ -81,14 +81,39 @@
         <form id="editUser">
             <h3>Edit User </h3>
               <fieldset class="fields">
-                <label> First Name: </label> <input type="text" id="user-fname">
-                <label> Last Name: </label> <input type="text" id="user-lname">
-                <label> Username: </label> <input type="text" id="username">
-                <label> Email: </label> <input type="email" id="user-email">
+              
+                <select name ="select-User-fname" id="selectFname">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.first_name}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit First Name: </label> <input type="text" id="edit-fname">
+                 <br>
+                 <select name ="select-User-lname" id="selectLname">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.last_name}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Last Name: </label> <input type="text" id="edit-lname">
+                <br>
+                 <select name ="select-Username" id="selectUsername">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.username}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Username: </label> <input type="text" id="edit-username">
+                <br>
+                 <select name ="select-email" id="selectEmail">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Email: </label> <input type="text" id="edit-email">
+
           </fieldset>
           <br>
           <div id="formBtns">
-            <button id="editUserBtn"> Edit User</button>
+            <input type="submit">
             <button id="cancelBtn">Cancel</button>
           </div>
         </form> 

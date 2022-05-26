@@ -46,4 +46,28 @@ router.delete('/:user_id', (req, res) => {
     });
 });
 
+// Update Users
+router.put('/:user_id', (req, res) => {
+    const user_id = req.params.user_id;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const username = req.body.username;
+    const email = req.body.email;
+    
+    const query = `
+        UPDATE Users
+        SET first_name='${first_name}', last_name='${last_name}', username='${username}', email='${email}'
+        WHERE user_id=${user_id};
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error) throw error;
+        res.json(results);
+        console.log('User edited.');
+    });
+});
+
+
+
+
 module.exports =  router;
