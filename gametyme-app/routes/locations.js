@@ -27,9 +27,9 @@ router.get('/', (req, res) => {
  * Body:                {city, state, country} 
  */
 router.post('/', (req, res) => { 
-    let data = req.body;
-    const query = `INSERT INTO Locations (city,state,country) VALUES ('${data['input-city']}',
-    '${data['input-state']}', '${data['input-country']}');`;
+    const { city, state, country } = req.body;
+    const query = `INSERT INTO Locations (city,state,country) VALUES ('${city}',
+    '${state}', '${country}');`;
     
     db.query(query, (error, results, fields) => {
         if (error){

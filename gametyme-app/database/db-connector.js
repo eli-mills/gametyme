@@ -6,7 +6,8 @@ const pool = mysql.createPool({
     host                : 'classmysql.engr.oregonstate.edu',
     user                : `cs340_${onid}`,
     password            : db_pw,
-    database            : `cs340_${onid}`
+    database            : `cs340_${onid}`,
+    multipleStatements  : true
 });
 
 module.exports = pool;

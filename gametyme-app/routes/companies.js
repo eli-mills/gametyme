@@ -12,12 +12,16 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const query = `
         SELECT Companies.company_id AS 'Company ID', Companies.company_name AS 'Company Name', 
-        CONCAT_WS(',', Locations.city, Locations.state, Locations.country) AS 'Location'
+        CONCAT_WS(', ', Locations.city, Locations.state, Locations.country) AS 'Location',
+        Locations.location_id AS 'Location ID'
         FROM Companies JOIN Locations on Companies.location_id=Locations.location_id;
+
+        SELECT location_id, CONCAT_WS(', ', city, state, country) AS 'Location' 
+        FROM Locations;
     `;
     db.query(query, (error, results, fields) => {
         if (error) throw error;
-        res.render('companies', {data: results});
+        res.render('companies', {data: results[0], locSelect: results[1]});
         console.log('Companies loaded');
         console.log(results);
     });
@@ -31,10 +35,10 @@ router.get('/', (req, res) => {
  * Body:                { company_name, location_id } 
  */
 router.post('/', (req, res) => { 
-    let data = req.body;
+    let {company_name, location_id} = req.body;
     const query = `
         INSERT INTO Companies (company_name, location_id)
-        VALUES ('${data['input-company']}', '${data['input-company-location']}');
+        VALUES ('${company_name}', '${location_id}');
     `;
     
     db.query(query, (error, results, fields) => {
@@ -80,8 +84,7 @@ router.delete('/:company_id', (req, res) => {
  */
 router.put('/:company_id', (req, res) => {
     const company_id = req.params.company_id;
-    const company_name = req.body.company_name;
-    const location_id = req.body.location_id;
+    const { company_name, location_id } = req.body;
     
     const query = `
         UPDATE Companies

@@ -45,7 +45,7 @@
                 <td>{{"Company ID"}}</td>
                 <td>{{"Company Name"}}</td>
                 <td>{{"Location"}}</td>
-                <td><button id="editCompanyBtn" onclick="showEdit({{"Company ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="editCompanyBtn" onclick="showEdit({{"Company ID"}}, {{"Location ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteCompanyBtn" onclick="showDelete({{"Company ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             {{/each}}
@@ -58,8 +58,14 @@
         <form id="addCompany" method="POST" action="/companies">
             <h3>Add a New Company </h3>
               <fieldset class="fields">
-                <label> Company Name: </label> <input type="text" id="input-company">
-                <label> Location: </label> <input type="text" id="input-company-location">
+                <label> Company Name: </label> <input type="text" id="input-company" name="company_name">
+                <label> Location: </label> 
+                <select name="location_id" id="input-company-location">
+                {{#each locSelect}}
+                <option value="{{location_id}}">{{"Location"}}</option>
+                {{/each}}
+                
+                </select>
           </fieldset>
        
           <div id="formBtns">
@@ -83,7 +89,12 @@
                     <option value="{{"Company ID"}}">{{"Location"}}</option>
                     {{/each}}
                 </select>
-                <label> Edit Company Location: </label> <input type="text" id="edit-company-location">
+                <label> Edit Company Location: </label> 
+                <select name="select-location" id="edit-company-location">
+                  {{#each locSelect}}
+                  <option value="{{location_id}}">{{"Location"}}</option>
+                  {{/each}}
+                </select>
 
           </fieldset>
           <br>
