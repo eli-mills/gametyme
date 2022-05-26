@@ -80,11 +80,12 @@ router.delete('/:company_id', (req, res) => {
  */
 router.put('/:company_id', (req, res) => {
     const company_id = req.params.company_id;
-    const { company_name, location_id } = req.body;
+    const company_name = req.body.company_name;
+    const location_id = req.body.location_id;
     
     const query = `
         UPDATE Companies
-        SET company_name=${company_name}, location_id=${location_id}
+        SET company_name='${company_name}', location_id='${location_id}'
         WHERE company_id=${company_id};
     `;
     

@@ -71,8 +71,20 @@
         <form id="editCompany">
             <h3>Edit Company </h3>
               <fieldset class="fields">
-                <label> Company Name: </label> <input type="text" id="company-name">
-                <label> Location:</label> <input type="text" id="location">
+                <select name ="select-companyName" id="selectCompanyName">
+                    {{#each data}}
+                    <option value="{{"Company ID"}}">{{"Company Name"}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Company Name: </label> <input type="text" id="edit-company">
+                 <br>
+                 <select name ="select-companyLocation" id="selectCompanyLocation">
+                    {{#each data}}
+                    <option value="{{"Company ID"}}">{{"Location"}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Company Location: </label> <input type="text" id="edit-company-location">
+
           </fieldset>
           <br>
           <div id="formBtns">

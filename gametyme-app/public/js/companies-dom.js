@@ -1,5 +1,7 @@
-function showEdit(){
+function showEdit(selectedCompany){
     document.getElementById("editCompany").style.display = "block";
+    document.getElementById("selectCompanyName").value = selectedCompany;
+    document.getElementById("selectCompanyLocation").value = selectedCompany;
 }
 function showDelete(){
     document.getElementById("deleteCompany").style.display = "block";
