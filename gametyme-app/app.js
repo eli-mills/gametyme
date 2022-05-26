@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 9101;      // 9100
 
-const db = require('./database/db-connector.js');
 const genreRouter = require('./routes/genres.js');
+const locRouter = require('./routes/locations.js');
 
 
 const {engine} = require('express-handlebars');
@@ -15,12 +15,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
 
 app.use('/genres', genreRouter);
+app.use('/locations', locRouter);
 
 
 // Home Page
-// app.get('/',function (req,res) {
-//     res.render('index');
-// })
+app.get('/',function (req,res) {
+    res.render('index');
+})
 
 // Games Page
 app.get('/games', function (req,res){
@@ -35,12 +36,6 @@ app.get('/companies',function (req,res) {
 // Platforms Page
 app.get('/platforms', function (req,res){
     res.render('platforms');
-})
-
-
-// Locations Page
-app.get('/locations',function (req,res) {
-    res.render('locations');
 })
 
 // Playthroughs Page
