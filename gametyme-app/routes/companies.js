@@ -31,10 +31,10 @@ router.get('/', (req, res) => {
  * Body:                { company_name, location_id } 
  */
 router.post('/', (req, res) => { 
-    const { company_name, location_id } = req.body;
+    let data = req.body;
     const query = `
         INSERT INTO Companies (company_name, location_id)
-        VALUES (${company_name}, ${location_id});
+        VALUES ('${data['input-company']}', '${data['input-company-location']}');
     `;
     
     db.query(query, (error, results, fields) => {

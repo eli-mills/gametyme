@@ -1,6 +1,6 @@
-let updateGenreForm = document.getElementById('editLocation');
+let updateLocationForm = document.getElementById('editLocation');
 
-updateGenreForm.addEventListener("submit", function (e) {
+updateLocationForm.addEventListener("submit", function (e) {
    
     e.preventDefault();
 
@@ -8,6 +8,7 @@ updateGenreForm.addEventListener("submit", function (e) {
     let updatedCity = document.getElementById("edit-city-name");
     let selectedCityID = document.getElementById('selectLocationCity').options[selectCity.selectedIndex].value;
 
+    console.log(selectedCityID)
     let selectState = document.getElementById("selectLocationState");
     let updatedState = document.getElementById("edit-state-name");
     let selectedStateID = document.getElementById('selectLocationState').options[selectState.selectedIndex].value;
@@ -20,6 +21,7 @@ updateGenreForm.addEventListener("submit", function (e) {
     
     let selectedCityValue = selectCity.value;
     let updatedCityName = updatedCity.value;
+
     let selectedStateValue = selectState.value;
     let updatedStateName = updatedState.value;
     let selectedCountryValue = selectCountry.value;
@@ -46,7 +48,7 @@ updateGenreForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, selectedCityValue);
+            updateRow(xhttp.response, selectedCityValue, selectedStateValue, selectedCountryValue);
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -64,20 +66,6 @@ function updateRow(data, location_id){
     let updatedCity = document.getElementById("edit-city-name");
     let updatedCityName = updatedCity.value;
     
-    console.log(parsedData);
-    // let table = document.getElementById("genre-table");
-
-    // for (let i = 0, row; row = table.rows[i]; i++) {
-    //    if (table.rows[i].getAttribute("data-value") == genre_id) {
-
-    //         let updateRowIndex = table.getElementsByTagName("tr")[i];
-
-    //         let td = updateRowIndex.getElementsByTagName("td")[1];
-
-    //         td.innerHTML = updatedGenreName; 
-            
-    //    }
-    // }
 
     location.reload();
     return false;

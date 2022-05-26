@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -31,7 +32,7 @@
     <br>
     
     <div id="companies">
-        <table>
+        <table id ="company-table">
             <tr>
                 <th>Company ID</th>
                 <th>Company Name</th>
@@ -39,56 +40,31 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>3</td>
-                <td>Blizzard</td>
-                <td>Irvine,CA,USA</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            {{#each data}}
+            <tr data-value={{"Company ID"}}>
+                <td>{{"Company ID"}}</td>
+                <td>{{"Company Name"}}</td>
+                <td>{{"Location"}}</td>
+                <td><button id="editCompanyBtn" onclick="showEdit({{"Company ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete({{"Company ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>FromSoftware</td>
-                <td>Tokyo,Japan</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Microsoft</td>
-                <td>Redmond, Washington, USA</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Nintendo</td>
-                <td>Kyoto, Japan</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Sony</td>
-                <td>Tokyo, Japan</td>
-                <td><button id="editCompanyBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteCompanyBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
+            {{/each}}
+           
         </table>
     </div>
     <br>
     
     <div id="container">
-        <form id="addCompany">
+        <form id="addCompany" method="POST" action="/companies">
             <h3>Add a New Company </h3>
               <fieldset class="fields">
-                <label> Company Name: </label> <input type="text" id="company-name">
-                <label> Location: </label> <input type="text" id="location">
+                <label> Company Name: </label> <input type="text" id="input-company">
+                <label> Location: </label> <input type="text" id="input-company-location">
           </fieldset>
        
           <div id="formBtns">
             <button id="addcompanyBtn"> Add Company</button>
-            <button id="cancelBtn">Cancel</button>
+            <button id="cancelAddCompanyBtn">Cancel</button>
           </div>	
         </form> 
       
@@ -109,8 +85,6 @@
             <h3>Delete Company </h3>
               <fieldset class="fields">
                 <h3>Are you sure you want to delete this Company? </h3>
-                <label> Company ID:</label> <input type="number" id="company-id">
-                <label> Company Name: </label> <input type="text" id="company-name">
           </fieldset>
           <br>
           <div id="formBtns">
@@ -119,16 +93,9 @@
           </div>
         </form> 
     </div>
-    <script>
-        function showEdit(){
-            document.getElementById("editCompany").style.display = "block";
-        }
-        function showDelete(){
-            document.getElementById("deleteCompany").style.display = "block";
-        }
-        function addNew(){
-            document.getElementById("addCompany").style.display = "block";
-        }
-    </script>
+
+    <script src="js/companies-dom.js"></script>
+    <script src="js/delete-companies.js"></script>
+    <script src="js/update-companies.js"></script>
 </body>
 </html>
