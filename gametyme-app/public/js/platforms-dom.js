@@ -1,5 +1,6 @@
-function showEdit(){
+function showEdit(platformId, companyId){
     document.getElementById("editPlatform").style.display = "block";
+    document.getElementById("company-select").value = companyId;
 }
 function showDelete(){
     document.getElementById("deletePlatform").style.display = "block";

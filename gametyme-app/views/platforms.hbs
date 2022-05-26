@@ -44,7 +44,7 @@
                 <td>{{"Platform ID"}}</td>
                 <td>{{"Platform Name"}}</td>
                 <td>{{"Company"}}</td>
-                <td><button id="editPlatformBtn" onclick="showEdit({{"Platform ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit({{"Platform ID"}}, {{"Company ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlatformBtn" onclick="showDelete({{"Platform ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
              {{/each}}
@@ -55,10 +55,10 @@
         <form id="addplatform" method="POST" action="/platforms">
             <h3>Add a New Platform </h3>
               <fieldset class="fields">
-                <label> Platform Name: </label> <input type="text" name="input-platform" id="input-platform">
-                <label> Company Name: </label><select name="company" name="input-company-select" id="input-company-select">
-                    {{#each data}}
-                    <option value="{{"Platform ID"}}">{{"Company"}}</option>
+                <label> Platform Name: </label> <input type="text" id="input-platform" name="addPlatformName">
+                <label> Company Name: </label><select id="input-company-select" name="addCompanyId">
+                    {{#each compSelect}}
+                    <option value="{{"company_id"}}">{{"company_name"}}</option>
                      {{/each}}
                   </select>
           </fieldset>
@@ -74,13 +74,9 @@
               <fieldset class="fields">
                 <label> Platform Name: </label> <input type="text" id="platform-name">
                 <label> Company Name: </label><select name="company" id="company-select">
-                    <option value="">Select a company</option>
-                    <option value="Blizzard">Blizzard</option>
-                    <option value="FromSoftware">FromSoftware</option>
-                    <option value="Microsoft">Microsoft</option>
-                    <option value="Nintendo">Nintendo</option>
-                    <option value="Sony">Sony</option>
-                    <option value="Other">Other</option>
+                    {{#each compSelect}}
+                    <option value="{{company_id}}">{{company_name}}</option>
+                    {{/each}}
                   </select>
           </fieldset>
           <br>

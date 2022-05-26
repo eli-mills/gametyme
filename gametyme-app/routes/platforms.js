@@ -5,12 +5,16 @@ const router = express.Router();
 // Load all Platforms
 router.get('/', (req, res) => {
     const query = `
-    SELECT Platforms.platform_id AS 'Platform ID', Platforms.platform_name AS 'Platform Name', Companies.company_name AS 'Company'
+    SELECT Platforms.platform_id AS 'Platform ID', Platforms.platform_name AS 'Platform Name', 
+    Companies.company_name AS 'Company', Companies.company_id AS 'Company ID'
     FROM Platforms JOIN Companies ON Platforms.company_id=Companies.company_id;
+
+    SELECT company_id, company_name FROM Companies;
     `;
+
     db.query(query, (error, results, fields) => {
         if (error) throw error;
-        res.render('platforms', {data: results});
+        res.render('platforms', {data: results[0], compSelect: results[1]});
         console.log('Platforms loaded');
         console.log(results);
     });
@@ -20,9 +24,12 @@ router.get('/', (req, res) => {
 // Add New Platform
 
 router.post('/', (req, res) => { 
-    let data = req.body;
-    const query = `INSERT INTO Platforms (platform_name, company_id) VALUES ('${data['input-platform']}',
-    (SELECT company_id FROM Companies WHERE company_name=${data['input-company-select']}));`;
+    console.log(req.body);
+    const { addPlatformName, addCompanyId } = req.body;
+    const query = `
+        INSERT INTO Platforms (platform_name, company_id) 
+        VALUES ('${addPlatformName}', '${addCompanyId}');
+    `;
     
     db.query(query, (error, results, fields) => {
         if (error){
