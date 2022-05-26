@@ -57,9 +57,8 @@
     WHERE company_id=${company_id};
 
     -- Delete Company
-    DELETE Companies
-    WHERE company_id=${company_id}
-    AND company_name=${company_name};}
+    DELETE FROM Companies
+    WHERE company_id=${company_id};
 
 
 

@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
         if (error) throw error;
         res.render('locations', {data: results});
         console.log('Locations loaded');
+        console.log(results);
     });
 }); 
 

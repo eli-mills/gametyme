@@ -2,20 +2,28 @@ const express = require('express');
 const app = express();
 const PORT = 9101;      // 9100
 
-const genreRouter = require('./routes/genres.js');
-const locRouter = require('./routes/locations.js');
 
 
+// Handlebars setup
 const {engine} = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
 app.set('view engine', '.hbs');
 
+// Form encoding middleware
 app.use(express.json());
-app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
+
+
+app.use(express.static(__dirname + '/public'));
+
+// Routers
+const genreRouter    = require('./routes/genres.js');
+const locRouter      = require('./routes/locations.js');
+const compRouter     = require('./routes/companies.js');
 
 app.use('/genres', genreRouter);
 app.use('/locations', locRouter);
+app.use('/companies', compRouter);
 
 
 // Home Page
