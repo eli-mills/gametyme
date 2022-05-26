@@ -3,7 +3,6 @@ const app = express();
 const PORT = 9101;      // 9100
 
 
-
 // Handlebars setup
 const {engine} = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
@@ -20,10 +19,12 @@ app.use(express.static(__dirname + '/public'));
 const genreRouter    = require('./routes/genres.js');
 const locRouter      = require('./routes/locations.js');
 const compRouter     = require('./routes/companies.js');
+const userRouter     = require('./routes/users.js');
 
 app.use('/genres', genreRouter);
 app.use('/locations', locRouter);
 app.use('/companies', compRouter);
+app.use('/users', userRouter);
 
 
 // Home Page
@@ -49,11 +50,6 @@ app.get('/platforms', function (req,res){
 // Playthroughs Page
 app.get('/playthroughs', function (req,res){
     res.render('playthroughs');
-})
-
-// Users Page
-app.get('/users',function (req,res) {
-    res.render('users');
 })
 
 // new-session page

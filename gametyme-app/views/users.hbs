@@ -37,7 +37,7 @@
     <br>
 
     <div id="users">
-        <table>
+        <table id="user-table">
             <tr>
                 <th>User ID</th>
                 <th>First Name</th>
@@ -47,7 +47,8 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
+            {{#each data}}
+            <tr data-value={{this.}}>
                 <td>1</td>
                 <td>Eren</td>
                 <td>Yeager</td>
@@ -56,24 +57,8 @@
                 <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Mikasa</td>
-                <td>Ackerman</td>
-                <td>Erennn</td>
-                <td>ackerman@gmail.com</td>
-                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Link</td>
-                <td>Zelda</td>
-                <td>Korok</td>
-                <td>zelda@gmail.com</td>
-                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
+            {{/each}}
+            
         </table>
     </div>
     <br>
