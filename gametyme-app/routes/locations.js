@@ -80,7 +80,7 @@ router.put('/:location_id', (req, res) => {
     
     const query = `
         UPDATE Locations
-        SET city=${city}, state=${state}, country=${country}
+        SET city='${city}', state='${state}', country='${country}'
         WHERE location_id=${location_id};
     `;
     
