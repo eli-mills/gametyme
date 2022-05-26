@@ -30,7 +30,7 @@
         <button id="addnewBtn" onclick="addNew()">Add New Location</button>
     </div>
     <div id="locations">
-        <table>
+        <table id="locations-table">
             <tr>
                 <th>Location ID</th>
                 <th>City</th>
@@ -39,48 +39,27 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Tokyo</td>
-                <td>NULL</td>
-                <td>Japan</td>
-                <td><button id="editLocationBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteLocationBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            {{#each data}}
+            <tr data-value={{this.location_id}}>
+                <td>{{this.location_id}}</td>
+                <td>{{this.city}}</td>
+                <td>{{this.state}}</td>
+                <td>{{this.country}}</td>
+                <td><button id="editLocationBtn" onclick="showEdit({{this.location_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteLocationBtn" onclick="showDelete({{this.location_id}})" ><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Kyoto</td>
-                <td>NULL</td>
-                <td>Japan</td>
-                <td><button id="editLocationBtn"  onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteLocationBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Irvine</td>
-                <td>California</td>
-                <td>United States</td>
-                <td><button id="editLocationBtn"  onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteLocationBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Redmond</td>
-                <td>Washington</td>
-                <td>United States</td>
-                <td><button id="editLocationBtn"  onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteLocationBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
+            {{/each}}
+          
         </table>
     </div>
     <br>
     <div id="container">
-        <form id="addLocation">
+        <form id="addLocation" method="POST" action="/locations">
             <h3>Add a New Location </h3>
               <fieldset class="fields">
-                <label> City: </label> <input type="text" id="city-name">
-                <label> State: </label> <input type="text" id="state">
-                <label> Country: </label> <input type="text" id="country">
+                <label> City: </label> <input type="text" name="input-city" id="input-city">
+                <label> State: </label> <input type="text" name="input-state"  id="input-state">
+                <label> Country: </label> <input type="text" name="input-country" id="input-country">
           </fieldset>
           <br>
           <div id="formBtns">
@@ -107,10 +86,6 @@
             <h3>Delete Location </h3>
               <fieldset class="fields">
                 <h3>Are you sure you want to delete this Location?</h3>
-                <label> Location ID: </label> <input type="number" id="location-id">
-                <label> City: </label> <input type="text" id="city-name">
-                <label> State: </label> <input type="text" id="state">
-                <label> Country: </label> <input type="text" id="country">
           </fieldset>
           <br>
           <div id="formBtns">
@@ -120,16 +95,7 @@
         </form> 
     </div>
 
-    <script>
-        function showEdit(){
-            document.getElementById("editLocation").style.display = "block";
-        }
-        function showDelete(){
-            document.getElementById("deleteLocation").style.display = "block";
-        }
-        function addNew(){
-            document.getElementById("addLocation").style.display = "block";
-        }
-    </script>
+    <script src="js/locations-dom.js"></script>
+    <script src="js/delete-locations.js"></script>
 </body>
 </html>
