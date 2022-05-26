@@ -3,7 +3,7 @@ function showDelete(genre_id){
 
   document.getElementById("delGenreBtn").addEventListener("click", function(e){
     e.preventDefault();
-    let link = `/delete-genre/${genre_id}`;
+    let link = `/genres/${genre_id}`;
   let data = {
     id: genre_id
 };

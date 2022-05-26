@@ -22,7 +22,7 @@ updateGenreForm.addEventListener("submit", function (e) {
     console.log("Value: ", data.selectedGenre);
     
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT",  `/edit-genre/${data.genre_id}`, true);
+    xhttp.open("PUT",  `/genres/${data.genre_id}`, true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     xhttp.onreadystatechange = () => {
