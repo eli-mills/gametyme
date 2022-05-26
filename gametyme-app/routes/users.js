@@ -11,6 +11,21 @@ router.get('/', (req, res) => {
     });
 }); 
 
+// Add Users
+router.post('/', (req, res) => { 
+    let data = req.body;
+    const query = `INSERT INTO Users (first_name,last_name, username,email) VALUES ('${data['input-user-fname']}',
+    '${data['input-user-lname']}', '${data['input-username']}', '${data['input-user-email']}');`;
+    
+    db.query(query, (error, results, fields) => {
+        if (error){
+            throw error;
+        }else{
+            res.redirect('/users');
+        }
+    });
+});
+
 
 
 

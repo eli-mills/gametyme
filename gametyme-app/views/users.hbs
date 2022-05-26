@@ -48,14 +48,14 @@
                 <th></th>
             </tr>
             {{#each data}}
-            <tr data-value={{this.}}>
-                <td>1</td>
-                <td>Eren</td>
-                <td>Yeager</td>
-                <td>Titan</td>
-                <td>fightme@gmail.com</td>
-                <td><button id="editUsersBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteUsersBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            <tr data-value={{this.user_id}}>
+                <td>{{this.user_id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.email}}</td>
+                <td><button id="editUsersBtn" onclick="showEdit({{this.user_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteUsersBtn" onclick="showDelete({{this.user_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
             {{/each}}
             
@@ -63,13 +63,13 @@
     </div>
     <br>
     <div id="container">
-        <form id="addUser">
+        <form id="addUser" method="POST" action="/users">
             <h3>Add a New User</h3>
               <fieldset class="fields">
-                <label> First Name: </label> <input type="text" id="user-fname">
-                <label> Last Name: </label> <input type="text" id="user-lname">
-                <label> Username: </label> <input type="text" id="username">
-                <label> Email: </label> <input type="email" id="user-email">
+                <label> First Name: </label> <input type="text" name="input-user-fname" id="input-user-fname">
+                <label> Last Name: </label> <input type="text" name="input-user-lname" id="input-user-lname">
+                <label> Username: </label> <input type="text" name="input-username" id="input-username">
+                <label> Email: </label> <input type="email" name="input-user-email" id="input-user-email">
           </fieldset>
           <br>
           <div id="formBtns">
