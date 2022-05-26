@@ -20,11 +20,13 @@ const genreRouter    = require('./routes/genres.js');
 const locRouter      = require('./routes/locations.js');
 const compRouter     = require('./routes/companies.js');
 const userRouter     = require('./routes/users.js');
+const platformRouter = require('./routes/platforms.js');
 
 app.use('/genres', genreRouter);
 app.use('/locations', locRouter);
 app.use('/companies', compRouter);
 app.use('/users', userRouter);
+app.use('/platforms', platformRouter);
 
 
 // Home Page
@@ -35,16 +37,6 @@ app.get('/',function (req,res) {
 // Games Page
 app.get('/games', function (req,res){
     res.render('games');
-})
-
-// Companies Page
-app.get('/companies',function (req,res) {
-    res.render('companies');
-})
-
-// Platforms Page
-app.get('/platforms', function (req,res){
-    res.render('platforms');
 })
 
 // Playthroughs Page

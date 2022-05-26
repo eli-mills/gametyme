@@ -31,7 +31,7 @@
         <button id="addnewBtn" onclick="addNew()">Add New Platform</button>
     </div>
     <div id="platforms">
-        <table>
+        <table id="platform-table">
             <tr>
                 <th>Platform ID</th>
                 <th>Platform Name</th>
@@ -39,64 +39,27 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Switch</td>
-                <td>Nintendo</td>
+             {{#each data}}
+            <tr data-value={{"Platform ID"}}>
+                <td>{{"Platform ID"}}</td>
+                <td>{{"Platform Name"}}</td>
+                <td>{{"Company"}}</td>
                 <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>PC</td>
-                <td>Microsoft</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Playstation 4</td>
-                <td>Sony</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Playstation 5</td>
-                <td>Sony</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Xbox One</td>
-                <td>Microsoft</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Xbox Series X|S </td>
-                <td>Microsoft</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
+             {{/each}}
         </table>
     </div>
     <br>
     <div id="container">
-        <form id="addplatform">
+        <form id="addplatform" method="POST" action="/platforms">
             <h3>Add a New Platform </h3>
               <fieldset class="fields">
-                <label> Platform Name: </label> <input type="text" id="platform-name">
-                <label> Company Name: </label><select name="company" id="company-select">
-                    <option value="">Select a company</option>
-                    <option value="Blizzard">Blizzard</option>
-                    <option value="FromSoftware">FromSoftware</option>
-                    <option value="Microsoft">Microsoft</option>
-                    <option value="Nintendo">Nintendo</option>
-                    <option value="Sony">Sony</option>
-                    <option value="Other">Other</option>
+                <label> Platform Name: </label> <input type="text" name="input-platform" id="input-platform">
+                <label> Company Name: </label><select name="company" name="input-company-select" id="input-company-select">
+                    {{#each data}}
+                    <option value="{{"Platform ID"}}">{{"Company"}}</option>
+                     {{/each}}
                   </select>
           </fieldset>
           <br>
