@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTyme</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>    
@@ -64,20 +65,39 @@
           <br>
           <div id="formBtns">
             <button id="addlocationBtn"> Add Location</button>
-            <button id="cancelBtn">Cancel</button>
+            <button id="canceladdLocationBtn">Cancel</button>
           </div>
         </form> 
         
         <form id="editLocation">
             <h3>Edit Location </h3>
               <fieldset class="fields">
-                <label> City: </label> <input type="text" id="city-name">
-                <label> State: </label> <input type="text" id="state">
-                <label> Country: </label> <input type="text" id="country">
+
+                <select name ="select-locationCity" id="selectLocationCity">
+                    {{#each data}}
+                    <option value="{{this.location_id}}">{{this.city}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit City Name: </label> <input type="text" id="edit-city-name">
+                 <br>
+                 <select name ="select-locationState" id="selectLocationState">
+                    {{#each data}}
+                    <option value="{{this.location_id}}">{{this.state}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit State: </label> <input type="text" id="edit-state-name">
+                <br>
+                 <select name ="select-locationCountry" id="selectLocationCountry">
+                    {{#each data}}
+                    <option value="{{this.location_id}}">{{this.country}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Country: </label> <input type="text" id="edit-country-name">
+
           </fieldset>
           <br>
           <div id="formBtns">
-            <button id="editlocationBtn"> Edit Location</button>
+            <input type="submit">
             <button id="cancelBtn">Cancel</button>
           </div>
         </form>
@@ -97,5 +117,6 @@
 
     <script src="js/locations-dom.js"></script>
     <script src="js/delete-locations.js"></script>
+    <script src="js/update_locations.js"></script>
 </body>
 </html>

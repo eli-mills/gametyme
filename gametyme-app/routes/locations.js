@@ -74,7 +74,9 @@ router.delete('/:location_id', (req, res) => {
  */
 router.put('/:location_id', (req, res) => {
     const location_id = req.params.location_id;
-    const { city, state, country } = req.body;
+    const city = req.body.city;
+    const state = req.body.state;
+    const country = req.body.country;
     
     const query = `
         UPDATE Locations
