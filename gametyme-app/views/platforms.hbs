@@ -44,8 +44,8 @@
                 <td>{{"Platform ID"}}</td>
                 <td>{{"Platform Name"}}</td>
                 <td>{{"Company"}}</td>
-                <td><button id="editPlatformBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlatformBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit({{"Platform ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deletePlatformBtn" onclick="showDelete({{"Platform ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
              {{/each}}
         </table>
@@ -65,7 +65,7 @@
           <br>
           <div id="formBtns">
             <button id="addplatformBtn"> Add Platform</button>
-            <button id="cancelBtn">Cancel</button>
+            <button id="canceladdplatformBtn">Cancel</button>
           </div>
         </form> 
         
@@ -94,8 +94,6 @@
             <h3>Delete Platform </h3>
               <fieldset class="fields">
                 <h3>Are you sure you want to delete this Platform?</h3>
-                <label> Platform ID: </label> <input type="number" id="platform-id">
-                <label> Platform Name: </label> <input type="text" id="platform-name">
           </fieldset>
           <br>
           <div id="formBtns">
@@ -105,16 +103,8 @@
         </form> 
     </div>
 
-    <script>
-        function showEdit(){
-            document.getElementById("editPlatform").style.display = "block";
-        }
-        function showDelete(){
-            document.getElementById("deletePlatform").style.display = "block";
-        }
-        function addNew(){
-            document.getElementById("addplatform").style.display = "block";
-        }
-    </script>
+  <script src="js/platforms-dom.js"></script>
+  <script src="js/delete-platforms.js"></script>
+  <script src="js/update_platforms.js"></script>
 </body>
 </html>

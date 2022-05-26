@@ -33,6 +33,25 @@ router.post('/', (req, res) => {
     });
 });
 
+// Delete Platforms
+router.delete('/:platform_id', (req, res) => {
+    const platform_id = req.params.platform_id;
+    const query = `
+        DELETE FROM Platforms
+        WHERE platform_id=${platform_id};
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error){
+            throw error;
+        }else{
+            res.json(results);
+            console.log(results);
+            console.log('Platform deleted');
+        }
+    });
+});
+
 
 
 module.exports =  router;
