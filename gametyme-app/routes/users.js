@@ -27,6 +27,23 @@ router.post('/', (req, res) => {
 });
 
 
-
+// Delete Users
+router.delete('/:user_id', (req, res) => {
+    const user_id = req.params.user_id;
+    const query = `
+        DELETE FROM Users
+        WHERE user_id=${user_id};
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error){
+            throw error;
+        }else{
+            res.json(results);
+            console.log(results);
+            console.log('User deleted');
+        }
+    });
+});
 
 module.exports =  router;
