@@ -29,3 +29,8 @@ document.getElementById("cancelBtn").addEventListener("click",function(e){
     e.preventDefault();
     document.getElementById("deleteCompany").style.display = "none";
 })
+
+document.getElementById("canceleditcompanyBtn").addEventListener("click",function(e){
+    e.preventDefault();
+    document.getElementById("editCompany").style.display = "none";
+})

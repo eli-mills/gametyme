@@ -273,6 +273,6 @@ button {
 
 #selectLocationCity, #selectLocationState, #selectLocationCountry, 
 #selectCompanyName, #selectCompanyLocation, #selectFname,
-#selectLname, #selectUsername, #selectEmail{
+#selectLname, #selectUsername, #selectEmail, #edit-platform-id{
   display:none;
 }

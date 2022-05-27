@@ -38,3 +38,8 @@ document.getElementById("cancelBtn").addEventListener("click",function(e){
     e.preventDefault();
     document.getElementById("deleteUser").style.display = "none";
 })
+
+document.getElementById("canceleditUserBtn").addEventListener("click",function(e){
+    e.preventDefault();
+    document.getElementById("editUser").style.display = "none";
+})
