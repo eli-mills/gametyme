@@ -44,7 +44,7 @@
                 <td>{{"Platform ID"}}</td>
                 <td>{{"Platform Name"}}</td>
                 <td>{{"Company"}}</td>
-                <td><button id="editPlatformBtn" onclick="showEdit({{"Platform ID"}}, {{"Company ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="editPlatformBtn" onclick="showEdit({{"Platform ID"}}, '{{"Platform Name"}}', {{"Company ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlatformBtn" onclick="showDelete({{"Platform ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
              {{/each}}
@@ -72,8 +72,9 @@
         <form id="editPlatform">
             <h3>Edit Platform </h3>
               <fieldset class="fields">
-                <label> Platform Name: </label> <input type="text" id="platform-name">
-                <label> Company Name: </label><select name="company" id="company-select">
+                <label >Platform ID: </label><input type="text" name="editPlatformId" id="edit-platform-id" disabled>
+                <label> Platform Name: </label> <input type="text" id="edit-platform-name">
+                <label> Company Name: </label><select name="company" id="edit-company-id">
                     {{#each compSelect}}
                     <option value="{{company_id}}">{{company_name}}</option>
                     {{/each}}
@@ -82,7 +83,7 @@
           <br>
           <div id="formBtns">
             <button id="editplatformBtn"> Edit Platform</button>
-            <button id="cancelBtn">Cancel</button>
+            <input type="button" id="cancelBtn" onclick="hideEdit()">Cancel</input>
           </div>
         </form> 
         

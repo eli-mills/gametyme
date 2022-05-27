@@ -137,7 +137,7 @@ header {
   margin: 0 auto;
   justify-content: center;
 }
-button {
+button, input[type="button"] {
   border: none;
 }
 
@@ -151,6 +151,13 @@ button {
   border: 2px solid white;
 }
 
+.fields input:disabled {
+  font-style: italic;
+  font-weight: 700;
+  color: black;
+  background-color: #888888;
+}
+
 .fields label {
   margin-top: 30px;
 }
@@ -160,6 +167,7 @@ button {
 }
 
 #formBtns button,
+#formBtns input[type="button"],
 #finishPlaythroughBtn,
 #addnewSessionBtn a {
   font: 20px;

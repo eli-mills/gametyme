@@ -1,7 +1,15 @@
-function showEdit(platformId, companyId){
+function showEdit(platformId, platformName, companyId){
+    console.log('edit clicked');
     document.getElementById("editPlatform").style.display = "block";
-    document.getElementById("company-select").value = companyId;
+    document.getElementById("edit-company-id").value = companyId;
+    document.getElementById("edit-platform-id").value = platformId;
+    document.getElementById("edit-platform-name").value = platformName;
 }
+
+function hideEdit() {
+    document.getElementById("editPlatform").style.display = "none";
+}
+
 function showDelete(){
     document.getElementById("deletePlatform").style.display = "block";
 }
