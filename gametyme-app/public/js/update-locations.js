@@ -39,7 +39,6 @@ updateLocationForm.addEventListener("submit", function (e) {
         country: updatedCountryName,
 
     }
-  
     
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT",  `/locations/${data.location_id}`, true);
@@ -58,6 +57,8 @@ updateLocationForm.addEventListener("submit", function (e) {
 
     xhttp.send(JSON.stringify(data));
 
+  
+
 })
 
 
@@ -70,3 +71,4 @@ function updateRow(data, location_id){
     location.reload();
     return false;
 }
+

@@ -264,3 +264,8 @@ button {
   padding-bottom:100px;
 }
 
+#selectLocationCity, #selectLocationState, #selectLocationCountry, 
+#selectCompanyName, #selectCompanyLocation, #selectFname,
+#selectLname, #selectUsername, #selectEmail{
+  display:none;
+}
