@@ -137,7 +137,7 @@ header {
   margin: 0 auto;
   justify-content: center;
 }
-button, input[type="button"] {
+button {
   border: none;
 }
 
@@ -167,7 +167,6 @@ button, input[type="button"] {
 }
 
 #formBtns button,
-#formBtns input[type="button"],
 #finishPlaythroughBtn,
 #addnewSessionBtn a {
   font: 20px;
