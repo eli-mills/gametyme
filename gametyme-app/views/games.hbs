@@ -86,25 +86,25 @@
     <br>
 
    <div id="container">
-    <form id="addGame">
+    <form id="addGame" method="POST" action="/games">
         <h3>Add a New Game </h3>
           <fieldset class="fields">
-            <label> Game: </label> <input type="text" id="game-name">
-            <label> Game Summary: </label> <input type="text" id="game-summary">
-            <label> Release Date: </label> <input type="date" id="release-date">
-            <label> Company Name: </label><select name="company" id="company-select">
+            <label> Game: </label> <input type="text" id="game-name" name="game_title">
+            <label> Game Summary: </label> <input type="text" id="game-summary" name="game_summary">
+            <label> Release Date: </label> <input type="date" id="release-date" name="release_date">
+            <label> Company Name: </label><select id="company-select" name="company_id">
                 <option value="">Select a company</option>
                 {{#each companies}}
                 <option value="{{company_id}}">{{company_name}}</option>
                 {{/each}}
               </select>
-            <label> Genre: </label> <select name="genre" id="genre-select">
+            <label> Genre: </label> <select id="genre-select" name="genre_id">
                 <option value="">Select a genre</option>
                 {{#each genres}}
                 <option value="{{genre_id}}">{{genre_name}}</option>
                 {{/each}}
               </select>
-              <label> Platform: </label> <select name="platform" id="platform-select" multiple>
+              <label> Platform: </label> <select name="platform_ids" id="platform-select" multiple>
                 {{#each platforms}}
                 <option value="{{platform_id}}">{{platform_name}}</option>
                 {{/each}}
@@ -113,7 +113,7 @@
       <br>
       <div id="formBtns">
         <button id="addgameBtn"> Add Game</button>
-        <button id="cancelBtn">Cancel</button>
+        <button type="button" id="cancelBtn">Cancel</button>
       </div>	
 	</form> 
     
