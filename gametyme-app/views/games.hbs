@@ -67,10 +67,17 @@
                 <td>{{"Company"}}</td>
                 <td>{{"Genre"}}</td>
                 <td>{{"Platforms"}}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <button id="editPlatformBtn" onclick="showEdit()">
+                        <i class="fa-solid fa-pen-to-square" id="editIcon"></i>
+                    </button>
+                </td>
+                <td>
+                    <button id="deletePlatformBtn" onclick="showDelete()">
+                        <i class="fa-solid fa-xmark" id="deleteIcon"></i>
+                    </button>    
+                </td>
             </tr>
-
 
             {{/each}}
         </table>
@@ -87,28 +94,20 @@
             <label> Release Date: </label> <input type="date" id="release-date">
             <label> Company Name: </label><select name="company" id="company-select">
                 <option value="">Select a company</option>
-                <option value="Blizzard">Blizzard</option>
-                <option value="FromSoftware">FromSoftware</option>
-                <option value="Microsoft">Microsoft</option>
-                <option value="Nintendo">Nintendo</option>
-                <option value="Sony">Sony</option>
-                <option value="Other">Other</option>
+                {{#each companies}}
+                <option value="{{company_id}}">{{company_name}}</option>
+                {{/each}}
               </select>
             <label> Genre: </label> <select name="genre" id="genre-select">
                 <option value="">Select a genre</option>
-                <option value="action">Action</option>
-                <option value="adventure">Adventure</option>
-                <option value="shooter">Shooter</option>
-                <option value="Other">Other</option>
+                {{#each genres}}
+                <option value="{{genre_id}}">{{genre_name}}</option>
+                {{/each}}
               </select>
               <label> Platform: </label> <select name="platform" id="platform-select" multiple>
-                <option value="Switch">Switch</option>
-                <option value="Pc">Pc</option>
-                <option value="Playstation 4">Playstation 4</option>
-                <option value="Playstation 5">Playstation 5</option>
-                <option value="Xbox one">Xbox one</option>
-                <option value="Xbox series X|S">Xbox series X|S</option>
-                <option value="Other">Other</option>
+                {{#each platforms}}
+                <option value="{{platform_id}}">{{platform_name}}</option>
+                {{/each}}
               </select>
       </fieldset>
       <br>

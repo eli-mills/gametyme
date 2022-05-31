@@ -4,8 +4,9 @@ const router = express.Router();
 
 // Load page
 router.get('/', (req, res) => {
-    const query = `
-    SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', Games.release_date AS 'Release Date', 
+    const loadGames = `
+    SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
+    DATE_FORMAT(Games.release_date, '%b %d, %Y') AS 'Release Date', 
     Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
     GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
     FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
@@ -15,9 +16,21 @@ router.get('/', (req, res) => {
     GROUP BY Games.game_id;
     `;
 
+    const loadCompanies = 'SELECT company_id, company_name FROM Companies;';
+    const loadGenres = 'SELECT genre_id, genre_name FROM Genres;';
+    const loadPlatforms = 'SELECT platform_id, platform_name FROM Platforms;'
+
+    const query = loadGames.concat(loadCompanies, loadGenres, loadPlatforms); 
+
+    console.log(query);
     db.query(query, (error, results, fields) => {
         if (error) throw error;
-        res.render('games', {data: results});
+        res.render('games', {
+            data:       results[0], 
+            companies:  results[1], 
+            genres:     results[2],
+            platforms:  results[3]
+        });
         console.log('Games loaded');
         console.log(results);
     });

@@ -87,7 +87,8 @@
 -- Games page
 
     -- Load Games table
-    SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', Games.release_date AS 'Release Date', 
+    SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
+    DATE_FORMAT(Games.release_date, '%b %d, %Y') AS 'Release Date', 
     Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
     GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
     FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
