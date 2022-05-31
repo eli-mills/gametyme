@@ -28,16 +28,6 @@
     <h3 id="title">Games</h3>
     <br>
     <div id="searchGamesContainer">
-        <div id="games-filter">
-            <label for="filter-game" id="filter-title"> Filter By:</label>
-            <select name="game-filter" id="game-filter">
-                <option value=""> Select</option>
-                <option value="Genre">Genre</option>
-                <option value="Company">Company</option>
-                <option value="Platform">Platform</option>
-                <option value="Other">Other</option>
-              </select>
-        </div>
         <button id="addnewGameBtns" onclick="addGame()">Add New Game</button>
     </div>
     <br>
@@ -119,11 +109,44 @@
     <form id="editGame">
         <h3>Edit Game </h3>
           <fieldset class="fields">
-            <label> Game: </label> <input type="text" id="game-name">
-            <label> Game Summary: </label> <input type="text" id="game-summary">
-            <label> Release Date: </label> <input type="date" id="release-date">
-            <label> Company Name: </label> <input type="text" id="game-company">
-            <label> Genre: </label> <input type="text" id="genre-name">
+             <select name ="select-gameName" id="selectgameName">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Game Title"}}</option>
+                    {{/each}}
+            </select>
+            <label> Game: </label> <input type="text" id="edit-game-name">
+
+             <select name ="select-gameSummary" id="selectgameSummary">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Game Summary"}}</option>
+                    {{/each}}
+            </select>
+            <label> Game Summary: </label> <input type="text" id="edit-game-summary">
+
+             <select name ="select-gameDate" id="selectgameDate">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Release Date"}}</option>
+                    {{/each}}
+                </select>
+            <label> Release Date: </label> <input type="text" id="edit-release-date">
+
+             <select name ="select-companyName" id="selectCompanyName">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Company"}}</option>
+                    {{/each}}
+                </select>
+            <label> Company Name: </label> <input type="text" id="edit-game-company">
+             <select name ="select-gameGenre" id="selectGenreName">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Genre"}}</option>
+                    {{/each}}
+                </select>
+            <label> Genre: </label> <input type="text" id="edit-genre-name">
+             <select name ="select-platName" id="selectplatName">
+                    {{#each data}}
+                    <option value="{{"Game ID"}}">{{"Platforms"}}</option>
+                    {{/each}}
+                </select>
             <label> Platform: </label> <select name="platform" id="platform-select" multiple>
                 <option value="Switch">Switch</option>
                 <option value="Pc">Pc</option>

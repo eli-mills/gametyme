@@ -223,21 +223,14 @@ button {
   text-decoration: none;
 }
 
-#games-filter {
-  display: flex;
-  justify-content: right;
-  margin-left: 50px;
-}
 
 #addnewGameBtns {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-  margin-right: 5px;
   cursor: pointer;
   text-decoration: none;
-  margin-left: 50px;
 }
 
 #addnewBtn {
@@ -273,6 +266,7 @@ button {
 
 #selectLocationCity, #selectLocationState, #selectLocationCountry, 
 #selectCompanyName, #selectCompanyLocation, #selectFname,
-#selectLname, #selectUsername, #selectEmail, #edit-platform-id{
+#selectLname, #selectUsername, #selectEmail, #edit-platform-id,
+#selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName{
   display:none;
 }
