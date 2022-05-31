@@ -28,7 +28,6 @@
     <h3 id="title">Games</h3>
     <br>
     <div id="searchGamesContainer">
-        <input type="text" placeholder="Search Games..." id="searchGames">
         <div id="games-filter">
             <label for="filter-game" id="filter-title"> Filter By:</label>
             <select name="game-filter" id="game-filter">
@@ -45,7 +44,7 @@
    
     <div id="games">
         <br>
-        <table>
+        <table id="games-table">
             <tr>
                 <th>Game ID</th>
                 <th>Game Title</th>
@@ -59,7 +58,7 @@
             </tr>
             {{#each data}}
 
-            <tr data-value="{{'Game ID'}}">
+            <tr data-value="{{"Game ID"}}">
                 <td>{{"Game ID"}}</td>
                 <td>{{"Game Title"}}</td>
                 <td>{{"Game Summary"}}</td>
@@ -68,12 +67,12 @@
                 <td>{{"Genre"}}</td>
                 <td>{{"Platforms"}}</td>
                 <td>
-                    <button id="editPlatformBtn" onclick="showEdit()">
+                    <button id="editPlatformBtn" onclick="showEdit({{"Game ID"}})">
                         <i class="fa-solid fa-pen-to-square" id="editIcon"></i>
                     </button>
                 </td>
                 <td>
-                    <button id="deletePlatformBtn" onclick="showDelete()">
+                    <button id="deletePlatformBtn" onclick="showDelete({{"Game ID"}})">
                         <i class="fa-solid fa-xmark" id="deleteIcon"></i>
                     </button>    
                 </td>
@@ -113,7 +112,7 @@
       <br>
       <div id="formBtns">
         <button id="addgameBtn"> Add Game</button>
-        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="button" id="canceladdgameBtn">Cancel</button>
       </div>	
 	</form> 
     
@@ -138,7 +137,7 @@
       <br>
       <div id="formBtns">
         <button id="editgameBtn"> Edit Game</button>
-        <button id="cancelBtn">Cancel</button>
+        <button id="canceleditgameBtn">Cancel</button>
       </div>	
 	</form> 
     
@@ -146,27 +145,17 @@
         <h3>Delete Game </h3>
           <fieldset class="fields">
             <h3>Are you sure you want to delete this Game?</h3>
-            <label> Game ID: </label> <input type="number" id="game-id">
-            <label> Game: </label> <input type="text" id="game-name">
       </fieldset>
       <br>
       <div id="formBtns">
         <button id="delGameBtn"> Delete Game</button>
-        <button id="cancelBtn">Cancel</button>
+        <button id="deletecancelGame">Cancel</button>
       </div>	
 	</form> 
 
    </div>
-<script>
-    function showEdit(){
-        document.getElementById("editGame").style.display = "block";
-    }
-    function showDelete(){
-        document.getElementById("deleteGame").style.display = "block";
-    }
-    function addGame(){
-        document.getElementById("addGame").style.display = "block";
-    }
-</script>
+<script src="js/games-dom.js"></script>
+<script src="js/delete-games.js"></script>
+<script src="js/update-games.js"></script>
 </body>
 </html>
