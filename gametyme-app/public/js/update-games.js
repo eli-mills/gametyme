@@ -54,7 +54,7 @@ updateGameForm.addEventListener("submit", function (e) {
         game_title: updatedTitle,
         game_summary: updatedSummaryVal,
         release_date: updatedDateVal,
-        company_name: updatedCompVal,
+        company_id: updatedCompVal,
         genre_id: updatedGenreVal,
         platform_ids: updatedPlatVal
 
@@ -62,7 +62,7 @@ updateGameForm.addEventListener("submit", function (e) {
   
     
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT",  `/companies/${data.game_id}`, true);
+    xhttp.open("PUT",  `/games/${data.game_id}`, true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     xhttp.onreadystatechange = () => {

@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  background-color: #050509;
+  background-color: black;
   color: white;
   font-family: "Roboto", sans-serif;
 }
@@ -269,4 +269,34 @@ button {
 #selectLname, #selectUsername, #selectEmail, #edit-platform-id,
 #selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName{
   display:none;
+}
+
+img{
+  display: block;
+  width: 2000px;
+  height: 600px;
+
+  margin: auto;
+  padding: auto;
+  border: 2px solid green;
+}
+
+#home-container{
+  width: 300px;
+  background-image: url("images/home.jpg");
+  
+}
+
+#home-text{
+  position:absolute;
+  background:none;
+  background-color: none;
+}
+
+#landing-title{
+  font-size: 60px;
+}
+
+#landing-blurb{
+  font-size: 30px;
 }
