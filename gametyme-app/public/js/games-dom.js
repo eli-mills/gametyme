@@ -1,31 +1,53 @@
-function showEdit(selectedGame){
-    document.getElementById("editGame").style.display = "block";
-    document.getElementById("selectgameName").value = selectedGame;
-    document.getElementById("selectgameSummary").value = selectedGame;
-    document.getElementById("selectgameDate").value = selectedGame;
-    document.getElementById("selectCompanyName").value = selectedGame;
-    document.getElementById("selectGenreName").value = selectedGame;
-    document.getElementById("selectplatName").value = selectedGame;
-   
-    let gameName = document.getElementById("selectgameName");
-    let gameTitle = gameName.options[gameName.selectedIndex].text;
+function showEdit(gameId, gameTitle, gameSummary, releaseDate, companyName, genreName, platformList){
+    
+    const platsToFill = platformList.split(', ');
+
+    console.log('platsToFill: ', platsToFill);
+
+    // Pre-fill form values
+    document.getElementById("editGame").action = `/games/${gameId}`;
     document.getElementById("edit-game-name").value = gameTitle;
+    document.getElementById("edit-game-summary").value = gameSummary;
+    document.getElementById("edit-release-date").value = releaseDate;
+    document.getElementById("edit-game-company").value = companyName;
+    document.getElementById("edit-game-genre").value = genreName;
+    
+    document.getElementById("editGame").style.display = "block";
+    
 
-    let gameSummary = document.getElementById("selectgameSummary");
-    let summary = gameSummary.options[gameSummary.selectedIndex].text;
-    document.getElementById("edit-game-summary").value = summary;
+    // Clear previously selected checkboxes
+    const checkboxes = document.querySelectorAll('#platform-checkboxes input');
+    checkboxes.forEach( box => {
+        box.checked = false;
+    });
 
-    let gameDate = document.getElementById("selectgameDate");
-    let dateval= gameDate.options[gameDate.selectedIndex].text;
-    document.getElementById("edit-release-date").value = dateval;
 
-    let gameCompany = document.getElementById("selectCompanyName");
-    let company = gameCompany.options[gameCompany.selectedIndex].text;
-    document.getElementById("edit-game-company").value = company;
+    // Iterate through multiple platform options and select relevant ones:
+    platsToFill.forEach( platform => {
+        document.getElementById(`edit ${platform}`).checked = true;
+    } );
 
-    let gameGenre = document.getElementById("selectGenreName");
-    let genre = gameGenre.options[gameGenre.selectedIndex].text;
-    document.getElementById("edit-genre-name").value = genre;
+
+   
+    // let gameName = document.getElementById("selectgameName");
+    // let gameTitle = gameName.options[gameName.selectedIndex].text;
+    // document.getElementById("edit-game-name").value = gameTitle;
+
+    // let gameSummary = document.getElementById("selectgameSummary");
+    // let summary = gameSummary.options[gameSummary.selectedIndex].text;
+    // document.getElementById("edit-game-summary").value = summary;
+
+    // let gameDate = document.getElementById("selectgameDate");
+    // let dateval= gameDate.options[gameDate.selectedIndex].text;
+    // document.getElementById("edit-release-date").value = dateval;
+
+    // let gameCompany = document.getElementById("selectCompanyName");
+    // let company = gameCompany.options[gameCompany.selectedIndex].text;
+    // document.getElementById("edit-game-company").value = company;
+
+    // let gameGenre = document.getElementById("selectGenreName");
+    // let genre = gameGenre.options[gameGenre.selectedIndex].text;
+    // document.getElementById("edit-genre-name").value = genre;
 
    
 }

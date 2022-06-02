@@ -141,7 +141,7 @@ button {
   border: none;
 }
 
-.fields input,
+.fields input:not([type=checkbox]),
 .fields select {
   width: 100%;
   padding: 10px;

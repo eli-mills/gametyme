@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
     GROUP BY Games.game_id;
     `;
 
-    const loadCompanies = 'SELECT company_id, company_name FROM Companies;';
-    const loadGenres = 'SELECT genre_id, genre_name FROM Genres;';
-    const loadPlatforms = 'SELECT platform_id, platform_name FROM Platforms;'
+    const loadCompanies = 'SELECT company_name FROM Companies;';
+    const loadGenres = 'SELECT genre_name FROM Genres;';
+    const loadPlatforms = 'SELECT platform_name FROM Platforms;'
 
     const query = loadGames.concat(loadCompanies, loadGenres, loadPlatforms); 
 
@@ -31,6 +31,7 @@ router.get('/', (req, res) => {
             platforms:  results[3]
         });
         console.log('Games loaded');
+        console.log(results);
     });
 }); 
 
@@ -44,10 +45,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => { 
     console.log('Post request received: \n', req.body);
-    const { game_title, game_summary, release_date, company_id, genre_id, platform_ids } = req.body;
+    const { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     let query = `
         INSERT INTO Games (game_title, game_summary, release_date, company_id, genre_id)
-        VALUES ('${game_title}', '${game_summary}', '${release_date}', ${company_id}, ${genre_id});
+        VALUES ('${game_title}', '${game_summary}', '${release_date}', 
+        (SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
+        (SELECT genre_id FROM Genres WHERE genre_name='${genre_name}'));
     `;
 
     db.query(query, (error, results, fields) => {
@@ -61,10 +64,12 @@ router.post('/', (req, res) => {
             const game_id = results.insertId;
             
             // Create GamesPlatforms entries using newly-created game_id.
-            for (platform_id of platform_ids) {
+            for (let platform_name of platform_names) {
                 gamePlatformQuery = `
                 INSERT INTO GamesPlatforms (game_id, platform_id)
-                VALUES (${game_id}, ${platform_id});
+                VALUES (${game_id}, 
+                    (SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}')
+                    );
                 `;
                 console.log('Attempting query: \n', gamePlatformQuery);
                 db.query(gamePlatformQuery, (error, results, fields) => {if (error) throw error});
@@ -107,26 +112,30 @@ router.delete('/:game_id', (req, res) => {
  *              game_title
  *              game_summary
  *              release_date
- *              company_id
- *              genre_id
- *              platform_ids (this must be an array containing all selected platforms)
+ *              company_name
+ *              genre_name
+ *              platform_names (this must be an array containing all selected platforms)
  * 
  * 
  * 
 */
 router.put('/:game_id', (req, res) => {
+    console.log('PUT request received.');
     const game_id = req.params.game_id;
-    const { game_title, game_summary, release_date, company_id, genre_id, platform_ids } = req.body;
+    const { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     const query = `
         UPDATE Games
         SET game_title='${game_title}', game_summary='${game_summary}', release_date='${release_date}', 
-            company_id=${company_id}, genre_id=${genre_id}
+            (SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
+            (SELECT genre_id FROM Genres WHERE genre_name='${genre_name}')
         WHERE game_id=${game_id};    
     `;
 
-    // Get current GamesPlatforms
+    // Get current Platforms associated with edited Game
     const gpQuery = `
-        SELECT platform_id FROM GamesPlatforms WHERE game_id=${game_id};
+        SELECT Platforms.platform_name AS platform_name
+        FROM GamesPlatforms JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
+        WHERE GamesPlatforms.game_id=${game_id};
     `;
 
     let existingPlatforms = [];
@@ -136,31 +145,31 @@ router.put('/:game_id', (req, res) => {
             throw error;
         } else {
             for ( let result of results ) {
-                existingPlatforms.append(result.platform_id);
+                existingPlatforms.append(result.platform_name);
             }
         }
     });
 
     // Find GamesPlatforms that have been deleted in update (in old and not in new)
-    const platsToDelete = existingPlatforms.filter(platform => {!(platform_ids.includes(platform))});
+    const platsToDelete = existingPlatforms.filter(platform => {!(platform_names.includes(platform))});
 
     // Find GamesPlatforms that need to be added (in new and not in old)
-    const platsToAdd = platform_ids.filter(platform=>{!(existingPlatforms.includes(platform))});
+    const platsToAdd = platform_names.filter(platform=>{!(existingPlatforms.includes(platform))});
 
     // Delete appropriate GamesPlatforms
-    for (let platform_id of platsToDelete) {
+    for (let platform_name of platsToDelete) {
         const delQuery = `
             DELETE FROM GamesPlatforms
-            WHERE game_id=${game_id} AND platform_id=${platform_id};
+            WHERE game_id=${game_id} AND platform_id=(SELECT platform_id FROM Platforms WHERE platform_name=${platform_name});
         `
         db.query(delQuery, (error, results, fields) => {if (error) throw error;});
     }
 
     // Add appropriate GamesPlatforms
-    for (let platform_id of platsToAdd) {
+    for (let platform_name of platsToAdd) {
         const addQuery = `
             INSERT INTO GamesPlatforms (game_id, platform_id)
-            VALUES (${game_id}, ${platform_id});
+            VALUES (${game_id}, (SELECT platform_id FROM Platforms WHERE platform_name=${platform_name}));
         `
         db.query(addQuery, (error, results, fields) => {if (error) throw error;});
     }
@@ -170,7 +179,7 @@ router.put('/:game_id', (req, res) => {
         if (error) throw error;
 
         console.log(results);
-        res.json(results);
+        res.redirect('/games');
     });
 })
 

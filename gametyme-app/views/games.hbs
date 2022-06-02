@@ -57,7 +57,7 @@
                 <td>{{"Genre"}}</td>
                 <td>{{"Platforms"}}</td>
                 <td>
-                    <button id="editPlatformBtn" onclick="showEdit({{"Game ID"}})">
+                    <button id="editPlatformBtn" onclick="showEdit({{"Game ID"}}, '{{"Game Title"}}','{{"Game Summary"}}','{{"Release Date"}}','{{"Company"}}','{{"Genre"}}','{{"Platforms"}}')">
                         <i class="fa-solid fa-pen-to-square" id="editIcon"></i>
                     </button>
                 </td>
@@ -81,23 +81,27 @@
             <label> Game: </label> <input type="text" id="game-name" name="game_title">
             <label> Game Summary: </label> <input type="text" id="game-summary" name="game_summary">
             <label> Release Date: </label> <input type="date" id="release-date" name="release_date">
-            <label> Company Name: </label><select id="company-select" name="company_id">
+            <label> Company Name: </label>
+            <select id="company-select" name="company_name">
                 <option value="">Select a company</option>
                 {{#each companies}}
-                <option value="{{company_id}}">{{company_name}}</option>
+                <option value="{{company_name}}">{{company_name}}</option>
                 {{/each}}
               </select>
-            <label> Genre: </label> <select id="genre-select" name="genre_id">
+            <label> Genre: </label> 
+            <select id="genre-select" name="genre_name">
                 <option value="">Select a genre</option>
                 {{#each genres}}
-                <option value="{{genre_id}}">{{genre_name}}</option>
+                <option value="{{genre_name}}">{{genre_name}}</option>
                 {{/each}}
               </select>
-              <label> Platform: </label> <select name="platform_ids" id="platform-select" multiple>
-                {{#each platforms}}
-                <option value="{{platform_id}}">{{platform_name}}</option>
-                {{/each}}
-              </select>
+              <label> Platform: </label> 
+            {{#each platforms}}
+            <input type="checkbox" name="platform_names" value="{{platform_name}}" id="add {{platform_name}}">
+            <label for="{{platform_name}}">{{platform_name}}</label>
+            {{/each}}
+              
+              
       </fieldset>
       <br>
       <div id="formBtns">
@@ -106,61 +110,43 @@
       </div>	
 	</form> 
     
-    <form id="editGame">
+    <form id="editGame" method="PUT" action="">
         <h3>Edit Game </h3>
           <fieldset class="fields">
-             <select name ="select-gameName" id="selectgameName">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Game Title"}}</option>
+            <label> Game: </label> <input type="text" id="edit-game-name" name="game_title">
+
+            
+            <label> Game Summary: </label> <input type="text" id="edit-game-summary" name="game_summary">
+
+             
+            <label> Release Date: </label> <input type="text" id="edit-release-date" name="release_date">
+            
+            <label> Game Company: </label>
+             <select name ="company_name" id="edit-game-company">
+                    {{#each companies}}
+                    <option value="{{company_name}}">{{company_name}}</option>
                     {{/each}}
             </select>
-            <label> Game: </label> <input type="text" id="edit-game-name">
-
-             <select name ="select-gameSummary" id="selectgameSummary">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Game Summary"}}</option>
+            
+            <label> Game Genre: </label>
+             <select name ="genre_name" id="edit-game-genre">
+                    {{#each genres}}
+                    <option value="{{genre_name}}">{{genre_name}}</option>
                     {{/each}}
             </select>
-            <label> Game Summary: </label> <input type="text" id="edit-game-summary">
-
-             <select name ="select-gameDate" id="selectgameDate">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Release Date"}}</option>
-                    {{/each}}
-                </select>
-            <label> Release Date: </label> <input type="text" id="edit-release-date">
-
-             <select name ="select-companyName" id="selectCompanyName">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Company"}}</option>
-                    {{/each}}
-                </select>
-            <label> Company Name: </label> <input type="text" id="edit-game-company">
-             <select name ="select-gameGenre" id="selectGenreName">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Genre"}}</option>
-                    {{/each}}
-                </select>
-            <label> Genre: </label> <input type="text" id="edit-genre-name">
-             <select name ="select-platName" id="selectplatName">
-                    {{#each data}}
-                    <option value="{{"Game ID"}}">{{"Platforms"}}</option>
-                    {{/each}}
-                </select>
-            <label> Platform: </label> <select name="platform" id="platform-select" multiple>
-                <option value="Switch">Switch</option>
-                <option value="Pc">Pc</option>
-                <option value="Playstation 4">Playstation 4</option>
-                <option value="Playstation 5">Playstation 5</option>
-                <option value="Xbox one">Xbox one</option>
-                <option value="Xbox series X|S">Xbox series X|S</option>
-                <option value="Other">Other</option>
-              </select>
+            
+            <label> Game Platforms: </label>
+            <div id="platform-checkboxes">
+                {{#each platforms}}
+                <input type="checkbox" name="platform_names" value="{{platform_name}}" id="edit {{platform_name}}">
+                <label for="{{platform_name}}">{{platform_name}}</label>
+                {{/each}}
+            </div>
       </fieldset>
       <br>
       <div id="formBtns">
         <button id="editgameBtn"> Edit Game</button>
-        <button id="canceleditgameBtn">Cancel</button>
+        <button type="button" id="canceleditgameBtn">Cancel</button>
       </div>	
 	</form> 
     
