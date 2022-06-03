@@ -14,11 +14,14 @@ router.get('/', (req, res) => {
 
     SELECT user_id, username AS 'Username' FROM Users;
     SELECT game_id, game_title AS 'Game Title' FROM Games;
+
+    SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', session_start, session_end, playthrough_id FROM Sessions;
     `
     db.query(query, (error, results, fields) => {
         if (error) throw error;
-        res.render('playthroughs', {data: results[0], compSelect: results[1]});
+        res.render('playthroughs', {data: results[0], sessionSelect: results[3]});
         console.log('Playthroughs loaded');
+        
     });
 }); 
 
