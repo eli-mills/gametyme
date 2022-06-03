@@ -149,35 +149,70 @@ router.put('/:game_id', (req, res) => {
         if (error) { 
             throw error;
         } else {
+            console.log("Retrieved GamesPlatforms: ");
             for ( let result of results ) {
+                console.log(result);
                 existingPlatforms.push(result.platform_name);
             }
-        }
-    });
+            
+            console.log('Existing platforms: ', existingPlatforms);
 
-    // Find GamesPlatforms that have been deleted in update (in old and not in new)
-    const platsToDelete = existingPlatforms.filter(platform => {!(platform_names.includes(platform))});
+            // Find GamesPlatforms that have been deleted in update (in old and not in new)
+            console.log('Finding platforms to delete.');
+            const platsToDelete = existingPlatforms.filter( platform => { 
+                console.log(`Checking platform: ${platform}`);
+                console.log(`In updated platforms? ${platform_names.includes(platform)}`);
+                return !(platform_names.includes(platform));
+            } );
+            console.log('To delete: ', platsToDelete);
+            console.log('existingPlatforms: ', existingPlatforms);
+            
+            console.log('###FINDING PLATS TO ADD');
+            // Find GamesPlatforms that need to be added (in new and not in old)
+            const platsToAdd = platform_names.filter( platform => { 
+                console.log(`Checking new platform: ${platform}`);
+                console.log(`Add to list? ${!(existingPlatforms.includes(platform))}`);
+                return !(existingPlatforms.includes(platform));
+            });
+            console.log('To add: ', platsToAdd);
+            console.log('platform_names: ', platform_names);
 
-    // Find GamesPlatforms that need to be added (in new and not in old)
-    const platsToAdd = platform_names.filter(platform=>{!(existingPlatforms.includes(platform))});
+            // Delete appropriate GamesPlatforms
+            for (let platform_name of platsToDelete) {
+                const delQuery = `
+                    DELETE FROM GamesPlatforms
+                    WHERE game_id=${game_id} AND platform_id=(SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}');
+                `
+                console.log(`Deleting GamePlatform ${game_id}, ${platform_name}`);
+                db.query(delQuery, (error, results, fields) => {
+                    if (error) { 
+                        throw error 
+                    } else {
+                        console.log("GamePlatform deleted.");
+                    }
+                });
+            }
 
-    // Delete appropriate GamesPlatforms
-    for (let platform_name of platsToDelete) {
-        const delQuery = `
-            DELETE FROM GamesPlatforms
-            WHERE game_id=${game_id} AND platform_id=(SELECT platform_id FROM Platforms WHERE platform_name=${platform_name});
-        `
-        db.query(delQuery, (error, results, fields) => {if (error) throw error;});
-    }
+            // Add appropriate GamesPlatforms
+            for (let platform_name of platsToAdd) {
+                const addQuery = `
+                    INSERT INTO GamesPlatforms (game_id, platform_id)
+                    VALUES (${game_id}, (SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}'));
+                `
+                console.log(`Adding GamePlatform ${game_id}, ${platform_name}`);
+                db.query(addQuery, (error, results, fields) => {
+                    if (error) {
+                        throw error;
+                    } else {
+                        console.log("GamePlatform added.");
+                    }
+                });
+            }
 
-    // Add appropriate GamesPlatforms
-    for (let platform_name of platsToAdd) {
-        const addQuery = `
-            INSERT INTO GamesPlatforms (game_id, platform_id)
-            VALUES (${game_id}, (SELECT platform_id FROM Platforms WHERE platform_name=${platform_name}));
-        `
-        db.query(addQuery, (error, results, fields) => {if (error) throw error;});
-    }
+                }
+            });
+
+    
 
     // Update rest of Games entry
     db.query(query, (error, results, fields) => {
