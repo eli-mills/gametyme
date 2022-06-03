@@ -145,6 +145,7 @@
                 <th>Playthrough ID</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
              {{#each sessionSelect}}
             <tr data-value={{this.session_id}}>
@@ -155,6 +156,7 @@
                 <td>{{this.playthrough_id}}</td>
                 <td><button id="editSessionsBtn" onclick="editSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteSessionsBtn" onclick="delSession()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+                <td><button id="endSessionBtn" onclick="endSession()">End Session</button></td>
             </tr>
             {{/each}}
         </table>
@@ -165,13 +167,13 @@
        <form id="addSession" method="POST" action="/sessions">
            <h3>Add Session</h3>
            <fieldset class="fields">
+              <label> Playthrough ID: </label> <input type="text" name="input-playthrough-id" id="input-playthrough-id">
               <label> Start Timestamp: </label> <input type="text" name="input-session-start" id="input-session-start">
               <select name ="select-session-playthrough" id="selectPlaythroughID">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{"Playthrough ID"}}</option>
                     {{/each}}
                 </select>
-                <label> Playthrough ID: </label> <input type="text" name="input-playthrough-id" id="input-playthrough-id">
                
            </fieldset>
             <div id="formBtns">
@@ -207,6 +209,20 @@
         <button id="cancelBtn">Cancel</button>
       </div>
 	</form> 
+
+  <form id="endSession">
+    <h3>End Session?</h3>
+    <fieldset class="fields">
+        <h3>Are you sure you want to end this session?</h3>
+          <label> Finish Timestamp: </label> <input type="text" name="input-finish-session" id="input-finish-session">
+    </fieldset>
+    <br>
+    <div id="formBtns">
+        <button id="finishsessionBtn"> Finish Session</button>
+        <button id="cancelfinishsessionBtn">Cancel</button>
+    </div>
+
+  </form>
 
    </div>
      <script src="js/playthroughs-dom.js"></script>

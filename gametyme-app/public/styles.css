@@ -104,7 +104,8 @@ header {
 #deleteCompany,
 #editUser,
 #deleteUser,
-#finishPlaythrough {
+#finishPlaythrough,
+#endSession {
   display: none;
   width: 350px;
   margin: 0 auto;
@@ -170,7 +171,8 @@ button {
 
 #formBtns button,
 #finishPlaythroughBtn,
-#addnewSessionBtn  {
+#addnewSessionBtn,
+#endSessionBtn  {
   font: 20px;
   padding: 5px;
   border-radius: 5px;

@@ -13,9 +13,18 @@ function addSession(playthrough_id){
     document.getElementById("input-playthrough-id").value = pidInput;
 }
 
+function endSession(){
+    document.getElementById("endSession").style.display="block";
+}
+
 document.getElementById("canceladdsessionBtn").addEventListener("click", function(e){
     e.preventDefault();
     document.getElementById("addSession").style.display = "none";
+})
+
+document.getElementById("cancelfinishsessionBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    document.getElementById("endSession").style.display = "none";
 })
 
 // Get current timestamp for Start TimeStamp
@@ -27,3 +36,10 @@ function getSessionStart() {
   }
   
 setInterval(getSessionStart, 1000);
+
+const sessionEnd = document.getElementById("input-finish-session");
+function getSessionEnd(){
+    var dateVal = new Date().toLocaleString();
+    sessionEnd.value = dateVal;
+}
+setInterval(getSessionEnd, 1000);
