@@ -25,9 +25,10 @@ router.get('/', (req, res) => {
 
 // Add Playthrough
 router.post('/', (req, res) => {
+
     let data= req.body; 
     const addPlaythroughQuery = `INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
-    VALUES ('${data['input-start-time']}', (SELECT user_id FROM Users WHERE username = '${data['input-playthrough-user']}'), (SELECT game_id FROM Games WHERE game_title='${data['input-playthrough-game']}'));`;
+    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${data['input-playthrough-user']}'), (SELECT game_id FROM Games WHERE game_title='${data['input-playthrough-game']}'));`;
     
     db.query(addPlaythroughQuery, (error, results, fields) => {
         if (error){
