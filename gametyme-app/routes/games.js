@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => { 
     console.log('Post request received: \n', req.body);
-    const { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
+    let { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     let query = `
         INSERT INTO Games (game_title, game_summary, release_date, company_id, genre_id)
         VALUES ('${game_title}', '${game_summary}', '${release_date}', 
@@ -66,6 +66,10 @@ router.post('/', (req, res) => {
 
 
             const game_id = results.insertId;
+
+            if ( typeof platform_names === 'string') {
+                platform_names = [platform_names];
+            }
             
             // Create GamesPlatforms entries using newly-created game_id.
             for (let platform_name of platform_names) {
