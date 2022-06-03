@@ -11,7 +11,6 @@ function showEdit(selectedPlaythrough){
 
     let start_timestamp = document.getElementById("selectStart");
     let startInput = document.getElementById('selectStart').options[start_timestamp.selectedIndex].text;
-    dateFormat(startInput, "mmm dd yyyy HH:MM:ss")
     document.getElementById("edit-start-time").value = startInput;
 
   
