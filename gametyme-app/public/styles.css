@@ -103,7 +103,8 @@ header {
 #editCompany,
 #deleteCompany,
 #editUser,
-#deleteUser {
+#deleteUser,
+#finishPlaythrough {
   display: none;
   width: 350px;
   margin: 0 auto;

@@ -54,7 +54,7 @@
        
                 <td><button id="editPlaythroughBtn" onclick="showEdit({{"Playthrough ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlaythroughBtn" onclick="showDelete({{"Playthrough ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
+                <td><button id="finishPlaythroughBtn" onclick="showFinish({{"Playthrough ID"}})">Finish Playthrough</button></td>
                 <td><button id="addnewSessionBtn"> <a href="/new-session" class="button">Add session</a></button></td>          
             </tr>
             {{/each}}
@@ -81,14 +81,29 @@
         <form id="editPlaythrough">
             <h3>Edit Playthrough </h3>
               <fieldset class="fields">
-                <label> Game: </label> <<input type="text" id="playthrough-game">>
-                <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
-                <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
+                 <select name ="select-playthrough-game" id="selectGame">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Game Title"}}</option>
+                    {{/each}}
+                </select>
+                <label> Game: </label> <input type="text" id="edit-playthrough-game">
+                 <select name ="select-playthrough-start" id="selectStart">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Start Timestamp"}}</option>
+                    {{/each}}
+                </select>
+                <label> Start TimeStamp: </label> <input type="datetime-local" id="edit-start-time">
+                 <select name ="select-playthrough-finish" id="selectFinish">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Finish Timestamp"}}</option>
+                    {{/each}}
+                </select>
+                <label> Finish TimeStamp:</label> <input type="datetime-local" id="edit-playthrough-game">
           </fieldset>
           <br>
           <div id="formBtns">
-            <button id="editplaythroughBtn"> Edit Playthrough</button>
-            <button id="canceleditBtn">Cancel</button>
+            <input type="submit">
+            <button type="button" id="canceleditBtn">Cancel</button>
           </div>
         </form> 
         
@@ -103,11 +118,25 @@
             <button id="cancelBtn">Cancel</button>
           </div>
         </form> 
+
+        <form id="finishPlaythrough">
+            <h3>Finish Playthrough?</h3>
+            <fieldset class="fields">
+                <h3>Are you sure you want to finish this playthrough?</h3>
+                  <label> Finish Timestamp: </label> <input type="text" name="input-finish-time" id="input-finish-time">
+            </fieldset>
+            <br>
+            <div id="formBtns">
+                <button id="finishBtn"> Finish Playthrough</button>
+                <button id="cancelfinishBtn">Cancel</button>
+            </div>
+
+        </form>
     </div>
     <br>
     <h3 id="title"> Existing Sessions</h3>
     <div id="existingSessions">
-        <table>
+        <table id="session-table">
             <tr>
                 <th>Session ID</th>
                 <th>Time Played</th>
@@ -117,34 +146,17 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>6</td>
-                <td>02-01-2022 02:02:13</td>
-                <td>02-10-2022 08:02:13</td>
-                <td>3</td>
+             {{#each data}}
+            <tr data-value={{this.session_id}}>
+                <td>{{this.session_id}}</td>
+                <td>{{"Time Played"}}</td>
+                <td>{{this.session_start}}</td>
+                <td>{{this.session_end}}</td>
+                <td>{{this.playthrough_id}}</td>
                 <td><button id="editSessionsBtn" onclick="editSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteSessionsBtn" onclick="delSession()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>1</td>
-                <td>12-11-2020 11:01:03</td>
-                <td>12-20-2020 12:01:03</td>
-                <td>2</td>
-                <td><button id="editSessionsBtn" onclick="editSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteSessionsBtn" onclick="delSession()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>5</td>
-                <td>04-11-2022 05:09:23</td>
-                <td>04-16-2022 10:09:23</td>
-                <td>1</td>
-                <td><button id="editSessionsBtn" onclick="editSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteSessionsBtn" onclick="delSession()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-            </tr>
-         
+            {{/each}}
         </table>
     </div>
     <br>
