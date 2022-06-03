@@ -122,7 +122,8 @@ header {
 #addGenre,
 #addplatform,
 #addPlaythrough,
-#addUser
+#addUser,
+#addSession
 {
   display: none;
   width: 350px;
@@ -169,7 +170,7 @@ button {
 
 #formBtns button,
 #finishPlaythroughBtn,
-#addnewSessionBtn a {
+#addnewSessionBtn  {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
@@ -266,7 +267,7 @@ button {
 }
 
 #selectLocationCity, #selectLocationState, #selectLocationCountry, 
-#selectCompanyName, #selectCompanyLocation, #selectFname,
+#selectCompanyName, #selectCompanyLocation, #selectFname, #selectPlaythroughID,
 #selectLname, #selectUsername, #selectEmail, #edit-platform-id,
 #selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName{
   display:none;

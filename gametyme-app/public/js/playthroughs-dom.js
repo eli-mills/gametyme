@@ -13,18 +13,11 @@ function showEdit(selectedPlaythrough){
     let startInput = document.getElementById('selectStart').options[start_timestamp.selectedIndex].text;
     document.getElementById("edit-start-time").value = startInput;
 
-  
-
 }
 function showDelete(){
     document.getElementById("deletePlaythrough").style.display = "block";
 }
-function editSession(){
-    document.getElementById("editSession").style.display = "block";
-}
-function delSession(){
-    document.getElementById("deleteSession").style.display = "block";
-}
+
 function addNew(){
     document.getElementById("addPlaythrough").style.display = "block";
 }
@@ -55,13 +48,13 @@ document.getElementById("cancelfinishBtn").addEventListener("click",function(e){
 
 // Get current timestamp for Start TimeStamp
 const startTime = document.getElementById("input-start-time");
-function getstartTime() {
+function getStartTime() {
     var dateVal = new Date().toLocaleString();
     startTime.value = dateVal;
     
-  }
+}
   
-setInterval(getstartTime, 1000);
+setInterval(getStartTime, 1000);
 
 // Get finish timestamp for Finish Timestamp
 const finishTime = document.getElementById("input-finish-time");

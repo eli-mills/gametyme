@@ -2,7 +2,7 @@ const db = require('../database/db-connector.js');
 const express = require('express');
 const router = express.Router();
 
-// Load all Playthroughs
+// Load all Playthroughs and Sessions
 router.get('/', (req, res) => {
     const query = `
     SELECT Playthroughs.playthrough_id AS 'Playthrough ID', Playthroughs.start_timestamp AS 'Start Timestamp',
@@ -26,13 +26,17 @@ router.get('/', (req, res) => {
 }); 
 
 
-// Add Playthrough
+// Add Playthrough and Session
 router.post('/', (req, res) => {
 
     let data= req.body; 
     const addPlaythroughQuery = `INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
-    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${data['input-playthrough-user']}'), (SELECT game_id FROM Games WHERE game_title='${data['input-playthrough-game']}'));`;
+    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${data['input-playthrough-user']}'), 
+    (SELECT game_id FROM Games WHERE game_title='${data['input-playthrough-game']}'));
     
+    `;
+    
+
     db.query(addPlaythroughQuery, (error, results, fields) => {
         if (error){
             throw error;
@@ -41,7 +45,6 @@ router.post('/', (req, res) => {
         }
     });
 });
-
 
 
 // Delete Playthrough

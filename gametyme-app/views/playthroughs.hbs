@@ -55,7 +55,7 @@
                 <td><button id="editPlaythroughBtn" onclick="showEdit({{"Playthrough ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlaythroughBtn" onclick="showDelete({{"Playthrough ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
                 <td><button id="finishPlaythroughBtn" onclick="showFinish({{"Playthrough ID"}})">Finish Playthrough</button></td>
-                <td><button id="addnewSessionBtn"> <a href="/new-session" class="button">Add session</a></button></td>          
+                <td><button id="addnewSessionBtn" onclick="addSession({{"Playthrough ID"}})"> Add Session</button></td>          
             </tr>
             {{/each}}
             
@@ -160,8 +160,26 @@
         </table>
     </div>
     <br>
+
    <div id="sessionContainer">
-        <form method="POST" id="editSession">
+       <form id="addSession" method="POST" action="/sessions">
+           <h3>Add Session</h3>
+           <fieldset class="fields">
+              <label> Start Timestamp: </label> <input type="text" name="input-session-start" id="input-session-start">
+              <select name ="select-session-playthrough" id="selectPlaythroughID">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Playthrough ID"}}</option>
+                    {{/each}}
+                </select>
+                <label> Playthrough ID: </label> <input type="text" name="input-playthrough-id" id="input-playthrough-id">
+               
+           </fieldset>
+            <div id="formBtns">
+            <input type="submit">
+            <button type="button" id="canceladdsessionBtn">Cancel</button>
+          </div>
+       </form>
+        <form id="editSession">
         <h3>Edit Session</h3>
           <fieldset class="fields">
             <label> Session Start: </label> <input type="datetime-local" id="session-start">
@@ -192,6 +210,7 @@
 
    </div>
      <script src="js/playthroughs-dom.js"></script>
+     <script src="js/sessions-dom.js"></script>
     <script src="js/delete-playthroughs.js"></script>
     <script src="js/update-playthroughs.js"></script>
    
