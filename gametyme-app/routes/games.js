@@ -2,11 +2,15 @@ const db = require('../database/db-connector.js');
 const express = require('express');
 const router = express.Router();
 
+const readableDate = '%b %d, %Y';
+const htmlDate = '%Y-%m-%d';
+
 // Load page
 router.get('/', (req, res) => {
     const loadGames = `
     SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
-    DATE_FORMAT(Games.release_date, '%b %d, %Y') AS 'Release Date', 
+    DATE_FORMAT(Games.release_date, '${readableDate}') AS 'Release Date', 
+    DATE_FORMAT(Games.release_date, '${htmlDate}') AS htmlDate,
     Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
     GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
     FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
@@ -121,13 +125,14 @@ router.delete('/:game_id', (req, res) => {
 */
 router.put('/:game_id', (req, res) => {
     console.log('PUT request received.');
+    console.log(req.body);
     const game_id = req.params.game_id;
     const { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     const query = `
         UPDATE Games
         SET game_title='${game_title}', game_summary='${game_summary}', release_date='${release_date}', 
-            (SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
-            (SELECT genre_id FROM Genres WHERE genre_name='${genre_name}')
+            company_id=(SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
+            genre_id=(SELECT genre_id FROM Genres WHERE genre_name='${genre_name}')
         WHERE game_id=${game_id};    
     `;
 
@@ -145,7 +150,7 @@ router.put('/:game_id', (req, res) => {
             throw error;
         } else {
             for ( let result of results ) {
-                existingPlatforms.append(result.platform_name);
+                existingPlatforms.push(result.platform_name);
             }
         }
     });
@@ -179,7 +184,7 @@ router.put('/:game_id', (req, res) => {
         if (error) throw error;
 
         console.log(results);
-        res.redirect('/games');
+        res.json(results);
     });
 })
 

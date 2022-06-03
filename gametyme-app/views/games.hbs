@@ -57,7 +57,7 @@
                 <td>{{"Genre"}}</td>
                 <td>{{"Platforms"}}</td>
                 <td>
-                    <button id="editPlatformBtn" onclick="showEdit({{"Game ID"}}, '{{"Game Title"}}','{{"Game Summary"}}','{{"Release Date"}}','{{"Company"}}','{{"Genre"}}','{{"Platforms"}}')">
+                    <button id="editPlatformBtn" onclick="showEdit({{"Game ID"}}, '{{"Game Title"}}','{{"Game Summary"}}','{{htmlDate}}','{{"Company"}}','{{"Genre"}}','{{"Platforms"}}')">
                         <i class="fa-solid fa-pen-to-square" id="editIcon"></i>
                     </button>
                 </td>
@@ -110,16 +110,16 @@
       </div>	
 	</form> 
     
-    <form id="editGame" method="PUT" action="">
+    <form id="editGame">
         <h3>Edit Game </h3>
           <fieldset class="fields">
-            <label> Game: </label> <input type="text" id="edit-game-name" name="game_title">
-
+              <input type="hidden" id="edit-game-id"> 
+            <label> Game: </label> <input type="text" id="edit-game-title" name="game_title">
             
             <label> Game Summary: </label> <input type="text" id="edit-game-summary" name="game_summary">
 
              
-            <label> Release Date: </label> <input type="text" id="edit-release-date" name="release_date">
+            <label> Release Date: </label> <input type="date" id="edit-release-date" name="release_date">
             
             <label> Game Company: </label>
              <select name ="company_name" id="edit-game-company">
@@ -138,7 +138,7 @@
             <label> Game Platforms: </label>
             <div id="platform-checkboxes">
                 {{#each platforms}}
-                <input type="checkbox" name="platform_names" value="{{platform_name}}" id="edit {{platform_name}}">
+                <input type="checkbox" name="edit-platform-names" value="{{platform_name}}" id="edit {{platform_name}}">
                 <label for="{{platform_name}}">{{platform_name}}</label>
                 {{/each}}
             </div>

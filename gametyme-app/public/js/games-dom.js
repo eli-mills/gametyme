@@ -5,8 +5,8 @@ function showEdit(gameId, gameTitle, gameSummary, releaseDate, companyName, genr
     console.log('platsToFill: ', platsToFill);
 
     // Pre-fill form values
-    document.getElementById("editGame").action = `/games/${gameId}`;
-    document.getElementById("edit-game-name").value = gameTitle;
+    document.getElementById("edit-game-id").value = gameId;
+    document.getElementById("edit-game-title").value = gameTitle;
     document.getElementById("edit-game-summary").value = gameSummary;
     document.getElementById("edit-release-date").value = releaseDate;
     document.getElementById("edit-game-company").value = companyName;
@@ -18,6 +18,7 @@ function showEdit(gameId, gameTitle, gameSummary, releaseDate, companyName, genr
     // Clear previously selected checkboxes
     const checkboxes = document.querySelectorAll('#platform-checkboxes input');
     checkboxes.forEach( box => {
+        console.log(box.value);
         box.checked = false;
     });
 
