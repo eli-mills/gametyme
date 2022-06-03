@@ -32,7 +32,7 @@
     </div>
     <h3 id="title"> Existing Playthroughs</h3>
     <div id="existingPlaythroughs">
-        <table>
+        <table id="playthrough-table">
             <tr>
                 <th>Playthrough ID</th>
                 <th>Start TimeStamp</th>
@@ -44,67 +44,51 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>01-04-2022 02:14:01</td>
-                <td>04-04-2022 04:14:03</td>
-                <td>Titan</td>
-                <td>Elden Ring</td>
-                <td><button id="editPlaythroughBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlaythroughBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            {{#each data}}
+            <tr data-value={{"Playthrough ID"}}>
+                <td>{{"Playthrough ID"}}</td>
+                <td>{{"Start Timestamp"}}</td>
+                <td>{{"Finish Timestamp"}}</td>
+                <td>{{"Username"}}</td>
+                <td>{{"Game Title"}}</td>
+       
+                <td><button id="editPlaythroughBtn" onclick="showEdit({{"Playthrough ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deletePlaythroughBtn" onclick="showDelete({{"Playthrough ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
                 <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
                 <td><button id="addnewSessionBtn"> <a href="/new-session" class="button">Add session</a></button></td>          
             </tr>
-            <tr>
-                <td>2</td>
-                <td>11-01-2021 01:30:40</td>
-                <td>01-12-2022 10:24:10</td>
-                <td>Titan</td>
-                <td>Overwatch</td>
-                <td><button id="editPlaythroughBtn" onclick="showEdit()" ><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlaythroughBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
-                <td><button id="addnewSessionBtn"> <a href="/new-session" class="button">Add session</a></button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>05-20-2020 04:20:32</td>
-                <td>12-01-2020 10:02:01</td>
-                <td>Titan</td>
-                <td>The Legend of Zelda: Breath of the Wild</td>
-                <td><button id="editPlaythroughBtn" onclick="showEdit()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deletePlaythroughBtn" onclick="showDelete()"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-                <td><button id="finishPlaythroughBtn">Finish Playthrough</button></td>
-                <td><button id="addnewSessionBtn"> <a href="/new-session" class="button">Add session</a></button></td>
-            </tr>
-         
+            {{/each}}
+            
         </table>
     </div>
     <br>
     <div id="container">
-        <form method="POST" id="addPlaythrough">
+        <form id="addPlaythrough" method="POST" action="/playthroughs">
             <h3>Add a New Playthrough </h3>
               <fieldset class="fields">
-                <label> Game: </label> <input type="text" id="playthrough-game">
+                <label> Start Timestamp: </label> <input type="text" name="input-start-time" id="input-start-time">
+                <label> Username: </label> <input type="text" name ="input-playthrough-user" id="input-playthrough-user">
+                <label> Game: </label> <input type="text" name ="input-playthrough-game" id="input-playthrough-game">
+               
           </fieldset>
   
           <div id="formBtns">
-            <button id="addplaythroughBtn"> <a href="/playthroughs" class="button">Add Playthrough</a></button></button>
-            <button id="cancelBtn">Cancel</button>
+            <input type="submit">
+            <button type="button" id="canceladdplaythroughBtn">Cancel</button>
           </div>
         </form> 
         
         <form id="editPlaythrough">
             <h3>Edit Playthrough </h3>
               <fieldset class="fields">
-                <label> Game: </label> <input type="text" id="playthrough-game">
+                <label> Game: </label> <<input type="text" id="playthrough-game">>
                 <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
                 <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
           </fieldset>
           <br>
           <div id="formBtns">
             <button id="editplaythroughBtn"> Edit Playthrough</button>
-            <button id="cancelBtn">Cancel</button>
+            <button id="canceleditBtn">Cancel</button>
           </div>
         </form> 
         
@@ -112,10 +96,6 @@
             <h3>Delete Playthrough </h3>
               <fieldset class="fields">
                 <h3>Are you sure you want to delete this Playthrough?</h3>
-                <label> Playthrough ID: </label> <input type="number" id="playthrough-id">
-                <label> Game: </label> <input type="text" id="playthrough-game">
-                <label> Start TimeStamp: </label> <input type="datetime-local" id="playthrough-game">
-                <label> Finish TimeStamp:</label> <input type="datetime-local" id="playthrough-game">
           </fieldset>
           <br>
           <div id="formBtns">
@@ -199,23 +179,9 @@
 	</form> 
 
    </div>
-    <script>
-        function showEdit(){
-            document.getElementById("editPlaythrough").style.display = "block";
-        }
-        function showDelete(){
-            document.getElementById("deletePlaythrough").style.display = "block";
-        }
-        function editSession(){
-            document.getElementById("editSession").style.display = "block";
-        }
-        function delSession(){
-            document.getElementById("deleteSession").style.display = "block";
-        }
-        function addNew(){
-            document.getElementById("addPlaythrough").style.display = "block";
-        }
-    </script>
+     <script src="js/playthroughs-dom.js"></script>
+    <script src="js/delete-playthroughs.js"></script>
+    <script src="js/update-playthroughs.js"></script>
    
 </body>
 </html>
