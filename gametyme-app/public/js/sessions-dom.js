@@ -1,5 +1,17 @@
-function showEditSession(){
+function showEditSession(sessionId){
     document.getElementById("editSession").style.display = "block";
+    
+    const selectSessionStart = document.getElementById("selectSessionStart");
+    const datetimeSessionStart = document.getElementById("edit-session-start");
+    const selectSessionEnd = document.getElementById("selectSessionEnd");
+    const datetimeSessionEnd = document.getElementById("edit-session-end");
+
+    selectSessionStart.value = sessionId;
+    datetimeSessionStart.value = selectSessionStart.options[selectSessionStart.selectedIndex].text;
+
+    selectSessionEnd.value = sessionId;
+    datetimeSessionEnd.value = selectSessionEnd.options[selectSessionEnd.selectedIndex].text;
+
 }
 function showDeleteSessionSession(){
     document.getElementById("deleteSession").style.display = "block";
@@ -22,9 +34,14 @@ document.getElementById("canceladdsessionBtn").addEventListener("click", functio
     document.getElementById("addSession").style.display = "none";
 })
 
-document.getElementById("cancelfinishsessionBtn").addEventListener("click", function(e){
+document.getElementById("canceladdsessionBtn").addEventListener("click", function(e){
     e.preventDefault();
-    document.getElementById("endSession").style.display = "none";
+    document.getElementById("addSession").style.display = "none";
+})
+
+document.getElementById("cancelEditSession").addEventListener("click", function(e){
+    e.preventDefault();
+    document.getElementById("editSession").style.display = "none";
 })
 
 // Get current timestamp for Start TimeStamp

@@ -51,7 +51,7 @@ router.put('/:session_id', (req, res) => {
     WHERE session_id='${session_id}';
 
     `;
-    
+    console.log(query);
     db.query(query, (error, results, fields) => {
         if (error) throw error;
         res.json(results);

@@ -97,13 +97,13 @@
                     <option value="{{"Playthrough ID"}}">{{playthroughStartHtml}}</option>
                     {{/each}}
                 </select>
-                <label> Start TimeStamp: </label> <input type="datetime-local" id="edit-start-time">
+                <label> Start TimeStamp: </label> <input type="datetime-local" step="1" id="edit-start-time">
                  <select name ="select-playthrough-finish" id="selectFinish">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{playthroughFinishHtml}}</option>
                     {{/each}}
                 </select>
-                <label> Finish TimeStamp:</label> <input type="datetime-local" id="edit-finish-time">
+                <label> Finish TimeStamp:</label> <input type="datetime-local" step="1" id="edit-finish-time">
 
                  <select name ="select-playthrough-username" id="selectPlaythroughUsername">
                     {{#each data}}
@@ -185,7 +185,7 @@
                 <td>{{this.session_start}}</td>
                 <td>{{this.session_end}}</td>
                 <td>{{this.playthrough_id}}</td>
-                <td><button id="editSessionsBtn" onclick="showEditSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="editSessionsBtn" onclick="showEditSession({{this.session_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteSessionsBtn" onclick="showDeleteSession({{this.session_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
                 <td><button id="endSessionBtn" onclick="endSession()">End Session</button></td>
             </tr>
@@ -212,29 +212,28 @@
             <button type="button" id="canceladdsessionBtn">Cancel</button>
           </div>
        </form>
-        <form id="editSession">
+
+      <form id="editSession">
         <h3>Edit Session</h3>
           <fieldset class="fields">
              <select name ="select-session-start" id="selectSessionStart">
                     {{#each sessionSelect}}
-                    <option value="{{this.session_id}}">{{this.session_start}}</option>
+                    <option value="{{this.session_id}}">{{this.sessionStartHtml}}</option>
                     {{/each}}
               </select>
-            <label> Session Start: </label> <input type="datetime-local" id="edit-session-start">
-
-
+            <label> Session Start: </label> <input type="datetime-local" step="1" id="edit-session-start">
 
              <select name ="select-session-end" id="selectSessionEnd">
                     {{#each sessionSelect}}
-                    <option value="{{this.session_id}}">{{this.session_end}}</option>
+                    <option value="{{this.session_id}}">{{this.sessionEndHtml}}</option>
                     {{/each}}
               </select>
-            <label> Session End: </label> <input type="datetime-local" id="edit-session-end">
+            <label> Session End: </label> <input type="datetime-local" step="1" id="edit-session-end">
       </fieldset>
       <br>
       <div id="formBtns">
         <button id="editsessionBtn"> Edit Session</button>
-        <button id="cancelBtn">Cancel</button>
+        <button type="button" id="cancelEditSession">Cancel</button>
       </div>
 	</form> 
 
@@ -246,7 +245,7 @@
       <br>
       <div id="formBtns">
         <button id="delsessionBtn"> Delete Session</button>
-        <button id="cancelBtn">Cancel</button>
+        <button type="button" id="cancelBtn">Cancel</button>
       </div>
 	</form> 
 
@@ -259,7 +258,7 @@
     <br>
     <div id="formBtns">
         <button id="finishsessionBtn"> Finish Session</button>
-        <button id="cancelfinishsessionBtn">Cancel</button>
+        <button type="button" id="cancelfinishsessionBtn">Cancel</button>
     </div>
 
   </form>

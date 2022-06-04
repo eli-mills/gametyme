@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const readableTimestamp = '%b %d, %Y %r';
-const htmlDateTime = '%Y-%m-%dT%h:%m:%s';
+const htmlDateTime = '%Y-%m-%dT%H:%i:%s';
 // Load all Playthroughs and Sessions
 router.get('/', (req, res) => {
     const query = `
@@ -88,7 +88,7 @@ router.put('/:playthrough_id', (req, res) => {
     game_id =(SELECT game_id FROM Games WHERE game_title='${game_title}')
     WHERE playthrough_id='${playthrough_id}';
     `;
-    
+    console.log(query);
     db.query(query, (error, results, fields) => {
         if (error) throw error;
         res.json(results);
