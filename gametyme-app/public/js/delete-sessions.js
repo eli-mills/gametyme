@@ -1,4 +1,4 @@
-function showDelete(session_id){
+function showDeleteSession(session_id){
     document.getElementById("deleteSession").style.display = "block";
   
     document.getElementById("delsessionBtn").addEventListener("click", function(e){

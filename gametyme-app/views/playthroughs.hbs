@@ -165,8 +165,8 @@
                 <td>{{this.session_start}}</td>
                 <td>{{this.session_end}}</td>
                 <td>{{this.playthrough_id}}</td>
-                <td><button id="editSessionsBtn" onclick="editSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
-                <td><button id="deleteSessionsBtn" onclick="delSession({{this.session_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+                <td><button id="editSessionsBtn" onclick="showEditSession()"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteSessionsBtn" onclick="showDeleteSession({{this.session_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
                 <td><button id="endSessionBtn" onclick="endSession()">End Session</button></td>
             </tr>
             {{/each}}
