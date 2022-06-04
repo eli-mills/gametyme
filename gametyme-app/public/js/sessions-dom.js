@@ -1,7 +1,7 @@
-function editSession(){
+function showEditSession(){
     document.getElementById("editSession").style.display = "block";
 }
-function delSession(){
+function showDeleteSessionSession(){
     document.getElementById("deleteSession").style.display = "block";
 }
 function addSession(playthrough_id){

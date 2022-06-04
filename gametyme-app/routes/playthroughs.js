@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
     `
     db.query(query, (error, results, fields) => {
         if (error) throw error;
-        res.render('playthroughs', {data: results[0], sessionSelect: results[3]});
+        res.render('playthroughs', {data: results[0], userSelect: results[1], gameSelect: results[2],sessionSelect: results[3]});
         console.log('Playthroughs loaded');
         
     });
@@ -37,10 +37,10 @@ router.get('/', (req, res) => {
 // Add Playthrough and Session
 router.post('/', (req, res) => {
 
-    let data= req.body; 
+    let {username, game_title}= req.body; 
     const addPlaythroughQuery = `INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
-    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${data['input-playthrough-user']}'), 
-    (SELECT game_id FROM Games WHERE game_title='${data['input-playthrough-game']}'));
+    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${username}'), 
+    (SELECT game_id FROM Games WHERE game_title='${game_title}'));
     
     `;
     

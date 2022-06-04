@@ -21,6 +21,23 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:session_id', (req, res) => {
+    const session_id = req.params.session_id;
+    const query = `
+        DELETE FROM Sessions
+        WHERE session_id=${session_id};
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error){
+            throw error;
+        }else{
+            res.json(results);
+            console.log(results);
+            console.log('Session deleted');
+        }
+    });
+});
 
 
 module.exports =  router;
