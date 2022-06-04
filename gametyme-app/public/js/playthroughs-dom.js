@@ -4,6 +4,9 @@ function showEdit(selectedPlaythrough){
     document.getElementById("selectStart").value = selectedPlaythrough;
     document.getElementById("selectFinish").value = selectedPlaythrough;
     document.getElementById("selectPlaythroughUsername").value = selectedPlaythrough;
+    document.getElementById("edit-user").value = selectedPlaythrough;
+    document.getElementById("edit-playthrough-game").value = selectedPlaythrough;
+  
 
     let user = document.getElementById("selectPlaythroughUsername");
     let userInput = document.getElementById("selectPlaythroughUsername").options[user.selectedIndex].text;

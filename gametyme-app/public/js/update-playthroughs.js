@@ -70,7 +70,7 @@ updatePlaythroughForm.addEventListener("submit", function (e) {
 })
 
 
-function updateRow(data, user_id){
+function updateRow(data, playthrough_id){
     let parsedData = JSON.parse(data);
 
     

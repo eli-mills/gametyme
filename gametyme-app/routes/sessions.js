@@ -2,6 +2,7 @@ const db = require('../database/db-connector.js');
 const express = require('express');
 const router = express.Router();
 
+// Add Sessions
 router.post('/', (req, res) => {
 
     let data= req.body; 
@@ -21,6 +22,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// Delete Sessions
 router.delete('/:session_id', (req, res) => {
     const session_id = req.params.session_id;
     const query = `
@@ -39,5 +41,22 @@ router.delete('/:session_id', (req, res) => {
     });
 });
 
+// Edit Sessions
+router.put('/:session_id', (req, res) => {
+    const session_id = req.params.session_id;
+    const {session_start, session_end} = req.body;
+    const query = `
+    UPDATE Sessions
+    SET session_start='${session_start}', session_end='${session_end}'
+    WHERE session_id='${session_id}';
+
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error) throw error;
+        res.json(results);
+        console.log('Sessions edited.');
+    });
+});
 
 module.exports =  router;

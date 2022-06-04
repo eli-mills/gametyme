@@ -89,8 +89,8 @@ router.put('/:playthrough_id', (req, res) => {
     const {start_timestamp, finish_timestamp, username, game_title } = req.body;
     const query = `
     UPDATE Playthroughs
-    SET start_timestamp='${start_timestamp}', finish_timestamp='${finish_timestamp}', (SELECT user_id FROM Users WHERE username = '${username}'), 
-    (SELECT game_id FROM Games WHERE game_title='${game_title}')
+    SET start_timestamp='${start_timestamp}', finish_timestamp='${finish_timestamp}', user_id =(SELECT user_id FROM Users WHERE username = '${username}'), 
+    game_id =(SELECT game_id FROM Games WHERE game_title='${game_title}')
     WHERE playthrough_id='${playthrough_id}';
     `;
     

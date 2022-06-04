@@ -97,7 +97,6 @@
                     <option value="{{"Playthrough ID"}}">{{"Start Timestamp"}}</option>
                     {{/each}}
                 </select>
-
                 <label> Start TimeStamp: </label> <input type="datetime-local" id="edit-start-time">
                  <select name ="select-playthrough-finish" id="selectFinish">
                     {{#each data}}
@@ -111,14 +110,25 @@
                     <option value="{{"Playthrough ID"}}">{{"Username"}}</option>
                     {{/each}}
                 </select>
-                <label> Username: </label> <input type="text" id="edit-user">
+
+                <label> Username: </label> 
+                  <select name ="select-playthrough-username1" id="edit-user">
+                    {{#each userSelect}}
+                    <option value="{{"Username"}}">{{"Username"}}</option>
+                    {{/each}}
+                </select>
                 
                  <select name ="select-playthrough-game" id="selectGame">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{"Game Title"}}</option>
                     {{/each}}
                 </select>
-                <label> Game: </label> <input type="text" id="edit-playthrough-game">
+                <label> Game: </label> 
+                   <select name ="select-playthrough-game1" id="edit-playthrough-game">
+                    {{#each gameSelect}}
+                    <option value="{{"Game Title"}}">{{"Game Title"}}</option>
+                    {{/each}}
+                </select>
                 
           </fieldset>
           <br>
@@ -205,8 +215,21 @@
         <form id="editSession">
         <h3>Edit Session</h3>
           <fieldset class="fields">
-            <label> Session Start: </label> <input type="datetime-local" id="session-start">
-            <label> Session End: </label> <input type="datetime-local" id="session-end">
+             <select name ="select-session-start" id="selectSessionStart">
+                    {{#each sessionSelect}}
+                    <option value="{{this.session_id}}">{{this.session_start}}</option>
+                    {{/each}}
+              </select>
+            <label> Session Start: </label> <input type="datetime-local" id="edit-session-start">
+
+
+
+             <select name ="select-session-end" id="selectSessionEnd">
+                    {{#each sessionSelect}}
+                    <option value="{{this.session_id}}">{{this.session_end}}</option>
+                    {{/each}}
+              </select>
+            <label> Session End: </label> <input type="datetime-local" id="edit-session-end">
       </fieldset>
       <br>
       <div id="formBtns">

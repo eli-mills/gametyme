@@ -271,7 +271,9 @@ button {
 #selectLocationCity, #selectLocationState, #selectLocationCountry, 
 #selectCompanyName, #selectCompanyLocation, #selectFname, #selectPlaythroughID,
 #selectLname, #selectUsername, #selectEmail, #edit-platform-id,
-#selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName{
+#selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName,
+#selectStart, #selectFinish, #selectPlaythroughUsername, #selectGame,
+#selectSessionStart, #selectSessionEnd{
   display:none;
 }
 
