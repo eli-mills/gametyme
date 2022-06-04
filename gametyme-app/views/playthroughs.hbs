@@ -67,8 +67,19 @@
             <h3>Add a New Playthrough </h3>
               <fieldset class="fields">
                 <label> Start Timestamp: </label> <input type="text" name="input-start-time" id="input-start-time">
-                <label> Username: </label> <input type="text" name ="input-playthrough-user" id="input-playthrough-user">
-                <label> Game: </label> <input type="text" name ="input-playthrough-game" id="input-playthrough-game">
+                <label> Username:</label>
+                 <select name ="username" id="input-selectUser">
+                    {{#each userSelect}}
+                    <option value="{{"Username"}}">{{"Username"}}</option>
+                    {{/each}}
+                </select>
+                <label> Game: </label>
+                 <select name ="game_title" id="input-selectGame">
+                    {{#each gameSelect}}
+                    <option value="{{"Game Title"}}">{{"Game Title"}}</option>
+                    {{/each}}
+                </select>
+
                
           </fieldset>
   
