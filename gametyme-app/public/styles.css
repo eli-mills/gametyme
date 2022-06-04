@@ -275,20 +275,15 @@ button {
   display:none;
 }
 
-img{
-  display: block;
-  width: 2000px;
-  height: 600px;
 
-  margin: auto;
-  padding: auto;
-  border: 2px solid green;
-}
 
 #home-container{
-  width: 300px;
-  background-image: url("images/home.jpg");
-  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 100px;
+  padding-left: 100px;
 }
 
 #home-text{
@@ -297,10 +292,18 @@ img{
   background-color: none;
 }
 
-#landing-title{
+
+.home-title{
   font-size: 60px;
+  text-align: left;
 }
 
-#landing-blurb{
-  font-size: 30px;
+.home-blurb{
+  margin-top: 50px;
+  font-size: 20px;
+  text-align:left;
+}
+
+img{
+  width: 400px;
 }
