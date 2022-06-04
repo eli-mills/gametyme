@@ -13,10 +13,10 @@ router.get('/', (req, res) => {
     DATE_FORMAT(Games.release_date, '${htmlDate}') AS htmlDate,
     Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
     GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
-    FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
-    JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
-    JOIN Companies ON Games.company_id=Companies.company_id
-    JOIN Genres ON Games.genre_id=Genres.genre_id
+    FROM Games LEFT JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
+    LEFT JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
+    LEFT JOIN Companies ON Games.company_id=Companies.company_id
+    LEFT JOIN Genres ON Games.genre_id=Genres.genre_id
     GROUP BY Games.game_id;
     `;
 
@@ -66,9 +66,11 @@ router.post('/', (req, res) => {
 
 
             const game_id = results.insertId;
-
+            console.log(typeof platform_names);
             if ( typeof platform_names === 'string') {
                 platform_names = [platform_names];
+            } else if (typeof platform_names === 'undefined') {
+                platform_names = [];
             }
             
             // Create GamesPlatforms entries using newly-created game_id.

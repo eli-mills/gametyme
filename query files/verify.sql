@@ -23,8 +23,8 @@ ON Platforms.company_id=Companies.company_id;
 -- Games
 SELECT Games.game_id, Games.game_title, Games.game_summary, Games.release_date, 
 GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
-FROM Games JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
-JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
+FROM Games LEFT JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
+LEFT JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
 GROUP BY Games.game_id;
 
 

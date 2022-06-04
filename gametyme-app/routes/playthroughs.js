@@ -9,11 +9,11 @@ const htmlTime = '%H:%i:%s';
 router.get('/', (req, res) => {
     const query = `
     SELECT Playthroughs.playthrough_id AS 'Playthrough ID', DATE_FORMAT(Playthroughs.start_timestamp, '${readableTimestamp}') AS 'Start Timestamp',
-    DATE_FORMAT(cast(Playthroughs.start_timestamp as time), '${htmlTime}') AS ptStartTimeHtml,
-    DATE_FORMAT(cast(Playthroughs.start_timestamp as date), '${htmlDate}') AS ptStartDateHtml,
+    DATE_FORMAT(cast(Playthroughs.start_timestamp as time), '${htmlTime}') AS playthroughStartTimeHtml,
+    DATE_FORMAT(cast(Playthroughs.start_timestamp as date), '${htmlDate}') AS playthroughStartDateHtml,
     DATE_FORMAT(Playthroughs.finish_timestamp, '${readableTimestamp}') AS 'Finish Timestamp', 
-    DATE_FORMAT(cast(Playthroughs.finish_timestamp as time), '${htmlTime}') AS ptFinishTimeHtml,
-    DATE_FORMAT(cast(Playthroughs.finish_timestamp as date), '${htmlDate}') AS ptFinishDateHtml,
+    DATE_FORMAT(cast(Playthroughs.finish_timestamp as time), '${htmlTime}') AS playthroughFinishTimeHtml,
+    DATE_FORMAT(cast(Playthroughs.finish_timestamp as date), '${htmlDate}') AS playthroughFinishDateHtml,
     Users.user_id AS 'User ID', Users.username AS 'Username',
     Games.game_id AS 'Game ID', Games.game_title AS 'Game Title'
     FROM Playthroughs JOIN Users ON Playthroughs.user_id = Users.user_id
@@ -23,12 +23,20 @@ router.get('/', (req, res) => {
     SELECT user_id, username AS 'Username' FROM Users;
     SELECT game_id, game_title AS 'Game Title' FROM Games;
 
-    SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', session_start, session_end, playthrough_id FROM Sessions;
+    SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', 
+    DATE_FORMAT(session_start, '${readableTimestamp}') AS session_start,
+    DATE_FORMAT(cast(session_start as time), '${htmlTime}') AS sessionStartTimeHtml, 
+    DATE_FORMAT(cast(session_start as date), '${htmlDate}') AS sessionStartDateHtml, 
+    DATE_FORMAT(session_end, '${readableTimestamp}') AS session_end, 
+    DATE_FORMAT(cast(session_end as time), '${htmlTime}') AS sessionEndTimeHtml,
+    DATE_FORMAT(cast(session_end as date), '${htmlDate}') AS sessionEndDateHtml,
+    playthrough_id FROM Sessions;
     `
     db.query(query, (error, results, fields) => {
         if (error) throw error;
         res.render('playthroughs', {data: results[0], userSelect: results[1], gameSelect: results[2],sessionSelect: results[3]});
         console.log('Playthroughs loaded');
+        console.log(results);
         
     });
 }); 
