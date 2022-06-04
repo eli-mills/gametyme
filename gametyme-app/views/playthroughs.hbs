@@ -94,13 +94,13 @@
               <fieldset class="fields">
                  <select name ="select-playthrough-start" id="selectStart">
                     {{#each data}}
-                    <option value="{{"Playthrough ID"}}">{{"Start Timestamp"}}</option>
+                    <option value="{{"Playthrough ID"}}">{{playthroughStartHtml}}</option>
                     {{/each}}
                 </select>
                 <label> Start TimeStamp: </label> <input type="datetime-local" id="edit-start-time">
                  <select name ="select-playthrough-finish" id="selectFinish">
                     {{#each data}}
-                    <option value="{{"Playthrough ID"}}">{{"Finish Timestamp"}}</option>
+                    <option value="{{"Playthrough ID"}}">{{playthroughFinishHtml}}</option>
                     {{/each}}
                 </select>
                 <label> Finish TimeStamp:</label> <input type="datetime-local" id="edit-finish-time">

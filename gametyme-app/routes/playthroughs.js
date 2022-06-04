@@ -2,18 +2,15 @@ const db = require('../database/db-connector.js');
 const express = require('express');
 const router = express.Router();
 
-const readableTimestamp = '%b %d, %Y %h:%i:%s';
-const htmlDate = '%Y-%m-%d';
-const htmlTime = '%H:%i:%s';
+const readableTimestamp = '%b %d, %Y %r';
+const htmlDateTime = '%Y-%m-%dT%h:%m:%s';
 // Load all Playthroughs and Sessions
 router.get('/', (req, res) => {
     const query = `
     SELECT Playthroughs.playthrough_id AS 'Playthrough ID', DATE_FORMAT(Playthroughs.start_timestamp, '${readableTimestamp}') AS 'Start Timestamp',
-    DATE_FORMAT(cast(Playthroughs.start_timestamp as time), '${htmlTime}') AS playthroughStartTimeHtml,
-    DATE_FORMAT(cast(Playthroughs.start_timestamp as date), '${htmlDate}') AS playthroughStartDateHtml,
+    DATE_FORMAT(Playthroughs.start_timestamp, '${htmlDateTime}') AS playthroughStartHtml,
     DATE_FORMAT(Playthroughs.finish_timestamp, '${readableTimestamp}') AS 'Finish Timestamp', 
-    DATE_FORMAT(cast(Playthroughs.finish_timestamp as time), '${htmlTime}') AS playthroughFinishTimeHtml,
-    DATE_FORMAT(cast(Playthroughs.finish_timestamp as date), '${htmlDate}') AS playthroughFinishDateHtml,
+    DATE_FORMAT(Playthroughs.finish_timestamp, '${htmlDateTime}') AS playthroughFinishHtml,
     Users.user_id AS 'User ID', Users.username AS 'Username',
     Games.game_id AS 'Game ID', Games.game_title AS 'Game Title'
     FROM Playthroughs JOIN Users ON Playthroughs.user_id = Users.user_id
@@ -25,11 +22,9 @@ router.get('/', (req, res) => {
 
     SELECT session_id, TIMESTAMPDIFF(HOUR, session_start, session_end) AS 'Time Played', 
     DATE_FORMAT(session_start, '${readableTimestamp}') AS session_start,
-    DATE_FORMAT(cast(session_start as time), '${htmlTime}') AS sessionStartTimeHtml, 
-    DATE_FORMAT(cast(session_start as date), '${htmlDate}') AS sessionStartDateHtml, 
+    DATE_FORMAT(session_start, '${htmlDateTime}') AS sessionStartHtml, 
     DATE_FORMAT(session_end, '${readableTimestamp}') AS session_end, 
-    DATE_FORMAT(cast(session_end as time), '${htmlTime}') AS sessionEndTimeHtml,
-    DATE_FORMAT(cast(session_end as date), '${htmlDate}') AS sessionEndDateHtml,
+    DATE_FORMAT(session_end, '${htmlDateTime}') AS sessionEndHtml,
     playthrough_id FROM Sessions;
     `
     db.query(query, (error, results, fields) => {

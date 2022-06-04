@@ -20,6 +20,10 @@ function showEdit(selectedPlaythrough){
     let startInput = document.getElementById('selectStart').options[start_timestamp.selectedIndex].text;
     document.getElementById("edit-start-time").value = startInput;
 
+    let finish_timestamp = document.getElementById("selectFinish");
+    let finishInput = document.getElementById('selectFinish').options[finish_timestamp.selectedIndex].text;
+    document.getElementById("edit-finish-time").value = finishInput;
+
 }
 function showDelete(){
     document.getElementById("deletePlaythrough").style.display = "block";
