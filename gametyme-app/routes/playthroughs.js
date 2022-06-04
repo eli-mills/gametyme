@@ -2,11 +2,19 @@ const db = require('../database/db-connector.js');
 const express = require('express');
 const router = express.Router();
 
+const readableTimestamp = '%b %d, %Y %h:%i:%s';
+const htmlDate = '%Y-%m-%d';
+const htmlTime = '%H:%i:%s';
 // Load all Playthroughs and Sessions
 router.get('/', (req, res) => {
     const query = `
-    SELECT Playthroughs.playthrough_id AS 'Playthrough ID', Playthroughs.start_timestamp AS 'Start Timestamp',
-    Playthroughs.finish_timestamp AS 'Finish Timestamp', Users.user_id AS 'User ID', Users.username AS 'Username',
+    SELECT Playthroughs.playthrough_id AS 'Playthrough ID', DATE_FORMAT(Playthroughs.start_timestamp, '${readableTimestamp}') AS 'Start Timestamp',
+    DATE_FORMAT(cast(Playthroughs.start_timestamp as time), '${htmlTime}') AS ptStartTimeHtml,
+    DATE_FORMAT(cast(Playthroughs.start_timestamp as date), '${htmlDate}') AS ptStartDateHtml,
+    DATE_FORMAT(Playthroughs.finish_timestamp, '${readableTimestamp}') AS 'Finish Timestamp', 
+    DATE_FORMAT(cast(Playthroughs.finish_timestamp as time), '${htmlTime}') AS ptFinishTimeHtml,
+    DATE_FORMAT(cast(Playthroughs.finish_timestamp as date), '${htmlDate}') AS ptFinishDateHtml,
+    Users.user_id AS 'User ID', Users.username AS 'Username',
     Games.game_id AS 'Game ID', Games.game_title AS 'Game Title'
     FROM Playthroughs JOIN Users ON Playthroughs.user_id = Users.user_id
     JOIN Games ON Playthroughs.game_id = Games.game_id
@@ -64,6 +72,12 @@ router.delete('/:playthrough_id', (req, res) => {
             console.log('Playthrough deleted');
         }
     });
+});
+
+
+// Edit Playthrough
+router.put('/:playthrough_id', (req, res) => {
+
 });
 
 module.exports =  router;
