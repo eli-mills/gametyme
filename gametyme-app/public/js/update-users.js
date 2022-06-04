@@ -1,6 +1,6 @@
 let updateUsersForm = document.getElementById('editUser');
 
-updateSessionsForm.addEventListener("submit", function (e) {
+updateUsersForm.addEventListener("submit", function (e) {
    
     e.preventDefault();
 
