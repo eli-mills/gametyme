@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
 }); 
 
 
-// Add Playthrough and Session
+// Add Playthrough
 router.post('/', (req, res) => {
 
     let {username, game_title}= req.body; 
@@ -85,7 +85,20 @@ router.delete('/:playthrough_id', (req, res) => {
 
 // Edit Playthrough
 router.put('/:playthrough_id', (req, res) => {
-
+    const playthrough_id = req.params.playthrough_id;
+    const {start_timestamp, finish_timestamp, username, game_title } = req.body;
+    const query = `
+    UPDATE Playthroughs
+    SET start_timestamp='${start_timestamp}', finish_timestamp='${finish_timestamp}', (SELECT user_id FROM Users WHERE username = '${username}'), 
+    (SELECT game_id FROM Games WHERE game_title='${game_title}')
+    WHERE playthrough_id='${playthrough_id}';
+    `;
+    
+    db.query(query, (error, results, fields) => {
+        if (error) throw error;
+        res.json(results);
+        console.log('Playthroughs edited.');
+    });
 });
 
 module.exports =  router;

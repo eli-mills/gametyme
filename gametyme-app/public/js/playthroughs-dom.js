@@ -3,7 +3,11 @@ function showEdit(selectedPlaythrough){
     document.getElementById("selectGame").value = selectedPlaythrough;
     document.getElementById("selectStart").value = selectedPlaythrough;
     document.getElementById("selectFinish").value = selectedPlaythrough;
+    document.getElementById("selectPlaythroughUsername").value = selectedPlaythrough;
 
+    let user = document.getElementById("selectPlaythroughUsername");
+    let userInput = document.getElementById("selectPlaythroughUsername").options[user.selectedIndex].text;
+    document.getElementById("edit-user").value = userInput;
 
     let game = document.getElementById("selectGame");
     let gameInput = document.getElementById('selectGame').options[game.selectedIndex].text;

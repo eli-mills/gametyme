@@ -92,24 +92,34 @@
         <form id="editPlaythrough">
             <h3>Edit Playthrough </h3>
               <fieldset class="fields">
-                 <select name ="select-playthrough-game" id="selectGame">
-                    {{#each data}}
-                    <option value="{{"Playthrough ID"}}">{{"Game Title"}}</option>
-                    {{/each}}
-                </select>
-                <label> Game: </label> <input type="text" id="edit-playthrough-game">
                  <select name ="select-playthrough-start" id="selectStart">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{"Start Timestamp"}}</option>
                     {{/each}}
                 </select>
+
                 <label> Start TimeStamp: </label> <input type="datetime-local" id="edit-start-time">
                  <select name ="select-playthrough-finish" id="selectFinish">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{"Finish Timestamp"}}</option>
                     {{/each}}
                 </select>
-                <label> Finish TimeStamp:</label> <input type="datetime-local" id="edit-playthrough-game">
+                <label> Finish TimeStamp:</label> <input type="datetime-local" id="edit-finish-time">
+
+                 <select name ="select-playthrough-username" id="selectPlaythroughUsername">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Username"}}</option>
+                    {{/each}}
+                </select>
+                <label> Username: </label> <input type="text" id="edit-user">
+                
+                 <select name ="select-playthrough-game" id="selectGame">
+                    {{#each data}}
+                    <option value="{{"Playthrough ID"}}">{{"Game Title"}}</option>
+                    {{/each}}
+                </select>
+                <label> Game: </label> <input type="text" id="edit-playthrough-game">
+                
           </fieldset>
           <br>
           <div id="formBtns">
@@ -237,6 +247,7 @@
     <script src="js/delete-playthroughs.js"></script>
     <script src="js/delete-sessions.js"></script>
     <script src="js/update-playthroughs.js"></script>
+    <script src="js/update-sessions.js"></script>
    
 </body>
 </html>
