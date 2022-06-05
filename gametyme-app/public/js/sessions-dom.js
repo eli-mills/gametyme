@@ -63,9 +63,7 @@ function getSessionEnd(){
     */ 
         now = new Date();
         let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
-        console.log(dateVal);
         dateVal = dateVal.slice(0, -5);
-        console.log(dateVal);
         sessionEnd.value = dateVal;
 }
 setInterval(getSessionEnd, 1000);

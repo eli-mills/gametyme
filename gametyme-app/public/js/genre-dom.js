@@ -1,6 +1,10 @@
 function showEdit( selectedGenre ){
     document.getElementById("editGenre").style.display = "block";
     document.getElementById("selectGenreName").value = selectedGenre;
+
+    let genre = document.getElementById("selectGenreName");
+    let genreInput = document.getElementById('selectGenreName').options[genre.selectedIndex].text;
+    document.getElementById("edit-genre-name").value = genreInput;
 }
 
 function hideEdit() {

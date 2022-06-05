@@ -48,8 +48,10 @@ function addNew(){
 function showFinish(playthroughId){
     document.getElementById("finishPlaythrough").style.display= "block";
     document.getElementById("finishPlaythroughId").value = playthroughId;
+   
 
 }
+
 
 document.getElementById("canceladdplaythroughBtn").addEventListener("click", function(e){
     e.preventDefault();
@@ -90,10 +92,9 @@ function getfinishTime() {
     */ 
     now = new Date();
     let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
-    console.log(dateVal);
     dateVal = dateVal.slice(0, -5);
-    console.log(dateVal);
     finishTime.value = dateVal;
   }
   
 setInterval(getfinishTime, 1000);
+
