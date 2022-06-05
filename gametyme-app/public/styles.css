@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  background-color: #050509;
+  background-color: black;
   color: white;
   font-family: "Roboto", sans-serif;
 }
@@ -103,7 +103,9 @@ header {
 #editCompany,
 #deleteCompany,
 #editUser,
-#deleteUser {
+#deleteUser,
+#finishPlaythrough,
+#endSession {
   display: none;
   width: 350px;
   margin: 0 auto;
@@ -121,7 +123,8 @@ header {
 #addGenre,
 #addplatform,
 #addPlaythrough,
-#addUser
+#addUser,
+#addSession
 {
   display: none;
   width: 350px;
@@ -141,7 +144,7 @@ button {
   border: none;
 }
 
-.fields input,
+.fields input:not([type=checkbox]),
 .fields select {
   width: 100%;
   padding: 10px;
@@ -168,7 +171,8 @@ button {
 
 #formBtns button,
 #finishPlaythroughBtn,
-#addnewSessionBtn a {
+#addnewSessionBtn,
+#endSessionBtn  {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
@@ -223,21 +227,14 @@ button {
   text-decoration: none;
 }
 
-#games-filter {
-  display: flex;
-  justify-content: right;
-  margin-left: 50px;
-}
 
 #addnewGameBtns {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-  margin-right: 5px;
   cursor: pointer;
   text-decoration: none;
-  margin-left: 50px;
 }
 
 #addnewBtn {
@@ -272,7 +269,43 @@ button {
 }
 
 #selectLocationCity, #selectLocationState, #selectLocationCountry, 
-#selectCompanyName, #selectCompanyLocation, #selectFname,
-#selectLname, #selectUsername, #selectEmail, #edit-platform-id{
+#selectCompanyName, #selectCompanyLocation, #selectFname, #selectPlaythroughID,
+#selectLname, #selectUsername, #selectEmail, #edit-platform-id,
+#selectgameName, #selectgameSummary, #selectgameDate, #selectCompanyName, #selectGenreName, #selectplatName,
+#selectStart, #selectFinish, #selectPlaythroughUsername, #selectGame,
+#selectSessionStart, #selectSessionEnd{
   display:none;
+}
+
+
+
+#home-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 100px;
+  padding-left: 100px;
+}
+
+#home-text{
+  position:absolute;
+  background:none;
+  background-color: none;
+}
+
+
+.home-title{
+  font-size: 60px;
+  text-align: left;
+}
+
+.home-blurb{
+  margin-top: 50px;
+  font-size: 20px;
+  text-align:left;
+}
+
+img{
+  width: 400px;
 }
