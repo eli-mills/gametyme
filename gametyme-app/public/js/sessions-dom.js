@@ -25,8 +25,9 @@ function addSession(playthrough_id){
     document.getElementById("input-playthrough-id").value = pidInput;
 }
 
-function endSession(){
+function endSession(sessionId){
     document.getElementById("endSession").style.display="block";
+    document.getElementById("endSessionId").value = sessionId;
 }
 
 document.getElementById("canceladdsessionBtn").addEventListener("click", function(e){
@@ -34,9 +35,9 @@ document.getElementById("canceladdsessionBtn").addEventListener("click", functio
     document.getElementById("addSession").style.display = "none";
 })
 
-document.getElementById("canceladdsessionBtn").addEventListener("click", function(e){
+document.getElementById("cancelfinishsessionBtn").addEventListener("click", function(e){
     e.preventDefault();
-    document.getElementById("addSession").style.display = "none";
+    document.getElementById("endSession").style.display = "none";
 })
 
 document.getElementById("cancelEditSession").addEventListener("click", function(e){
@@ -56,7 +57,15 @@ setInterval(getSessionStart, 1000);
 
 const sessionEnd = document.getElementById("input-finish-session");
 function getSessionEnd(){
-    var dateVal = new Date().toLocaleString();
-    sessionEnd.value = dateVal;
+    /* 
+        Code for converting date to proper format sourced from John Au-Yeung
+        at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
+    */ 
+        now = new Date();
+        let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
+        console.log(dateVal);
+        dateVal = dateVal.slice(0, -5);
+        console.log(dateVal);
+        sessionEnd.value = dateVal;
 }
 setInterval(getSessionEnd, 1000);

@@ -188,7 +188,7 @@
                 <td>{{this.playthrough_id}}</td>
                 <td><button id="editSessionsBtn" onclick="showEditSession({{this.session_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deleteSessionsBtn" onclick="showDeleteSession({{this.session_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-                <td><button id="endSessionBtn" onclick="endSession()">End Session</button></td>
+                <td><button id="endSessionBtn" onclick="endSession({{this.session_id}})">End Session</button></td>
             </tr>
             {{/each}}
         </table>
@@ -254,7 +254,8 @@
     <h3>End Session?</h3>
     <fieldset class="fields">
         <h3>Are you sure you want to end this session?</h3>
-          <label> Finish Timestamp: </label> <input type="text" name="input-finish-session" id="input-finish-session">
+        <input type="hidden" id="endSessionId">
+        <label> Finish Timestamp: </label> <input type="datetime-local" step="1" name="input-finish-session" id="input-finish-session">
     </fieldset>
     <br>
     <div id="formBtns">

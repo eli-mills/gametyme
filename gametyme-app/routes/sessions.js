@@ -44,10 +44,18 @@ router.delete('/:session_id', (req, res) => {
 // Edit Sessions
 router.put('/:session_id', (req, res) => {
     const session_id = req.params.session_id;
-    const {session_start, session_end} = req.body;
+    
+    // Generate list of attributes to update from new values
+    let updatesArray = [];
+    for ( attribute in req.body ) {
+        updatesArray.push(`${attribute}='${req.body[attribute]}'`);
+    }
+    const updateString = updatesArray.join(',');
+    console.log(updateString);
+
     const query = `
     UPDATE Sessions
-    SET session_start='${session_start}', session_end='${session_end}'
+    SET ${updateString}
     WHERE session_id='${session_id}';
 
     `;

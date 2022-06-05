@@ -13,18 +13,15 @@ updateSessionsForm.addEventListener("submit", function (e) {
     let updatedSessionEnd = document.getElementById("edit-session-end");
 
 
-    let selectedSessionStart = selectStartSession.value;
+  
     let updatedStart = updatedSessionStart.value;
 
-    let selectedSessionEnd = selectEndSession.value;
     let updatedEnd = updatedSessionEnd.value;
 
   
     
     let data = {
-        selectedStartTime: selectedSessionStart,
-        selectedEndTime: selectedSessionEnd,
-        
+
         session_id: selectedSessionID,
 
         session_start: updatedStart,
@@ -41,7 +38,8 @@ updateSessionsForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, selectedSessionStart, selectedSessionEnd)
+            location.reload();
+            return false;
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -53,10 +51,30 @@ updateSessionsForm.addEventListener("submit", function (e) {
 })
 
 
-function updateRow(data, session_id){
-    let parsedData = JSON.parse(data);
-   
-    
-    location.reload();
-    return false;
-}
+
+// End Session Listener
+
+document.getElementById("endSession").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const session_id = document.getElementById("endSessionId").value;
+    const session_end = document.getElementById("input-finish-session").value;
+
+    const fetchInit = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ session_end })
+    }
+
+    fetch(`/sessions/${session_id}`, fetchInit)
+    .then( response => {
+        console.log('fetch sent', response);
+        location.reload();
+        return false;
+    })
+    .catch( error => {
+        console.log('there was an error', error);
+    });
+})

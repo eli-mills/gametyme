@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Table `Users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Users`;
 CREATE TABLE IF NOT EXISTS `Users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
@@ -21,6 +22,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Genres`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Genres`;
 CREATE TABLE IF NOT EXISTS `Genres` (
   `genre_id` INT NOT NULL AUTO_INCREMENT,
   `genre_name` VARCHAR(45) NOT NULL,
@@ -32,6 +34,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Locations`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Locations`;
 CREATE TABLE IF NOT EXISTS `Locations` (
   `location_id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NOT NULL,
@@ -45,6 +48,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Companies`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Companies`;
 CREATE TABLE IF NOT EXISTS `Companies` (
   `company_id` INT NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(100) NOT NULL,
@@ -63,6 +67,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Platforms`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Platforms`;
 CREATE TABLE IF NOT EXISTS `Platforms` (
   `platform_id` INT NOT NULL AUTO_INCREMENT,
   `platform_name` VARCHAR(45) NOT NULL,
@@ -81,6 +86,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Games`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Games`;
 CREATE TABLE IF NOT EXISTS `Games` (
   `game_id` INT NOT NULL AUTO_INCREMENT,
   `game_title` VARCHAR(100) NOT NULL,
@@ -108,9 +114,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Playthroughs`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Playthroughs`;
 CREATE TABLE IF NOT EXISTS `Playthroughs` (
   `playthrough_id` INT NOT NULL AUTO_INCREMENT,
-  `start_timestamp` TIMESTAMP NOT NULL,
+  `start_timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `finish_timestamp` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
   `game_id` INT NULL,
@@ -134,9 +141,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Sessions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Sessions`;
 CREATE TABLE IF NOT EXISTS `Sessions` (
   `session_id` INT NOT NULL AUTO_INCREMENT,
-  `session_start` TIMESTAMP NOT NULL,
+  `session_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `session_end` TIMESTAMP NULL,
   `playthrough_id` INT NOT NULL,
   PRIMARY KEY (`session_id`),
@@ -153,6 +161,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `GamesPlatforms`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `GamesPlatforms`;
 CREATE TABLE IF NOT EXISTS `GamesPlatforms` (
   `game_id` INT NOT NULL,
   `platform_id` INT NOT NULL,
