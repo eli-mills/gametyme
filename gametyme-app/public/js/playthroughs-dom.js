@@ -82,9 +82,17 @@ function getStartTime() {
 setInterval(getStartTime, 1000);
 
 // Get finish timestamp for Finish Timestamp
-const finishTime = document.getElementById("input-finish-time");
+const finishTime = document.getElementById("finishPlaythroughTime");
 function getfinishTime() {
-    var dateVal = new Date().toLocaleString();
+    /* 
+        Code for converting date to proper format sourced from John Au-Yeung
+        at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
+    */ 
+    now = new Date();
+    let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
+    console.log(dateVal);
+    dateVal = dateVal.slice(0, -5);
+    console.log(dateVal);
     finishTime.value = dateVal;
   }
   

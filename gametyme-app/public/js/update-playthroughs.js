@@ -74,7 +74,36 @@ function updateRow(data, playthrough_id){
 
 // Finish Playthrough listener
 
-document.getElementById("finishPlaythroughBtn").addEventListener("submit", (e) => {
+document.getElementById("finishPlaythrough").addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const playthrough_id = document.getElementById("finishPlaythroughId").value;
+    const finish_timestamp = document.getElementById("finishPlaythroughTime").value;
+    console.log('playthrough id', playthrough_id);
+    console.log('finish_timestamp', finish_timestamp);
+
+    const fetchInit = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({ finish_timestamp })
+    }
+
+    console.log('sending init: ', fetchInit);
+
+    fetch(`/playthroughs/${playthrough_id}`, fetchInit)
+    .then( response => {
+        console.log('fetch sent', response);
+        location.reload();
+        return false;
+    } )
+    .catch( error => {
+        console.log('there was an error', error);
+        // location.reload();
+        // return false;
+    } );
+
+
 
 });

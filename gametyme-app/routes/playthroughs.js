@@ -80,6 +80,8 @@ router.delete('/:playthrough_id', (req, res) => {
 
 // Edit Playthrough
 router.put('/:playthrough_id', (req, res) => {
+    console.log('edit playthrough request received');
+    console.log('body: ', req.body);
     const playthrough_id = req.params.playthrough_id;
 
     // Generate list of attributes to update from new values
