@@ -114,7 +114,7 @@
                 <label> Username: </label> 
                   <select name ="select-playthrough-username1" id="edit-user">
                     {{#each userSelect}}
-                    <option value="{{"Username"}}">{{"Username"}}</option>
+                    <option value="{{user_id}}">{{"Username"}}</option>
                     {{/each}}
                 </select>
                 
@@ -126,7 +126,7 @@
                 <label> Game: </label> 
                    <select name ="select-playthrough-game1" id="edit-playthrough-game">
                     {{#each gameSelect}}
-                    <option value="{{"Game Title"}}">{{"Game Title"}}</option>
+                    <option value="{{game_id}}">{{"Game Title"}}</option>
                     {{/each}}
                 </select>
                 
@@ -154,12 +154,13 @@
             <h3>Finish Playthrough?</h3>
             <fieldset class="fields">
                 <h3>Are you sure you want to finish this playthrough?</h3>
+                  <input type="hidden" id="finishPlaythroughId">
                   <label> Finish Timestamp: </label> <input type="text" name="input-finish-time" id="input-finish-time">
             </fieldset>
             <br>
             <div id="formBtns">
-                <button id="finishBtn"> Finish Playthrough</button>
-                <button id="cancelfinishBtn">Cancel</button>
+                <button id="finishPlaythroughBtn"> Finish Playthrough</button>
+                <button type="button" id="cancelfinishBtn">Cancel</button>
             </div>
 
         </form>

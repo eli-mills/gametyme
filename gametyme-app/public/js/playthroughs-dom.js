@@ -7,15 +7,11 @@ function showEdit(selectedPlaythrough){
     document.getElementById("edit-user").value = selectedPlaythrough;
     document.getElementById("edit-playthrough-game").value = selectedPlaythrough;
   
+    // Pre-fill select menus
+    selectValue(document.getElementById("selectPlaythroughUsername"), document.getElementById("edit-user"));
+    selectValue(document.getElementById("selectGame"), document.getElementById("edit-playthrough-game"));
 
-    let user = document.getElementById("selectPlaythroughUsername");
-    let userInput = document.getElementById("selectPlaythroughUsername").options[user.selectedIndex].text;
-    document.getElementById("edit-user").value = userInput;
-
-    let game = document.getElementById("selectGame");
-    let gameInput = document.getElementById('selectGame').options[game.selectedIndex].text;
-    document.getElementById("edit-playthrough-game").value = gameInput;
-
+    // Pre-fill timestamps
     let start_timestamp = document.getElementById("selectStart");
     let startInput = document.getElementById('selectStart').options[start_timestamp.selectedIndex].text;
     document.getElementById("edit-start-time").value = startInput;
@@ -25,6 +21,22 @@ function showEdit(selectedPlaythrough){
     document.getElementById("edit-finish-time").value = finishInput;
 
 }
+
+/**
+ * Used to pre-fill select menus containing the correct ID
+ * @param {HTMLSelectElement} hiddenElement The select element that contains the current Playthrough ID and is not shown.
+ * @param {HTMLSelectElement} shownElement The select element that contains the ID for the displayed entity.
+ */
+function selectValue (hiddenElement, shownElement) {
+    const textToMatch = hiddenElement.options[hiddenElement.selectedIndex].text;
+    for (option of shownElement.options) {
+        if (option.text === textToMatch) {
+            option.selected = true;
+            break
+        }
+    }
+}
+
 function showDelete(){
     document.getElementById("deletePlaythrough").style.display = "block";
 }
@@ -33,8 +45,10 @@ function addNew(){
     document.getElementById("addPlaythrough").style.display = "block";
 }
 
-function showFinish(){
+function showFinish(playthroughId){
     document.getElementById("finishPlaythrough").style.display= "block";
+    document.getElementById("finishPlaythroughId").value = playthroughId;
+
 }
 
 document.getElementById("canceladdplaythroughBtn").addEventListener("click", function(e){

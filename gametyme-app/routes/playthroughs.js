@@ -81,11 +81,19 @@ router.delete('/:playthrough_id', (req, res) => {
 // Edit Playthrough
 router.put('/:playthrough_id', (req, res) => {
     const playthrough_id = req.params.playthrough_id;
-    const {start_timestamp, finish_timestamp, username, game_title } = req.body;
+
+    // Generate list of attributes to update from new values
+    let updatesArray = [];
+    for ( attribute in req.body ) {
+        updatesArray.push(`${attribute}='${req.body[attribute]}'`);
+    }
+    const updateString = updatesArray.join(',');
+    console.log(updateString);
+
+    // Run query
     const query = `
     UPDATE Playthroughs
-    SET start_timestamp='${start_timestamp}', finish_timestamp='${finish_timestamp}', user_id =(SELECT user_id FROM Users WHERE username = '${username}'), 
-    game_id =(SELECT game_id FROM Games WHERE game_title='${game_title}')
+    SET ${updateString}
     WHERE playthrough_id='${playthrough_id}';
     `;
     console.log(query);

@@ -6,7 +6,7 @@ updatePlaythroughForm.addEventListener("submit", function (e) {
 
     let selectGame = document.getElementById("selectGame");
     let updatedGame = document.getElementById("edit-playthrough-game");
-    let selectedPlaythroughID = document.getElementById('selectGame').options[selectGame.selectedIndex].value;
+    let playthrough_id = document.getElementById('selectGame').options[selectGame.selectedIndex].value;
 
    
     let selectStart = document.getElementById("selectStart");
@@ -22,31 +22,24 @@ updatePlaythroughForm.addEventListener("submit", function (e) {
 
     
     let selectedGameVal = selectGame.value;
-    let updatedGameTitle = updatedGame.value;
+    let game_id = updatedGame.value;
 
     let selectedStart = selectStart.value;
-    let updatedStartTime = updatedStart.value;
+    let start_timestamp = updatedStart.value;
 
     let selectedFinish = selectFinish.value;
-    let updatedFinishTime = updatedFinish.value;
+    let finish_timestamp = updatedFinish.value;
 
     let selectedUser = selectUser.value;
-    let updatedUsername = updatedUser.value;
+    let user_id = updatedUser.value;
 
     
-    let data = {
-        selectedUFVal: selectedGameVal,
-        selectedULVal: selectedStart,
-        selectedUNVal: selectedFinish,
-        selectedUEVal: selectedUser,
-        
-        playthrough_id: selectedPlaythroughID,
-
-        game_title: updatedGameTitle,
-        start_timestamp: updatedStartTime,
-        finish_timestamp: updatedFinishTime,
-        username: updatedUsername,
-
+    let data = {        
+        playthrough_id,
+        game_id,
+        start_timestamp,
+        finish_timestamp,
+        user_id
     }
   
     
@@ -78,3 +71,10 @@ function updateRow(data, playthrough_id){
     location.reload();
     return false;
 }
+
+// Finish Playthrough listener
+
+document.getElementById("finishPlaythroughBtn").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+});
