@@ -172,7 +172,7 @@ button {
 #formBtns button,
 #finishPlaythroughBtn,
 #addnewSessionBtn,
-#endSessionBtn, input[type=submit]  {
+#endSessionBtn, input[type=submit], #finishPlaythroughBtns {
   font: 20px;
   padding: 5px;
   border-radius: 5px;
