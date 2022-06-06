@@ -48,13 +48,13 @@
             <tr data-value={{"Playthrough ID"}}>
                 <td>{{"Playthrough ID"}}</td>
                 <td>{{"Start Timestamp"}}</td>
-                <td>{{"Finish Timestamp"}}</td>
+                <td name="finishTime">{{"Finish Timestamp"}}</td>
                 <td>{{"Username"}}</td>
                 <td>{{"Game Title"}}</td>
        
                 <td><button id="editPlaythroughBtn" onclick="showEdit({{"Playthrough ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
                 <td><button id="deletePlaythroughBtn" onclick="showDelete({{"Playthrough ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
-                <td><button id="finishPlaythroughBtn" onclick="showFinish({{"Playthrough ID"}})">Finish Playthrough</button></td>
+                <td><button id="finishPlaythroughBtns" onclick="showFinish({{"Playthrough ID"}})">Finish Playthrough</button></td>
                 <td><button id="addnewSessionBtn" onclick="addSession({{"Playthrough ID"}})"> Add Session</button></td>          
             </tr>
             {{/each}}

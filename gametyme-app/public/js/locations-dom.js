@@ -32,7 +32,7 @@ document.getElementById("canceladdLocationBtn").addEventListener("click", functi
 
 document.getElementById("cancelBtn").addEventListener("click",function(e){
     e.preventDefault();
-    document.getElementById("deleteGenre").style.display = "none";
+    document.getElementById("deleteLocation").style.display = "none";
 })
 
 document.getElementById("canceleditLocationBtn").addEventListener("click",function(e){
