@@ -1,16 +1,16 @@
 function showEdit(selectedCompany, selectedLocation){
     document.getElementById("editCompany").style.display = "block";
     document.getElementById("selectCompanyName").value = selectedCompany;
-    document.getElementById("selectCompanyLocation").value = selectedCompany;
-    document.getElementById("edit-company-location").value = selectedLocation;
+    document.getElementById("selectCompanyLocation").value = selectedLocation;
+    
 
     let companyName = document.getElementById("selectCompanyName");
     let companyInput = companyName.options[companyName.selectedIndex].text;
     document.getElementById("edit-company").value = companyInput;
 
     let companyLocation = document.getElementById("selectCompanyLocation");
-    let compLocInput = companyLocation.options[companyLocation.selectedIndex].text;
-    document.getElementById("edit-company-location").value = compLocInput;
+    let companyLocationInput = companyLocation.options[companyLocation.selectedIndex].value;
+    document.getElementById("edit-company-location").value= companyLocationInput;
 
 }
 function showDelete(){
