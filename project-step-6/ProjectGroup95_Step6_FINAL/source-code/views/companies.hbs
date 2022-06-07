@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameTyme</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1 id="logo"> <a href="/"> <i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
+        <div id="navbar">
+            <ul>
+                <li> <a href="/games"> Games </a></li>
+                <li> <a href="/genres"> Genres </a></li>
+                <li> <a href="/companies"> Companies </a></li>
+                <li> <a href="/platforms"> Platforms </a></li>
+                <li> <a href="/locations"> Locations </a></li>
+                <li> <a href="/playthroughs"> Playthroughs </a></li>
+                <li> <a href="/users"> Users </a></li>
+            </ul>
+        </div>    
+    </header>
+    <br>
+    <h3 id="title">Companies</h3>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New Company</button>
+    </div>
+    <br>
+    
+    <div id="companies">
+        <table id ="company-table">
+            <tr>
+                <th>Company ID</th>
+                <th>Company Name</th>
+                <th>Location</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {{#each data}}
+            <tr data-value={{"Company ID"}}>
+                <td>{{"Company ID"}}</td>
+                <td>{{"Company Name"}}</td>
+                <td>{{"Location"}}</td>
+                <td><button id="editCompanyBtn" onclick="showEdit({{"Company ID"}}, {{"Location ID"}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteCompanyBtn" onclick="showDelete({{"Company ID"}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            </tr>
+            {{/each}}
+           
+        </table>
+    </div>
+    <br>
+    
+    <div id="container">
+        <form id="addCompany" method="POST" action="/companies">
+            <h3>Add a New Company </h3>
+              <fieldset class="fields">
+                <label> Company Name: </label> <input type="text" id="input-company" name="company_name">
+                <label> Location: </label> 
+                <select name="location_id" id="input-company-location">
+                {{#each locSelect}}
+                <option value="{{location_id}}">{{"Location"}}</option>
+                {{/each}}
+                
+                </select>
+          </fieldset>
+       
+          <div id="formBtns">
+            <button id="addcompanyBtn"> Add Company</button>
+            <button id="cancelAddCompanyBtn">Cancel</button>
+          </div>	
+        </form> 
+      
+        <form id="editCompany">
+            <h3>Edit Company </h3>
+              <fieldset class="fields">
+                <select name ="select-companyName" id="selectCompanyName">
+                    {{#each data}}
+                    <option value="{{"Company ID"}}">{{"Company Name"}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Company Name: </label> <input type="text" id="edit-company">
+                 <br>
+                 <select name ="select-companyLocation" id="selectCompanyLocation">
+                    {{#each data}}
+                    <option value="{{"Company ID"}}">{{"Location"}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Company Location: </label> 
+                <select name="select-location" id="edit-company-location">
+                  {{#each locSelect}}
+                  <option value="{{location_id}}">{{"Location"}}</option>
+                  {{/each}}
+                </select>
+
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="editcompanyBtn"> Edit Company</button>
+            <button type="button" id="canceleditcompanyBtn">Cancel</button>
+          </div>
+        </form> 
+      
+        <form id="deleteCompany">
+            <h3>Delete Company </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Company? </h3>
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delcompanyBtn"> Delete Company</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
+
+    <script src="js/companies-dom.js"></script>
+    <script src="js/delete-companies.js"></script>
+    <script src="js/update-companies.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameTyme</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1 id="logo"> <a href="/"> <i class="fa-solid fa-dragon" id="logo-icon"></i> GameTyme</a> </h1>
+        <div id="navbar">
+            <ul>
+                <li> <a href="/games"> Games </a></li>
+                <li> <a href="/genres"> Genres </a></li>
+                <li> <a href="/companies"> Companies </a></li>
+                <li> <a href="/platforms"> Platforms </a></li>
+                <li> <a href="/locations"> Locations </a></li>
+                <li> <a href="/playthroughs"> Playthroughs </a></li>
+                <li> <a href="/users"> Users </a></li>
+            </ul>
+        </div>    
+    </header>
+    <h3 id="title">Genres</h3>
+    <br>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New Genre</button>
+    </div>
+
+    <div id="genres">
+        <table id="genre-table">
+            <tr>
+                <th>Genre ID</th>
+                <th>Genre Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {{#each data}}
+            <tr data-value={{this.genre_id}}>
+                <td>{{this.genre_id}}</td>
+                <td>{{this.genre_name}}</td>
+                <td><button onclick="showEdit({{this.genre_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button onclick="showDelete({{this.genre_id}})" id="deleteGenreBtn"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+  
+    <br>
+    <div id="container">
+        <form id="addGenre" method="POST" action="/genres">
+            <h3>Add a New Genre </h3>
+              <fieldset class="fields">
+                <label> Genre Name: </label> <input type="text" name="input-genrename" id="input-genrename">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="addgenreBtn"> Add Genre</button>
+             <button id="cancelGenreAddBtn">Cancel</button>
+          </div>
+        </form> 
+       
+        <form id="editGenre">
+            <h3>Edit Genre </h3>
+              <fieldset class="fields">
+
+              <select name="select-genreName" id="selectGenreName">
+                  <option value="gName">Select a Genre</option>
+                  {{#each data}}
+                  <option value="{{this.genre_id}}">{{this.genre_name}}</option>
+                  {{/each}}
+              </select>
+            <label>Edit Genre Name: </label> <input type="text" id="edit-genre-name">
+                
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <input type="submit">
+            <button type="button" id="updateCancelBtn" onclick="hideEdit()">Cancel</button>
+          </div>
+        </form> 
+
+        <form id="deleteGenre">
+            <h3>Delete Genre </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this Genre?</h3>
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="delGenreBtn"> Delete</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
+        
+        
+    </div>
+  <script src="js/genre-dom.js"></script>
+  <script src="js/delete-genre.js"></script>
+  <script src="js/update_genre.js"></script>
+  
+</body>
+</html>

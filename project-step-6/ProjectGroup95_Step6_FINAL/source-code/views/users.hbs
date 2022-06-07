@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gametyme</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1 id="logo"> <a href="/"><i class="fa-solid fa-dragon" id="logo-icon"></i>  GameTyme</a> </h1>
+        <div id="navbar">
+            <ul>
+                  <li> <a href="/games"> Games </a></li>
+                <li> <a href="/genres"> Genres </a></li>
+                <li> <a href="/companies"> Companies </a></li>
+                <li> <a href="/platforms"> Platforms </a></li>
+                <li> <a href="/locations"> Locations </a></li>
+                <li> <a href="/playthroughs"> Playthroughs </a></li>
+                <li> <a href="/users"> Users </a></li>
+            </ul>
+        </div>    
+    </header>
+    <br>
+    <h3 id="title">Users</h3>
+    <br>
+    <div id="addBtnContainer">
+        <button id="addnewBtn" onclick="addNew()">Add New User</button>
+    </div>
+    <br>
+    <br>
+
+    <div id="users">
+        <table id="user-table">
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {{#each data}}
+            <tr data-value={{this.user_id}}>
+                <td>{{this.user_id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.email}}</td>
+                <td><button id="editUsersBtn" onclick="showEdit({{this.user_id}})"><i class="fa-solid fa-pen-to-square" id="editIcon"></i></button></td>
+                <td><button id="deleteUsersBtn" onclick="showDelete({{this.user_id}})"><i class="fa-solid fa-xmark" id="deleteIcon"></i></button></td>
+            </tr>
+            {{/each}}
+            
+        </table>
+    </div>
+    <br>
+    <div id="container">
+        <form id="addUser" method="POST" action="/users">
+            <h3>Add a New User</h3>
+              <fieldset class="fields">
+                <label> First Name: </label> <input type="text" name="input-user-fname" id="input-user-fname">
+                <label> Last Name: </label> <input type="text" name="input-user-lname" id="input-user-lname">
+                <label> Username: </label> <input type="text" name="input-username" id="input-username">
+                <label> Email: </label> <input type="email" name="input-user-email" id="input-user-email">
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="adduserBtn"> Add User</button>
+            <button id="canceladduserBtn">Cancel</button>
+          </div>
+        </form> 
+    
+        <form id="editUser">
+            <h3>Edit User </h3>
+              <fieldset class="fields">
+              
+                <select name ="select-User-fname" id="selectFname">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.first_name}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit First Name: </label> <input type="text" id="edit-fname">
+                 <br>
+                 <select name ="select-User-lname" id="selectLname">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.last_name}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Last Name: </label> <input type="text" id="edit-lname">
+                <br>
+                 <select name ="select-Username" id="selectUsername">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.username}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Username: </label> <input type="text" id="edit-username">
+                <br>
+                 <select name ="select-email" id="selectEmail">
+                    {{#each data}}
+                    <option value="{{this.user_id}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
+                <label> Edit Email: </label> <input type="text" id="edit-email">
+
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <input type="submit">
+            <button type="button" id="canceleditUserBtn">Cancel</button>
+          </div>
+        </form> 
+    
+        <form id="deleteUser">
+            <h3>Delete User </h3>
+              <fieldset class="fields">
+                <h3>Are you sure you want to delete this User?</h3>
+          </fieldset>
+          <br>
+          <div id="formBtns">
+            <button id="deluserBtn"> Delete User</button>
+            <button id="cancelBtn">Cancel</button>
+          </div>
+        </form> 
+    </div>
+    
+
+    <script src="js/users-dom.js"></script>
+    <script src="js/delete-users.js"></script>
+    <script src="js/update-users.js"></script>
+
+   
+</body>
+</html>
