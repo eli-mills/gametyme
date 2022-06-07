@@ -29,6 +29,21 @@
     <br>
     <div id="searchGamesContainer">
         <button id="addnewGameBtns" onclick="addGame()">Add New Game</button>
+        <br>
+        <form action="/games">
+            <label for="filterBy">Filter By:</label>
+            <select name="attribute" id="filterBy">
+                <option value="genre_id">Genre</option>
+                <option value="company_id">Company</option>
+                <option value="platform_id">Platform</option>
+            </select>
+            <label for="filterValue">Value:</label>
+            <select name="value" id="filterValue">
+
+            </select>
+            <button>Filter</button>
+            <a href="/games">Clear Filter</a>
+        </form>
     </div>
     <br>
    

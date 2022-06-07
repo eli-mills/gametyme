@@ -1,3 +1,26 @@
+// Filter code
+document.getElementById("filterBy").addEventListener("change", (e)=>{
+    // Get values for given table
+    const value = e.target.value;
+
+    fetch(`/games/${value}`)
+    .then( (results) => {
+        // Expects results in form of object of {id: name} pairs
+        const valueSelect = document.getElementById("filterValue");
+
+        // Populate value selection menu with received options
+        for ( id in results) {
+            let name = results[id];
+            let newOption = document.createElement('option');
+            newOption.value = id;
+            newOption.text = name;
+            valueSelect.appendChild(newOption);
+        }
+    })
+    .catch( error => console.log(error));
+})
+
+
 function showEdit(gameId, gameTitle, gameSummary, releaseDate, companyName, genreName, platformList){
     
     const platsToFill = platformList.split(', ');
