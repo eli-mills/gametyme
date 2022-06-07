@@ -9,6 +9,22 @@ const htmlDate = '%Y-%m-%d';
 // Load page
 router.get('/', (req, res) => {
     console.log('main game page reached')
+    console.log(req.query);
+
+    let filterQuery = '';
+
+    // Modify filter query if the request query exists
+    if (req.query.attribute && req.query.value) {
+        ut.escapeObject(req.query);
+        const {attribute, value} = req.query;
+        
+        if (attribute === 'platform_id') {
+            filterQuery = `WHERE GamesPlatforms.platform_id=${value}`;
+        } else {
+        filterQuery = `WHERE Games.${attribute}="${value}"`;
+        }
+    }
+
     const loadGames = `
     SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
     DATE_FORMAT(Games.release_date, "${readableDate}") AS 'Release Date', 
@@ -19,6 +35,7 @@ router.get('/', (req, res) => {
     LEFT JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
     LEFT JOIN Companies ON Games.company_id=Companies.company_id
     LEFT JOIN Genres ON Games.genre_id=Genres.genre_id
+    ${filterQuery}
     GROUP BY Games.game_id;
     `;
 

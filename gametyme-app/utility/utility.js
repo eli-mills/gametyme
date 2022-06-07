@@ -10,6 +10,8 @@ function escapeString(stringToClean) {
             outputString += char;
         } else if (char === '"') {
             outputString += "\\'"
+        } else if (char === ';') {
+            continue
         } else {
             outputString += char;
         }
