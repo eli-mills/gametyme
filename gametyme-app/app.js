@@ -5,7 +5,7 @@
 
 const express = require('express');
 const app = express();
-const PORT = 9501;
+const PORT = 9500;
 
 
 // Handlebars setup
