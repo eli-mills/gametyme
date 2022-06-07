@@ -46,20 +46,40 @@ document.getElementById("cancelEditSession").addEventListener("click", function(
 })
 
 // Get current timestamp for Start TimeStamp
-
-function generateDateTime(element){
-    /* 
-    Code for converting date to proper format sourced from John Au-Yeung
-    at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
-    */ 
-   now = new Date();
-   let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
-   dateVal = dateVal.slice(0, -5);
-   element.value = dateVal;
-}
+const sessionStart = document.getElementById("input-session-start");
+function getSessionStart() {
+    var dateVal = new Date().toLocaleString();
+    sessionStart.value = dateVal;
+    
+  }
+  
+setInterval(getSessionStart, 1000);
 
 const sessionEnd = document.getElementById("input-finish-session");
-setInterval(()=>{generateDateTime(sessionEnd)}, 1000);
+function getSessionEnd(){
+    /* 
+        Code for converting date to proper format sourced from John Au-Yeung
+        at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
+    */ 
+        now = new Date();
+        let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
+        dateVal = dateVal.slice(0, -5);
+        sessionEnd.value = dateVal;
+}
+setInterval(getSessionEnd, 1000);
 
-const sessionStart = document.getElementById("input-session-start");  
-setInterval(()=>{generateDateTime(sessionStart)}, 1000);
+
+// Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+const sessionTable = document.getElementById('session-table');
+var endCol = sessionTable.querySelectorAll('tr > td:nth-child(4)');
+var endBtns = sessionTable.querySelectorAll('tr > td:nth-child(8)');
+
+
+for (var i = 0; i < endCol.length; i++) {
+    var endTime = endCol[i];
+    if(endTime.innerHTML !== ""){
+        endBtns[i].style.display = 'none';
+    }else{
+        endBtns[i].style.display = 'block';
+    }
+}

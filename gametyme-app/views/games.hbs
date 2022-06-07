@@ -27,8 +27,10 @@
     <br>
     <h3 id="title">Games</h3>
     <br>
+    <div id="addContainer">
+             <button id="addnewGameBtns" onclick="addGame()">Add New Game</button>
+        </div>
     <div id="searchGamesContainer">
-        <button id="addnewGameBtns" onclick="addGame()">Add New Game</button>
         <br>
         <form action="/games">
             <label for="filterBy">Filter By:</label>
@@ -43,8 +45,8 @@
                 <option value={{genre_id}}>{{genre_name}}</option>
                 {{/each}}
             </select>
-            <button>Filter</button>
-            <a href="/games">Clear Filter</a>
+            <button id="filterBtn">Filter</button>
+            <button id="clearFilterBtn"><a href="/games">Clear Filter</a></button>
         </form>
     </div>
     <br>

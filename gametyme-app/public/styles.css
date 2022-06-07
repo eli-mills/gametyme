@@ -37,6 +37,7 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   border-radius: 10px;
+  table-layout: fixed;
 }
 tr {
   text-align: left;
@@ -172,7 +173,7 @@ button {
 #formBtns button,
 #finishPlaythroughBtn,
 #addnewSessionBtn,
-#endSessionBtn, input[type=submit], #finishPlaythroughBtns {
+#endSessionBtn, input[type=submit], #finishPlaythroughBtns , #filterBtn, #clearFilterBtn a{
   font: 20px;
   padding: 5px;
   border-radius: 5px;
@@ -309,3 +310,13 @@ button {
 img{
   width: 400px;
 }
+
+#addContainer{
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#filterBy,#filterValue, #filterBtn{
+  margin-right: 30px;
+}
+
