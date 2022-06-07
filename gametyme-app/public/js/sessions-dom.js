@@ -72,8 +72,10 @@ var endBtns = sessionTable.querySelectorAll('tr > td:nth-child(8)');
 for (var i = 0; i < endCol.length; i++) {
     var endTime = endCol[i];
     if(endTime.innerHTML !== ""){
-        endBtns[i].style.display = 'none';
+        endBtns[i].style.pointerEvents = 'none';
+        endBtns[i].style.opacity = '0.1';
     }else{
-        endBtns[i].style.display = 'block';
+        endBtns[i].style.pointerEvents = 'initial';
+        endBtns[i].style.opacity = '1';
     }
 }
