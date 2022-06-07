@@ -63,7 +63,11 @@ const sessionStart = document.getElementById("input-session-start");
 setInterval(()=>{generateDateTime(sessionStart)}, 1000);
 
 
-// Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+/*
+ Adapted Source Code for code lines 71-77 from StackOverflow user Brian 
+ https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+
+*/
 const sessionTable = document.getElementById('session-table');
 var endCol = sessionTable.querySelectorAll('tr > td:nth-child(4)');
 var endBtns = sessionTable.querySelectorAll('tr > td:nth-child(8)');
