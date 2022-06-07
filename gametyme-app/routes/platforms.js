@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -25,6 +26,9 @@ router.get('/', (req, res) => {
 // Add New Platform
 
 router.post('/', (req, res) => { 
+    // Escape input
+    ut.escapeObject(req.body);
+
     console.log(req.body);
     const { addPlatformName, addCompanyId } = req.body;
     const query = `
@@ -63,6 +67,9 @@ router.delete('/:platform_id', (req, res) => {
 // Edit Platforms
 router.put('/:platform_id', (req, res) => {
     const platform_id = req.params.platform_id;
+
+    // Escape input
+    ut.escapeObject(req.body);
     const { platform_name, company_id } = req.body;
     const query = `
         UPDATE Platforms

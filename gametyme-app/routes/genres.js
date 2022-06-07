@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -13,6 +14,8 @@ router.get('/', (req, res) => {
 
 // Add new Genre
 router.post('/', (req, res) => {
+    // Escape input
+    ut.escapeObject(req.body);
     let genre_name = req.body; 
     const addGenreQuery = `INSERT INTO Genres (genre_name) VALUES ('${genre_name['input-genrename']}');`;
     
@@ -44,6 +47,9 @@ router.delete('/:genre_id', (req, res) => {
 // Edit Genre
 router.put('/:genre_id', (req, res) => {
     const genre_id = req.params.genre_id;
+
+    // Escape input
+    ut.escapeObject(req.body);
     const genre_name = req.body.genre_name;
     
     const editGenreQuery = `

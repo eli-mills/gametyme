@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -13,6 +14,8 @@ router.get('/', (req, res) => {
 
 // Add Users
 router.post('/', (req, res) => { 
+    // Escape input
+    ut.escapeObject(req.body);
     let data = req.body;
     const query = `INSERT INTO Users (first_name,last_name, username,email) VALUES ('${data['input-user-fname']}',
     '${data['input-user-lname']}', '${data['input-username']}', '${data['input-user-email']}');`;
@@ -49,6 +52,9 @@ router.delete('/:user_id', (req, res) => {
 // Update Users
 router.put('/:user_id', (req, res) => {
     const user_id = req.params.user_id;
+
+    // Escape input
+    ut.escapeObject(req.body);
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const username = req.body.username;

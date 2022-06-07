@@ -53,9 +53,7 @@ router.post('/', (req, res) => {
     console.log('Post request received: \n', req.body);
 
     // Escape special characters
-    for ( const attribute in req.body ) {
-        req.body[attribute] = ut.escapeString( req.body[attribute] );
-    }
+    ut.escapeObject(req.body);
 
     let { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     let query = `
@@ -138,9 +136,7 @@ router.delete('/:game_id', (req, res) => {
 router.put('/:game_id', (req, res) => {
     console.log('PUT request received.');
     // Escape special characters
-    for ( const attribute in req.body ) {
-        req.body[attribute] = ut.escapeString( req.body[attribute] );
-    }
+    ut.escapeObject(req.body);
     console.log(req.body);
     const game_id = req.params.game_id;
     let { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;

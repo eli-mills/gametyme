@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -27,6 +28,8 @@ router.get('/', (req, res) => {
  * Body:                {city, state, country} 
  */
 router.post('/', (req, res) => { 
+    // Escape input
+    ut.escapeObject(req.body);
     const { city, state, country } = req.body;
     const query = `INSERT INTO Locations (city,state,country) VALUES ('${city}',
     '${state}', '${country}');`;
@@ -74,6 +77,9 @@ router.delete('/:location_id', (req, res) => {
  */
 router.put('/:location_id', (req, res) => {
     const location_id = req.params.location_id;
+
+    // Escape input
+    ut.escapeObject(req.body);
     const city = req.body.city;
     const state = req.body.state;
     const country = req.body.country;

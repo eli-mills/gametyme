@@ -19,4 +19,10 @@ function escapeString(stringToClean) {
     return outputString;
 }
 
-module.exports = {escapeString};
+function escapeObject( inputObject ) {
+    for (key in inputObject) {
+        inputObject[key] = escapeString(inputObject[key]);
+    }
+}
+
+module.exports = {escapeString, escapeObject};

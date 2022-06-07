@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -35,6 +36,8 @@ router.get('/', (req, res) => {
  * Body:                { company_name, location_id } 
  */
 router.post('/', (req, res) => { 
+    // Escape input
+    ut.escapeObject(req.body);
     let {company_name, location_id} = req.body;
     const query = `
         INSERT INTO Companies (company_name, location_id)
@@ -84,6 +87,9 @@ router.delete('/:company_id', (req, res) => {
  */
 router.put('/:company_id', (req, res) => {
     const company_id = req.params.company_id;
+
+    // Escape input
+    ut.escapeObject(req.body);
     const { company_name, location_id } = req.body;
     
     const query = `

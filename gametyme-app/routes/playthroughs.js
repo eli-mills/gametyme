@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -39,7 +40,8 @@ router.get('/', (req, res) => {
 
 // Add Playthrough
 router.post('/', (req, res) => {
-
+    // Escape input
+    ut.escapeObject(req.body)
     let {username, game_title}= req.body; 
     const addPlaythroughQuery = `INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
     VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${username}'), 
@@ -81,6 +83,8 @@ router.delete('/:playthrough_id', (req, res) => {
 // Edit Playthrough
 router.put('/:playthrough_id', (req, res) => {
     console.log('edit playthrough request received');
+    // Escape input
+    ut.escapeObject(req.body);
     console.log('body: ', req.body);
     const playthrough_id = req.params.playthrough_id;
 
