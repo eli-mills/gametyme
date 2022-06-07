@@ -41,10 +41,11 @@ router.get('/', (req, res) => {
 // Add Playthrough
 router.post('/', (req, res) => {
     // Escape input
-    ut.escapeObject(req.body)
-    let {username, game_title}= req.body; 
+    ut.escapeObject(req.body);
+    let {username, game_title, start_timestamp}= req.body; 
+
     const addPlaythroughQuery = `INSERT INTO Playthroughs (start_timestamp, user_id, game_id)
-    VALUES ((SELECT CURRENT_TIMESTAMP), (SELECT user_id FROM Users WHERE username = '${username}'), 
+    VALUES ('${start_timestamp}', (SELECT user_id FROM Users WHERE username = '${username}'), 
     (SELECT game_id FROM Games WHERE game_title='${game_title}'));
     
     `;

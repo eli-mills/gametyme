@@ -8,6 +8,7 @@ const htmlDate = '%Y-%m-%d';
 
 // Load page
 router.get('/', (req, res) => {
+    console.log('main game page reached')
     const loadGames = `
     SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
     DATE_FORMAT(Games.release_date, "${readableDate}") AS 'Release Date', 
@@ -41,6 +42,29 @@ router.get('/', (req, res) => {
     });
 }); 
 
+// Get options for filter
+router.get('/:table_id', (req, res) => {
+    console.log('table filter options page reached')
+    const id = req.params.table_id;
+    const table = {'genre_id': 'Genres', 'company_id': 'Companies', 'platform_id': 'Platforms'}[id];
+    const name = {'genre_id': 'genre_name', 'company_id': 'company_name', 'platform_id': 'platform_name'}[id];
+
+    const query = `SELECT ${id}, ${name} FROM ${table};`;
+    console.log(query);
+
+    db.query(query, (error, results, fields) => {
+        console.log(results);
+        if (error) throw error;
+        
+        const data = {};
+        // Convert results to single JSON object
+        for ( const result of results) {
+            data[result[id]] = result[name];
+        }
+
+        console.log(data);
+    })
+})
 
 /** Add New Game 
  *      Adds a new Game to the Games table with the given title, summary, release date,

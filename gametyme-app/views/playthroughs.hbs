@@ -66,7 +66,7 @@
         <form id="addPlaythrough" method="POST" action="/playthroughs">
             <h3>Add a New Playthrough </h3>
               <fieldset class="fields">
-                <label> Start Timestamp: </label> <input type="text" name="input-start-time" id="input-start-time">
+                <label> Start Timestamp: </label> <input type="datetime-local" step="1" name="start_timestamp" id="input-start-time">
                 <label> Username:</label>
                  <select name ="username" id="input-selectUser">
                     {{#each userSelect}}
@@ -200,7 +200,7 @@
            <h3>Add Session</h3>
            <fieldset class="fields">
               <label> Playthrough ID: </label> <input type="text" name="input-playthrough-id" id="input-playthrough-id">
-              <label> Start Timestamp: </label> <input type="text" name="input-session-start" id="input-session-start">
+              <label> Start Timestamp: </label> <input type="datetime-local" step="1" name="input-session-start" id="input-session-start">
               <select name ="select-session-playthrough" id="selectPlaythroughID">
                     {{#each data}}
                     <option value="{{"Playthrough ID"}}">{{"Playthrough ID"}}</option>

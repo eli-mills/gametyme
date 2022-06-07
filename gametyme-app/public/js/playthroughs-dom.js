@@ -75,30 +75,27 @@ document.getElementById("cancelfinishBtn").addEventListener("click",function(e){
 })
 
 
+
+function generateDateTime(element) {
+    /* 
+    Code for converting date to proper format sourced from John Au-Yeung
+    at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
+    */ 
+   now = new Date();
+   let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
+   dateVal = dateVal.slice(0, -5);
+   element.value = dateVal;
+}
+
+
 // Get current timestamp for Start TimeStamp
 const startTime = document.getElementById("input-start-time");
-function getStartTime() {
-    var dateVal = new Date().toLocaleString();
-    startTime.value = dateVal;
-    
-}
-  
-setInterval(getStartTime, 1000);
+setInterval( ()=>{generateDateTime(startTime)}, 1000);
+
 
 // Get finish timestamp for Finish Timestamp
 const finishTime = document.getElementById("finishPlaythroughTime");
-function getfinishTime() {
-    /* 
-        Code for converting date to proper format sourced from John Au-Yeung
-        at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
-    */ 
-    now = new Date();
-    let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
-    dateVal = dateVal.slice(0, -5);
-    finishTime.value = dateVal;
-  }
-  
-setInterval(getfinishTime, 1000);
+setInterval( ()=>{generateDateTime(finishTime)}, 1000);
 
 
 // Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
