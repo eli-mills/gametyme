@@ -101,3 +101,17 @@ function getfinishTime() {
 setInterval(getfinishTime, 1000);
 
 
+// Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+const table = document.getElementById('playthrough-table');
+var finishCol = table.querySelectorAll('tr > td:nth-child(3)');
+var finishBtns = table.querySelectorAll('tr > td:nth-child(8)');
+
+
+for (var i = 0; i < finishCol.length; i++) {
+    var finishTimes = finishCol[i];
+    if(finishTimes.innerHTML !== ""){
+        finishBtns[i].style.display = 'none';
+    }else{
+        finishBtns[i].style.display = 'block';
+    }
+}

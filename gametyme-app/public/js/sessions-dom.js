@@ -67,3 +67,19 @@ function getSessionEnd(){
         sessionEnd.value = dateVal;
 }
 setInterval(getSessionEnd, 1000);
+
+
+// Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+const sessionTable = document.getElementById('session-table');
+var endCol = sessionTable.querySelectorAll('tr > td:nth-child(4)');
+var endBtns = sessionTable.querySelectorAll('tr > td:nth-child(8)');
+
+
+for (var i = 0; i < endCol.length; i++) {
+    var endTime = endCol[i];
+    if(endTime.innerHTML !== ""){
+        endBtns[i].style.display = 'none';
+    }else{
+        endBtns[i].style.display = 'block';
+    }
+}

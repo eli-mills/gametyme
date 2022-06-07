@@ -37,6 +37,7 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   border-radius: 10px;
+  table-layout: fixed;
 }
 tr {
   text-align: left;
@@ -309,3 +310,4 @@ button {
 img{
   width: 400px;
 }
+
