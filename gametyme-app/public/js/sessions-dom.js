@@ -46,24 +46,20 @@ document.getElementById("cancelEditSession").addEventListener("click", function(
 })
 
 // Get current timestamp for Start TimeStamp
-const sessionStart = document.getElementById("input-session-start");
-function getSessionStart() {
-    var dateVal = new Date().toLocaleString();
-    sessionStart.value = dateVal;
-    
-  }
-  
-setInterval(getSessionStart, 1000);
+
+function generateDateTime(element){
+    /* 
+    Code for converting date to proper format sourced from John Au-Yeung
+    at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
+    */ 
+   now = new Date();
+   let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
+   dateVal = dateVal.slice(0, -5);
+   element.value = dateVal;
+}
 
 const sessionEnd = document.getElementById("input-finish-session");
-function getSessionEnd(){
-    /* 
-        Code for converting date to proper format sourced from John Au-Yeung
-        at https://thewebdev.info/2022/01/11/how-to-set-datetime-on-a-datetime-local-input-with-javascript/.
-    */ 
-        now = new Date();
-        let dateVal = new Date( now.getTime() - now.getTimezoneOffset()*60000).toISOString();
-        dateVal = dateVal.slice(0, -5);
-        sessionEnd.value = dateVal;
-}
-setInterval(getSessionEnd, 1000);
+setInterval(()=>{generateDateTime(sessionEnd)}, 1000);
+
+const sessionStart = document.getElementById("input-session-start");  
+setInterval(()=>{generateDateTime(sessionStart)}, 1000);

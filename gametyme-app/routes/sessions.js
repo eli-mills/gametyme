@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
     let data= req.body; 
     const addSessionQuery = `
     INSERT INTO Sessions (session_start, playthrough_id)
-    VALUES ((SELECT CURRENT_TIMESTAMP), '${data['input-playthrough-id']}');
+    VALUES ('${data['input-session-start']}', '${data['input-playthrough-id']}');
     
     `;
     
