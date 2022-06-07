@@ -107,8 +107,11 @@ var finishBtns = table.querySelectorAll('tr > td:nth-child(8)');
 for (var i = 0; i < finishCol.length; i++) {
     var finishTimes = finishCol[i];
     if(finishTimes.innerHTML !== ""){
-        finishBtns[i].style.display = 'none';
+        finishBtns[i].style.pointerEvents = 'none';
+        finishBtns[i].style.opacity = '0.1';
+       
     }else{
-        finishBtns[i].style.display = 'block';
+        finishBtns[i].style.pointerEvents = 'initial';
+        finishBtns[i].style.opacity = '1';
     }
 }

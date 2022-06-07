@@ -320,3 +320,6 @@ img{
   margin-right: 30px;
 }
 
+td {
+  min-width: 80px;
+}
