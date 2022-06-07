@@ -39,7 +39,9 @@
             </select>
             <label for="filterValue">Value:</label>
             <select name="value" id="filterValue">
-
+                {{#each genres}}
+                <option value={{genre_id}}>{{genre_name}}</option>
+                {{/each}}
             </select>
             <button>Filter</button>
             <a href="/games">Clear Filter</a>

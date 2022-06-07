@@ -3,14 +3,22 @@ document.getElementById("filterBy").addEventListener("change", (e)=>{
     // Get values for given table
     const value = e.target.value;
 
-    fetch(`/games/${value}`)
+    fetch(`/games/${value}`, {headers: {'Content-type': 'application/json'}})
     .then( (results) => {
+        return results.json();
+    })
+    .then( (result) => {
         // Expects results in form of object of {id: name} pairs
         const valueSelect = document.getElementById("filterValue");
 
+        // Clear any existing values from filter value dropdown
+        while ( valueSelect.firstChild ) {
+            valueSelect.removeChild( valueSelect.firstChild );
+        }
+
         // Populate value selection menu with received options
-        for ( id in results) {
-            let name = results[id];
+        for ( const id in result) {
+            let name = result[id];
             let newOption = document.createElement('option');
             newOption.value = id;
             newOption.text = name;

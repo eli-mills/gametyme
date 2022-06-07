@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     `;
 
     const loadCompanies = 'SELECT company_name FROM Companies;';
-    const loadGenres = 'SELECT genre_name FROM Genres;';
+    const loadGenres = 'SELECT genre_id, genre_name FROM Genres;';
     const loadPlatforms = 'SELECT platform_name FROM Platforms;'
 
     const query = loadGames.concat(loadCompanies, loadGenres, loadPlatforms); 
@@ -53,7 +53,6 @@ router.get('/:table_id', (req, res) => {
     console.log(query);
 
     db.query(query, (error, results, fields) => {
-        console.log(results);
         if (error) throw error;
         
         const data = {};
@@ -62,7 +61,8 @@ router.get('/:table_id', (req, res) => {
             data[result[id]] = result[name];
         }
 
-        console.log(data);
+        console.log('Sending JSON: ', data);
+        res.json(data);
     })
 })
 
