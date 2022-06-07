@@ -1,4 +1,5 @@
 const db = require('../database/db-connector.js');
+const ut = require('../utility/utility.js');
 const express = require('express');
 const router = express.Router();
 
@@ -9,8 +10,8 @@ const htmlDate = '%Y-%m-%d';
 router.get('/', (req, res) => {
     const loadGames = `
     SELECT Games.game_id AS 'Game ID', Games.game_title AS 'Game Title', Games.game_summary AS 'Game Summary', 
-    DATE_FORMAT(Games.release_date, '${readableDate}') AS 'Release Date', 
-    DATE_FORMAT(Games.release_date, '${htmlDate}') AS htmlDate,
+    DATE_FORMAT(Games.release_date, "${readableDate}") AS 'Release Date', 
+    DATE_FORMAT(Games.release_date, "${htmlDate}") AS htmlDate,
     Companies.company_name AS 'Company', Genres.genre_name AS 'Genre', 
     GROUP_CONCAT(Platforms.platform_name ORDER BY Platforms.platform_name ASC SEPARATOR ', ') AS 'Platforms'
     FROM Games LEFT JOIN GamesPlatforms ON Games.game_id=GamesPlatforms.game_id
@@ -28,6 +29,7 @@ router.get('/', (req, res) => {
 
     db.query(query, (error, results, fields) => {
         if (error) throw error;
+
         res.render('games', {
             data:       results[0], 
             companies:  results[1], 
@@ -49,12 +51,18 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => { 
     console.log('Post request received: \n', req.body);
+
+    // Escape special characters
+    for ( const attribute in req.body ) {
+        req.body[attribute] = ut.escapeString( req.body[attribute] );
+    }
+
     let { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     let query = `
         INSERT INTO Games (game_title, game_summary, release_date, company_id, genre_id)
-        VALUES ('${game_title}', '${game_summary}', '${release_date}', 
-        (SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
-        (SELECT genre_id FROM Genres WHERE genre_name='${genre_name}'));
+        VALUES ("${game_title}", "${game_summary}", "${release_date}", 
+        (SELECT company_id FROM Companies WHERE company_name="${company_name}"), 
+        (SELECT genre_id FROM Genres WHERE genre_name="${genre_name}"));
     `;
 
     db.query(query, (error, results, fields) => {
@@ -78,7 +86,7 @@ router.post('/', (req, res) => {
                 gamePlatformQuery = `
                 INSERT INTO GamesPlatforms (game_id, platform_id)
                 VALUES (${game_id}, 
-                    (SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}')
+                    (SELECT platform_id FROM Platforms WHERE platform_name="${platform_name}")
                     );
                 `;
                 console.log('Attempting query: \n', gamePlatformQuery);
@@ -126,19 +134,21 @@ router.delete('/:game_id', (req, res) => {
  *              genre_name
  *              platform_names (this must be an array containing all selected platforms)
  * 
- * 
- * 
 */
 router.put('/:game_id', (req, res) => {
     console.log('PUT request received.');
+    // Escape special characters
+    for ( const attribute in req.body ) {
+        req.body[attribute] = ut.escapeString( req.body[attribute] );
+    }
     console.log(req.body);
     const game_id = req.params.game_id;
-    const { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
+    let { game_title, game_summary, release_date, company_name, genre_name, platform_names } = req.body;
     const query = `
         UPDATE Games
-        SET game_title='${game_title}', game_summary='${game_summary}', release_date='${release_date}', 
-            company_id=(SELECT company_id FROM Companies WHERE company_name='${company_name}'), 
-            genre_id=(SELECT genre_id FROM Genres WHERE genre_name='${genre_name}')
+        SET game_title="${game_title}", game_summary="${game_summary}", release_date="${release_date}", 
+            company_id=(SELECT company_id FROM Companies WHERE company_name="${company_name}"), 
+            genre_id=(SELECT genre_id FROM Genres WHERE genre_name="${genre_name}")
         WHERE game_id=${game_id};    
     `;
 
@@ -148,6 +158,11 @@ router.put('/:game_id', (req, res) => {
         FROM GamesPlatforms JOIN Platforms ON GamesPlatforms.platform_id=Platforms.platform_id
         WHERE GamesPlatforms.game_id=${game_id};
     `;
+
+    // Convert platform_names to array if only one element
+    if (typeof platform_names === 'string') {
+        platform_names = [platform_names];
+    }
 
     let existingPlatforms = [];
 
@@ -187,7 +202,7 @@ router.put('/:game_id', (req, res) => {
             for (let platform_name of platsToDelete) {
                 const delQuery = `
                     DELETE FROM GamesPlatforms
-                    WHERE game_id=${game_id} AND platform_id=(SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}');
+                    WHERE game_id=${game_id} AND platform_id=(SELECT platform_id FROM Platforms WHERE platform_name="${platform_name}");
                 `
                 console.log(`Deleting GamePlatform ${game_id}, ${platform_name}`);
                 db.query(delQuery, (error, results, fields) => {
@@ -203,7 +218,7 @@ router.put('/:game_id', (req, res) => {
             for (let platform_name of platsToAdd) {
                 const addQuery = `
                     INSERT INTO GamesPlatforms (game_id, platform_id)
-                    VALUES (${game_id}, (SELECT platform_id FROM Platforms WHERE platform_name='${platform_name}'));
+                    VALUES (${game_id}, (SELECT platform_id FROM Platforms WHERE platform_name="${platform_name}"));
                 `
                 console.log(`Adding GamePlatform ${game_id}, ${platform_name}`);
                 db.query(addQuery, (error, results, fields) => {
@@ -227,8 +242,6 @@ router.put('/:game_id', (req, res) => {
         console.log(results);
         res.json(results);
     });
-})
-
-
+});
 
 module.exports =  router;

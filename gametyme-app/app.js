@@ -1,3 +1,8 @@
+/*
+    CITATION:
+    Express app.js and handlebars templates set up similarly to CS340 starter app.
+*/
+
 const express = require('express');
 const app = express();
 const PORT = 9501;
