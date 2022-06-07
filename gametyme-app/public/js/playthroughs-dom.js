@@ -97,8 +97,13 @@ setInterval( ()=>{generateDateTime(startTime)}, 1000);
 const finishTime = document.getElementById("finishPlaythroughTime");
 setInterval( ()=>{generateDateTime(finishTime)}, 1000);
 
+/*
+ Adapted Source Code for code lines 107-113 from StackOverflow user Brian 
+ https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
 
-// Reference: https://stackoverflow.com/questions/43940850/how-to-iterate-through-table-tr-and-get-the-value-for-first-td-javascript
+*/
+
+
 const table = document.getElementById('playthrough-table');
 var finishCol = table.querySelectorAll('tr > td:nth-child(3)');
 var finishBtns = table.querySelectorAll('tr > td:nth-child(8)');
