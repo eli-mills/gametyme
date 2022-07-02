@@ -3,11 +3,11 @@ const {onid, db_pw} = require('./db-credentials.js');
 
 const pool = mysql.createPool({
     connectionLimit     : 10,
-    host                : 'classmysql.engr.oregonstate.edu',
-    user                : `cs340_${onid}`,
+    user                : 'root',
     password            : db_pw,
-    database            : `cs340_${onid}`,
-    multipleStatements  : true
+    database            : 'gametyme',
+    multipleStatements  : true,
+    debug               : true
 });
 
 module.exports = pool;
